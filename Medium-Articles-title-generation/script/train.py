@@ -74,17 +74,18 @@ tokenizer.padding_side = "right" # Fix weird overflow issue with fp16 training
 
 ############## load model for training ##############
 
-compute_dtype = getattr(torch, "float16")
-
-
 peft_config = LoraConfig(
     task_type="CAUSAL_LM", 
     inference_mode=False, 
-    r=8, 
+    r=4, 
     lora_alpha=32, 
-    lora_dropout=0.1
+    lora_dropout=0.1,
+    bias="none",
+    target_modules=["q_proj","k_proj","v_proj","o_proj"],
+    use_dora=True
 )
 
+compute_dtype = getattr(torch, "float16")
 
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
@@ -105,9 +106,10 @@ model = AutoModelForCausalLM.from_pretrained(
     quantization_config=bnb_config
 )
 
+model.config.use_cache = False
 
-train_batch_size = 8
-eval_batch_size = 8
+train_batch_size = 4
+eval_batch_size = 4
 learning_rate = 2e-5
 
 eval_every_step = round(0.1*len(dataset['train'])/train_batch_size)
@@ -138,7 +140,7 @@ trainer = SFTTrainer(
     eval_dataset=dataset["valid"],
     peft_config=peft_config,
     dataset_text_field="text",
-    max_seq_length=2048,
+    max_seq_length=512,
     tokenizer=tokenizer,
     args=training_args,
     packing=False,
