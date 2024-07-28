@@ -1,12 +1,14 @@
 
 #%%
 
-import os 
+## note: code for llm only, will add code for T5 later...
+
+import os, argparse
 
 import torch
-from transformers import AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, Seq2SeqTrainer, AutoTokenizer, DataCollatorForSeq2Seq, BitsAndBytesConfig
+from transformers import AutoModelForCausalLM, TrainingArguments, AutoTokenizer, EarlyStoppingCallback
 
-from peft import LoraConfig, TaskType
+from peft import LoraConfig
 from trl import SFTTrainer
 
 from datasets import load_dataset
@@ -14,64 +16,93 @@ from datasets import load_dataset
 
 #%%
 
-dataset_name = "mlabonne/guanaco-llama2-1k"
+# dataset_name = "mlabonne/guanaco-llama2-1k"
 
-dataset = load_dataset(dataset_name)
+# dataset = load_dataset(dataset_name)
 
 
 #%%
 
+parser = argparse.ArgumentParser()
+
+parser.add_argument('--model_name', type = str, default = 'llama3-8b')
+
+args = parser.parse_args()
+
+#%%
+
+model_names = {
+    'llama3-8b': 'meta-llama/Meta-Llama-3-8B',
+    'mistral-7b': 'mistralai/Mistral-7B-v0.3'
+}
 
 data_dir = '../dataset/cleaned/'
-model_name = ''
+model_name_arg = args.model_name
+model_name = model_names.get(model_name_arg, '')
+
+output_model_dir = '../fine-tuned-model/{}'.format(model_name)
+
+if model_name == '':
+    print('wrong model name.')
+    print('the model names must be in the list:', list(model_names.keys()))
+    exit(0)
+
+############## load dataset ##############
 
 dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.csv'), 'valid': os.path.join(data_dir,'valid.csv')})
-
-
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-
-
-compute_dtype = getattr(torch, "float16")
-
-quant_config = BitsAndBytesConfig(
-    load_in_8bit=True
-)
-
-peft_config = LoraConfig(
-    task_type=TaskType.SEQ_2_SEQ_LM, inference_mode=False, r=32, lora_alpha=32, lora_dropout=0.1
-)
-
-model = AutoModelForSeq2SeqLM.from_pretrained(model_name, quantization_config=quant_config)
-
-model = get_peft_model(model, peft_config)
-
-data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model_name)
 
 
 def preprocess_function(examples):
     inputs = examples['title']
     targets = examples['text']
 
-    ## for LLaMa-2 only, may need to change for other models
-    model_inputs = '<s>[INST] {} [/INST] {}'.format(inputs, targets)
+    examples['text'] = '<s>[INST] {} [/INST] {} </s>'.format(inputs, targets)
 
-    # model_inputs = tokenizer(inputs, text_target=targets, max_length=1024, truncation=True)
-
-    return model_inputs
+    return examples
 
 
-dataset = dataset.map(preprocess_function, batch = True)
+dataset = dataset.map(preprocess_function)
 
 
-train_batch_size = 32
+############## load tokenizer ##############
+
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+tokenizer.pad_token = tokenizer.eos_token
+tokenizer.padding_side = "right" # Fix weird overflow issue with fp16 training
+
+
+############## load model for training ##############
+
+compute_dtype = getattr(torch, "float16")
+
+
+peft_config = LoraConfig(
+    task_type="CAUSAL_LM", 
+    inference_mode=False, 
+    r=32, 
+    lora_alpha=32, 
+    lora_dropout=0.1
+)
+
+
+model = AutoModelForCausalLM.from_pretrained(
+    model_name,
+    low_cpu_mem_usage=True,
+    return_dict=True,
+    torch_dtype=torch.float16
+)
+
+
+train_batch_size = 16
 eval_batch_size = 32
 learning_rate = 2e-5
 
-training_args = Seq2SeqTrainingArguments(
+training_args = TrainingArguments(
     do_train=True,
     do_eval=True,
-    output_dir="model_checkpoint",
+    output_dir=output_model_dir,
     eval_strategy="steps",
+    eval_steps = round(0.1*len(dataset['train'])/train_batch_size), ## evaluate every 10% of training dataset (in term of batch)
     learning_rate=learning_rate,
     per_device_train_batch_size=train_batch_size,
     per_device_eval_batch_size=eval_batch_size,
@@ -80,7 +111,9 @@ training_args = Seq2SeqTrainingArguments(
     save_strategy = 'steps',
     save_total_limit=5,
     save_steps = 0.1*round(len(dataset['train'])/train_batch_size),
-    # fp16=True,
+    group_by_length = True,
+    metric_for_best_model = 'eval_loss', ## for early stopping
+    load_best_model_at_end = True ## for early stopping
 )
 
 
@@ -89,19 +122,12 @@ trainer = SFTTrainer(
     train_dataset=dataset["train"],
     eval_dataset=dataset["valid"],
     peft_config=peft_config,
-    max_seq_length=1024,
+    dataset_text_field="text",
+    max_seq_length=2048,
     tokenizer=tokenizer,
-    args=training_params,
-    packing=False,
-)
-
-trainer = Seq2SeqTrainer(
-    model=model,
     args=training_args,
-    train_dataset=dataset["train"],
-    eval_dataset=dataset["valid"],
-    tokenizer=tokenizer,
-    data_collator=data_collator
+    packing=False,
+    callbacks = [EarlyStoppingCallback(early_stopping_patience=3, early_stopping_threshold = 0.01)]
 )
 
 trainer.train()
