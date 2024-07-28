@@ -80,7 +80,7 @@ compute_dtype = getattr(torch, "float16")
 peft_config = LoraConfig(
     task_type="CAUSAL_LM", 
     inference_mode=False, 
-    r=16, 
+    r=8, 
     lora_alpha=32, 
     lora_dropout=0.1
 )
@@ -106,8 +106,8 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 
 
-train_batch_size = 16
-eval_batch_size = 16
+train_batch_size = 8
+eval_batch_size = 8
 learning_rate = 2e-5
 
 eval_every_step = round(0.1*len(dataset['train'])/train_batch_size)
