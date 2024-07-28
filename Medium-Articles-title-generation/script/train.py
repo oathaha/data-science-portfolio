@@ -32,7 +32,7 @@ args = parser.parse_args()
 #%%
 
 model_names = {
-    'llama2-7b': 'meta-llama/Llama-2-7b',
+    'llama2-7b': 'meta-llama/Llama-2-7b-hf',
     'mistral-7b': 'mistralai/Mistral-7B-v0.3'
 }
 
@@ -106,8 +106,8 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 
 
-train_batch_size = 6
-eval_batch_size = 6
+train_batch_size = 16
+eval_batch_size = 16
 learning_rate = 2e-5
 
 eval_every_step = round(0.1*len(dataset['train'])/train_batch_size)
