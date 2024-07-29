@@ -33,7 +33,7 @@ data_dir = '../dataset/cleaned/'
 model_name_arg = args.model_name
 model_name = model_names.get(model_name_arg, '')
 
-output_model_dir = '../fine-tuned-model/{}'.format(model_name)
+output_model_dir = '../fine-tuned-model/{}'.format(model_name_arg)
 
 if model_name == '':
     print('wrong model name.')
