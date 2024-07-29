@@ -25,6 +25,7 @@ valid_end = round(len(df)*0.85)
 
 train_df = df.iloc[0:train_end]
 valid_df = df.iloc[train_end: valid_end]
+valid_df_for_testing = df.sample(n=16)
 test_df = df.iloc[valid_end:]
 
 assert len(df) == len(train_df) + len(valid_df) + len(test_df)
@@ -33,4 +34,5 @@ assert len(df) == len(train_df) + len(valid_df) + len(test_df)
 
 train_df.to_csv('../dataset/cleaned/train.csv', index = False)
 valid_df.to_csv('../dataset/cleaned/valid.csv', index = False)
+valid_df_for_testing.to_csv('../dataset/cleaned/valid_for_testing.csv', index = False)
 test_df.to_csv('../dataset/cleaned/test.csv', index = False)

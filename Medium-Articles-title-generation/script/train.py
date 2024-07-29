@@ -8,17 +8,10 @@ import os, argparse
 import torch
 from transformers import AutoModelForCausalLM, TrainingArguments, AutoTokenizer, EarlyStoppingCallback, BitsAndBytesConfig
 
-from peft import LoraConfig
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from trl import SFTTrainer
 
 from datasets import load_dataset
-
-
-#%%
-
-# dataset_name = "mlabonne/guanaco-llama2-1k"
-
-# dataset = load_dataset(dataset_name)
 
 
 #%%
@@ -40,7 +33,7 @@ data_dir = '../dataset/cleaned/'
 model_name_arg = args.model_name
 model_name = model_names.get(model_name_arg, '')
 
-output_model_dir = '../fine-tuned-model/'
+output_model_dir = '../fine-tuned-model/{}'.format(model_name)
 
 if model_name == '':
     print('wrong model name.')
@@ -51,6 +44,10 @@ if model_name == '':
 
 dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.csv'), 'valid': os.path.join(data_dir,'valid.csv')})
 
+## just for testing
+# dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.csv'), 'valid': os.path.join(data_dir,'valid_for_testing.csv')})
+
+print(dataset)
 
 def preprocess_function(examples):
     
@@ -77,7 +74,7 @@ tokenizer.padding_side = "right" # Fix weird overflow issue with fp16 training
 peft_config = LoraConfig(
     task_type="CAUSAL_LM", 
     inference_mode=False, 
-    r=4, 
+    r=16, 
     lora_alpha=32, 
     lora_dropout=0.1,
     bias="none",
@@ -87,16 +84,10 @@ peft_config = LoraConfig(
 
 compute_dtype = getattr(torch, "float16")
 
-bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_quant_type="nf4",
-    bnb_4bit_compute_dtype=compute_dtype,
-    bnb_4bit_use_double_quant=False
-)
 
-# bnb_config = BitsAndBytesConfig(
-#     load_in_8bit=True
-# )
+bnb_config = BitsAndBytesConfig(
+    load_in_8bit=True
+)
 
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
@@ -106,13 +97,16 @@ model = AutoModelForCausalLM.from_pretrained(
     quantization_config=bnb_config
 )
 
-model.config.use_cache = False
+model = prepare_model_for_kbit_training(model)
+model = get_peft_model(model, peft_config)
 
 train_batch_size = 4
-eval_batch_size = 4
+eval_batch_size = 8
 learning_rate = 2e-5
 
+## real one
 eval_every_step = round(0.1*len(dataset['train'])/train_batch_size)
+
 
 training_args = TrainingArguments(
     do_train=True,
@@ -120,15 +114,18 @@ training_args = TrainingArguments(
     output_dir=output_model_dir,
     evaluation_strategy = "steps",
     eval_steps = eval_every_step, ## evaluate every 10% of training dataset (in term of batch)
+    logging_strategy = 'steps',
+    logging_first_step = True,
     learning_rate=learning_rate,
     per_device_train_batch_size=train_batch_size,
     per_device_eval_batch_size=eval_batch_size,
     weight_decay=0.01,
     warmup_steps = 0.05*len(dataset['train']),
     save_strategy = 'steps',
-    save_total_limit=5,
+    save_total_limit=7,
     save_steps = eval_every_step,
     group_by_length = True,
+    fp16=True,
     metric_for_best_model = 'eval_loss', ## for early stopping
     load_best_model_at_end = True ## for early stopping
 )
@@ -138,9 +135,9 @@ trainer = SFTTrainer(
     model=model,
     train_dataset=dataset["train"],
     eval_dataset=dataset["valid"],
-    peft_config=peft_config,
+    # peft_config=peft_config,
     dataset_text_field="text",
-    max_seq_length=512,
+    max_seq_length=1024,
     tokenizer=tokenizer,
     args=training_args,
     packing=False,
