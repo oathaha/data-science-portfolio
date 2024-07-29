@@ -100,13 +100,13 @@ model = AutoModelForCausalLM.from_pretrained(
 model = prepare_model_for_kbit_training(model)
 model = get_peft_model(model, peft_config)
 
-train_batch_size = 4
+train_batch_size = 8
 eval_batch_size = 8
 learning_rate = 2e-5
 
 ## real one
-eval_every_step = round(0.1*len(dataset['train'])/train_batch_size)
-
+# eval_every_step = round(0.1*len(dataset['train'])/train_batch_size)
+eval_every_step = 3050 ## total steps are 30516 as seen from screen.
 
 training_args = TrainingArguments(
     do_train=True,
