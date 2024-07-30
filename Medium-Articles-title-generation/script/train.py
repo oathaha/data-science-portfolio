@@ -6,7 +6,7 @@
 import os, argparse
 
 import torch
-from transformers import AutoModelForCausalLM, TrainingArguments, AutoTokenizer, EarlyStoppingCallback, BitsAndBytesConfig
+from transformers import AutoModelForCausalLM, TrainingArguments, AutoTokenizer, EarlyStoppingCallback, BitsAndBytesConfig, Seq2SeqTrainer, AutoModelForSeq2SeqLM
 
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from trl import SFTTrainer
@@ -26,7 +26,9 @@ args = parser.parse_args()
 
 model_names = {
     'llama2-7b': 'meta-llama/Llama-2-7b-hf',
-    'mistral-7b': 'mistralai/Mistral-7B-v0.3'
+    'mistral-7b': 'mistralai/Mistral-7B-v0.3',
+    't5': 'google-t5/t5-3b',
+    'bart': 'facebook/bart-large'
 }
 
 data_dir = '../dataset/cleaned/'
@@ -47,58 +49,23 @@ dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.
 ## just for testing
 # dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.csv'), 'valid': os.path.join(data_dir,'valid_for_testing.csv')})
 
+
 print(dataset)
-
-def preprocess_function(examples):
-    
-    inputs = examples['text']
-    targets = examples['title']
-    
-    examples['text'] = '<s>[INST] {} [/INST] {} </s>'.format(inputs, targets)
-
-    return examples
-
-
-dataset = dataset.map(preprocess_function)
 
 
 ############## load tokenizer ##############
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
-tokenizer.padding_side = "right" # Fix weird overflow issue with fp16 training
+
 
 
 ############## load model for training ##############
-
-peft_config = LoraConfig(
-    task_type="CAUSAL_LM", 
-    inference_mode=False, 
-    r=16, 
-    lora_alpha=32, 
-    lora_dropout=0.1,
-    bias="none",
-    target_modules=["q_proj","k_proj","v_proj","o_proj"],
-    use_dora=True
-)
-
-compute_dtype = getattr(torch, "float16")
-
 
 bnb_config = BitsAndBytesConfig(
     load_in_8bit=True
 )
 
-model = AutoModelForCausalLM.from_pretrained(
-    model_name,
-    low_cpu_mem_usage=True,
-    return_dict=True,
-    torch_dtype=torch.float16,
-    quantization_config=bnb_config
-)
-
-model = prepare_model_for_kbit_training(model)
-model = get_peft_model(model, peft_config)
 
 train_batch_size = 8
 eval_batch_size = 8
@@ -131,17 +98,117 @@ training_args = TrainingArguments(
 )
 
 
-trainer = SFTTrainer(
-    model=model,
-    train_dataset=dataset["train"],
-    eval_dataset=dataset["valid"],
-    # peft_config=peft_config,
-    dataset_text_field="text",
-    max_seq_length=1024,
-    tokenizer=tokenizer,
-    args=training_args,
-    packing=False,
-    callbacks = [EarlyStoppingCallback(early_stopping_patience=3, early_stopping_threshold = 0.01)]
-)
 
-trainer.train()
+
+#%%
+
+def train_LLM():
+
+    def preprocess_function(examples):
+        
+        inputs = examples['text']
+        targets = examples['title']
+        
+        examples['text'] = '<s>[INST] {} [/INST] {} </s>'.format(inputs, targets)
+
+        return examples
+
+    tokenizer.padding_side = "right" # Fix weird overflow issue with fp16 training
+
+    dataset = dataset.map(preprocess_function)
+
+    peft_config = LoraConfig(
+        task_type="CAUSAL_LM", 
+        inference_mode=False, 
+        r=16, 
+        lora_alpha=32, 
+        lora_dropout=0.1,
+        bias="none",
+        target_modules=["q_proj","k_proj","v_proj","o_proj"],
+        use_dora=True
+    )
+
+    model = AutoModelForCausalLM.from_pretrained(
+        model_name,
+        low_cpu_mem_usage=True,
+        return_dict=True,
+        torch_dtype=torch.float16,
+        quantization_config=bnb_config
+    )
+
+    model = prepare_model_for_kbit_training(model)
+
+    model = get_peft_model(model, peft_config)
+
+    trainer = SFTTrainer(
+        model=model,
+        train_dataset=dataset["train"],
+        eval_dataset=dataset["valid"],
+        # peft_config=peft_config,
+        dataset_text_field="text",
+        max_seq_length=1024,
+        tokenizer=tokenizer,
+        args=training_args,
+        packing=False,
+        callbacks = [EarlyStoppingCallback(early_stopping_patience=3, early_stopping_threshold = 0.01)]
+    )
+
+
+    trainer.train()
+
+
+def train_enc_dec_model():
+    def add_eos_to_examples(example):
+        example['text'] = '<s> {} </s>'.format(example['text'])
+        example['title'] = '<s> {} </s>'.format(example['title'])
+        return example
+
+    # tokenize the examples
+    def convert_to_features(example_batch):
+        input_encodings = tokenizer.batch_encode_plus(example_batch['text'], pad_to_max_length=True, max_length=512)
+        target_encodings = tokenizer.batch_encode_plus(example_batch['title'], pad_to_max_length=True, max_length=64)
+
+        encodings = {
+            'input_ids': input_encodings['input_ids'], 
+            'attention_mask': input_encodings['attention_mask'],
+            'target_ids': target_encodings['input_ids'],
+            'target_attention_mask': target_encodings['attention_mask']
+        }
+
+        return encodings
+
+    dataset = dataset.map(add_eos_to_examples)
+    dataset = dataset.map(convert_to_features, batched=True)
+
+    model = AutoModelForSeq2SeqLM.from_pretrained(
+        model_name,
+        low_cpu_mem_usage=True,
+        return_dict=True,
+        torch_dtype=torch.float16,
+        quantization_config=bnb_config
+    )
+
+    model = prepare_model_for_kbit_training(model)
+
+    trainer = Seq2SeqTrainer(
+        model=model,
+        train_dataset=dataset["train"],
+        eval_dataset=dataset["valid"],
+        max_seq_length=1024,
+        tokenizer=tokenizer,
+        args=training_args,
+        callbacks = [EarlyStoppingCallback(early_stopping_patience=3, early_stopping_threshold = 0.01)]
+    )
+
+    trainer.train()
+
+
+#%%
+
+if model_name_arg in ['llama2-7b', 'mistral-7b']:
+    print('training LLM')
+    train_LLM()
+
+else:
+    print('training encoder-decoder pre-trained model')
+    train_enc_dec_model()
