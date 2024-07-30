@@ -92,9 +92,9 @@ generated_title_list = []
 
 def preprocess_batch(batch):
     if model_name_arg in ['llama2-7b', 'mistral-7b']:
-        batch['title'] = ['<s>[INST] {} [/INST] '.format(s) for s in batch['title']]
+        batch['text'] = ['<s>[INST] {} [/INST] '.format(s) for s in batch['text']]
     else:
-        batch['title'] = ['<s> {} </s>'.format(s) for s in batch['title']]
+        batch['text'] = ['<s>{}</s>'.format(s) for s in batch['text']]
 
     return batch
 
