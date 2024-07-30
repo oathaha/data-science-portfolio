@@ -68,13 +68,15 @@ for class_name, sub_df in df.groupby('label'):
 #%%
 
 final_train_df = pd.concat(train_df_list).sample(frac = 1.0, random_state=0)
+test_valid_df = pd.concat(valid_df_list).sample(n = 64, random_state=0)
 final_valid_df = pd.concat(valid_df_list).sample(frac = 1.0, random_state=0)
 final_test_df = pd.concat(test_df_list).sample(frac = 1.0, random_state=0)
 
 #%%
 
-train_df.to_csv('../dataset/cleaned/train.csv', index = False)
-valid_df.to_csv('../dataset/cleaned/valid.csv', index = False)
-test_df.to_csv('../dataset/cleaned/test.csv', index = False)
+final_train_df.to_csv('../dataset/cleaned/train.csv', index = False)
+final_valid_df.to_csv('../dataset/cleaned/valid.csv', index = False)
+test_valid_df.to_csv('../dataset/cleaned/valid_for_testing.csv', index = False)
+final_test_df.to_csv('../dataset/cleaned/test.csv', index = False)
 
 # %%
