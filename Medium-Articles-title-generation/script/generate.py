@@ -52,7 +52,7 @@ if model_name == '':
 dataset = load_dataset('csv', data_files={'test': os.path.join(data_dir,'test.csv')})
 
 
-dataloader = DataLoader(dataset, batch_size=4)
+dataloader = DataLoader(dataset['test'], batch_size=4)
 
 ############## load tokenizer ##############
 
@@ -90,10 +90,20 @@ else:
 generated_title_list = []
 
 
+def preprocess_batch(batch):
+    if model_name_arg in ['llama2-7b', 'mistral-7b']:
+        batch['title'] = ['<s>[INST] {} [/INST] '.format(s) for s in batch['title']]
+    else:
+        batch['title'] = ['<s> {} </s>'.format(s) for s in batch['title']]
 
-## continue from here...
+    return batch
+
+
 for batch in tqdm(dataloader):
-    input_encodings = tokenizer.batch_encode_plus(batch, pad_to_max_length=True, max_length=512)
+
+    batch = preprocess_batch(batch)
+
+    input_encodings = tokenizer.batch_encode_plus(batch['text'], pad_to_max_length=True, max_length=512)
     input_ids = input_encodings['input_ids'], 
     attention_mask = input_encodings['attention_mask']
 
