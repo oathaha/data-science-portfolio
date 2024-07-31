@@ -6,7 +6,7 @@
 import os, argparse
 
 import torch
-from transformers import AutoModelForCausalLM, TrainingArguments, AutoTokenizer, EarlyStoppingCallback, BitsAndBytesConfig, Seq2SeqTrainer, AutoModelForSeq2SeqLM
+from transformers import AutoModelForCausalLM, TrainingArguments, AutoTokenizer, EarlyStoppingCallback, BitsAndBytesConfig, Trainer, AutoModelForSeq2SeqLM
 
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from trl import SFTTrainer
@@ -26,7 +26,6 @@ args = parser.parse_args()
 
 model_names = {
     'llama2-7b': 'meta-llama/Llama-2-7b-hf',
-    'mistral-7b': 'mistralai/Mistral-7B-v0.3',
     't5': 'google-t5/t5-3b',
     'bart': 'facebook/bart-large'
 }
@@ -67,8 +66,8 @@ bnb_config = BitsAndBytesConfig(
 )
 
 
-train_batch_size = 8
-eval_batch_size = 8
+train_batch_size = 6
+eval_batch_size = 6
 learning_rate = 2e-5
 
 ## real one
@@ -174,27 +173,26 @@ def train_enc_dec_model():
 
     global dataset
 
-    def add_eos_to_examples(example):
-        example['text'] = '<s> {} </s>'.format(example['text'])
-        example['title'] = '<s> {} </s>'.format(example['title'])
-        return example
-
     # tokenize the examples
     def convert_to_features(example_batch):
-        input_encodings = tokenizer.batch_encode_plus(example_batch['text'], pad_to_max_length=True, max_length=512)
-        target_encodings = tokenizer.batch_encode_plus(example_batch['title'], pad_to_max_length=True, max_length=50)
+        inputs = example_batch['text']
+        targets = example_batch['title']
+        model_inputs = tokenizer(
+            inputs, text_target=targets, max_length=512, truncation=True, pad_to_max_length=True
+        )
+        return model_inputs
 
-        encodings = {
-            'input_ids': input_encodings['input_ids'], 
-            'attention_mask': input_encodings['attention_mask'],
-            'target_ids': target_encodings['input_ids'],
-            'target_attention_mask': target_encodings['attention_mask']
-        }
-
-        return encodings
-
-    # dataset = dataset.map(add_eos_to_examples)
     dataset = dataset.map(convert_to_features, batched=True)
+
+    peft_config = LoraConfig(
+        task_type="SEQ_2_SEQ_LM", 
+        inference_mode=False, 
+        r=16, 
+        lora_alpha=32, 
+        lora_dropout=0.1,
+        bias="none",
+        use_dora=True
+    )
 
     model = AutoModelForSeq2SeqLM.from_pretrained(
         model_name,
@@ -206,11 +204,12 @@ def train_enc_dec_model():
 
     model = prepare_model_for_kbit_training(model)
 
-    trainer = Seq2SeqTrainer(
+    model = get_peft_model(model, peft_config)
+
+    trainer = Trainer(
         model=model,
         train_dataset=dataset["train"],
         eval_dataset=dataset["valid"],
-        max_seq_length=512,
         tokenizer=tokenizer,
         args=training_args,
         callbacks = [EarlyStoppingCallback(early_stopping_patience=3, early_stopping_threshold = 0.01)]
