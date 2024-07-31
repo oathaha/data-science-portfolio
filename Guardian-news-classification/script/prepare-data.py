@@ -5,6 +5,8 @@ import seaborn as sns
 
 import pickle
 
+import pickle
+
 #%%
 
 df = pd.read_parquet('../dataset/raw/all_Article_df.parquet')
@@ -39,13 +41,17 @@ for i in range(0,len(class_list)):
     class2idx[class_list[i]] = i
     idx2class[i] = class_list[i]
 
+pickle.dump(class2idx, open('../dataset/cleaned/class2idx.pkl','wb'))
+pickle.dump(idx2class, open('../dataset/cleaned/idx2class.pkl','wb'))
 
 #%%
 
 df['label_int'] = df['label'].apply(lambda x: class2idx[x])
 df = df.drop('url', axis=1)
 df = df.dropna()
+df = df.drop_duplicates(keep='first')
 
+df.columns = ['text', 'label_str', 'label']
 
 # %%
 
