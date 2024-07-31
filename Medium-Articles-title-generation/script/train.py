@@ -104,10 +104,23 @@ training_args = TrainingArguments(
 
 def train_LLM():
 
+    global dataset
+
     def preprocess_function(examples):
         
         inputs = examples['text']
         targets = examples['title']
+
+        ## truncate input and target 
+
+        inputs = tokenizer.decode(
+                    tokenizer.encode(
+                        inputs,truncation=True, max_length = 970),
+                    skip_special_tokens=True)
+        targets = tokenizer.decode(
+                    tokenizer.encode(
+                        targets,truncation=True, max_length = 50),
+                    skip_special_tokens=True)
         
         examples['text'] = '<s>[INST] {} [/INST] {} </s>'.format(inputs, targets)
 
@@ -158,6 +171,9 @@ def train_LLM():
 
 
 def train_enc_dec_model():
+
+    global dataset
+
     def add_eos_to_examples(example):
         example['text'] = '<s> {} </s>'.format(example['text'])
         example['title'] = '<s> {} </s>'.format(example['title'])
@@ -166,7 +182,7 @@ def train_enc_dec_model():
     # tokenize the examples
     def convert_to_features(example_batch):
         input_encodings = tokenizer.batch_encode_plus(example_batch['text'], pad_to_max_length=True, max_length=512)
-        target_encodings = tokenizer.batch_encode_plus(example_batch['title'], pad_to_max_length=True, max_length=64)
+        target_encodings = tokenizer.batch_encode_plus(example_batch['title'], pad_to_max_length=True, max_length=50)
 
         encodings = {
             'input_ids': input_encodings['input_ids'], 
@@ -177,7 +193,7 @@ def train_enc_dec_model():
 
         return encodings
 
-    dataset = dataset.map(add_eos_to_examples)
+    # dataset = dataset.map(add_eos_to_examples)
     dataset = dataset.map(convert_to_features, batched=True)
 
     model = AutoModelForSeq2SeqLM.from_pretrained(
@@ -194,7 +210,7 @@ def train_enc_dec_model():
         model=model,
         train_dataset=dataset["train"],
         eval_dataset=dataset["valid"],
-        max_seq_length=1024,
+        max_seq_length=512,
         tokenizer=tokenizer,
         args=training_args,
         callbacks = [EarlyStoppingCallback(early_stopping_patience=3, early_stopping_threshold = 0.01)]
