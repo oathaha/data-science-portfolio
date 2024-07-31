@@ -66,8 +66,8 @@ bnb_config = BitsAndBytesConfig(
 )
 
 
-train_batch_size = 6
-eval_batch_size = 6
+train_batch_size = 8
+eval_batch_size = 8
 learning_rate = 2e-5
 
 ## real one
