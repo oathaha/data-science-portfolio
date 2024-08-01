@@ -3,10 +3,10 @@
 
 ## note: code for llm only, will add code for T5 later...
 
-import os, argparse
+import os, argparse, pickle
 
 import torch
-from transformers import AutoModelForCausalLM, TrainingArguments, AutoTokenizer, EarlyStoppingCallback, BitsAndBytesConfig, Trainer, AutoModelForSeq2SeqLM
+from transformers import AutoModelForCausalLM, TrainingArguments, AutoTokenizer, EarlyStoppingCallback, BitsAndBytesConfig, Trainer, AutoModelForSequenceClassification
 
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from trl import SFTTrainer
@@ -19,6 +19,7 @@ from datasets import load_dataset
 parser = argparse.ArgumentParser()
 
 parser.add_argument('--model_name', type = str, default = 'llama2-7b')
+parser.add_argument('--handle_imb_data', type = bool, default = False)
 
 args = parser.parse_args()
 
@@ -26,20 +27,32 @@ args = parser.parse_args()
 
 model_names = {
     'llama2-7b': 'meta-llama/Llama-2-7b-hf',
-    't5': 'google-t5/t5-3b',
-    'bart': 'facebook/bart-large'
+    'mistral-7b': 'mistralai/Mistral-7B-v0.3',
+    'bert': 'google-bert/bert-large-cased',
+    'deberta': 'microsoft/deberta-v3-large'
 }
 
 data_dir = '../dataset/cleaned/'
 model_name_arg = args.model_name
 model_name = model_names.get(model_name_arg, '')
 
-output_model_dir = '../fine-tuned-model/{}'.format(model_name_arg)
+handle_imb_data = args.handle_imb_data
+
+if handle_imb_data:
+    print('handle imbalance data during training')
+    suffix = 'handle-imbalance-data'
+else:
+    print('does not handle imbalance data during training')
+    suffix = 'train-with-original-data'
+
+output_model_dir = '../fine-tuned-model/{}-{}'.format(model_name_arg, suffix)
 
 if model_name == '':
     print('wrong model name.')
     print('the model names must be in the list:', list(model_names.keys()))
     exit(0)
+
+
 
 ############## load dataset ##############
 
@@ -48,6 +61,8 @@ dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.
 ## just for testing
 # dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.csv'), 'valid': os.path.join(data_dir,'valid_for_testing.csv')})
 
+idx2label = pickle.load(open('../dataset/cleaned/idx2class.pkl', 'rb'))
+label2idx = pickle.load(open('../dataset/cleaned/class2idx.pkl', 'rb'))
 
 print(dataset)
 
@@ -68,18 +83,11 @@ bnb_config = BitsAndBytesConfig(
 
 train_batch_size = 8
 eval_batch_size = 8
-learning_rate = 1e-5
+learning_rate = 2e-5
 
 ## real one
 # eval_every_step = round(0.1*len(dataset['train'])/train_batch_size)
-eval_every_step = 3050 ## total steps are 30516 as seen from screen.
-
-
-if model_name_arg in ['llama2-7b', 'mistral-7b']:
-    fp16 = True
-
-else:
-    fp16 = False
+eval_every_step = 1090 ## total steps are 10902 as seen from screen.
 
 training_args = TrainingArguments(
     do_train=True,
@@ -98,7 +106,7 @@ training_args = TrainingArguments(
     save_total_limit=7,
     save_steps = eval_every_step,
     group_by_length = True,
-    fp16=fp16,
+    fp16=True,
     metric_for_best_model = 'eval_loss', ## for early stopping
     load_best_model_at_end = True ## for early stopping
 )
@@ -115,17 +123,13 @@ def train_LLM():
     def preprocess_function(examples):
         
         inputs = examples['text']
-        targets = examples['title']
+        targets = examples['label_str']
 
         ## truncate input and target 
 
         inputs = tokenizer.decode(
                     tokenizer.encode(
-                        inputs,truncation=True, max_length = 970),
-                    skip_special_tokens=True)
-        targets = tokenizer.decode(
-                    tokenizer.encode(
-                        targets,truncation=True, max_length = 50),
+                        inputs,truncation=True, max_length = 1015),
                     skip_special_tokens=True)
         
         examples['text'] = '<s>[INST] {} [/INST] {} </s>'.format(inputs, targets)
@@ -176,32 +180,48 @@ def train_LLM():
     trainer.train()
 
 
-def train_enc_dec_model():
+def train_enc_model():
+
+    # global tokenizer
+
+    # tokenizer.pad_token = tokenizer.eos_token
+    if tokenizer.pad_token is None:
+        tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 
     global dataset
 
+    # def add_eos_to_examples(example):
+    #     example['Article'] = '<s> {} </s>'.format(example['text'])
+    #     example['title'] = '<s> {} </s>'.format(example['title'])
+    #     return example
+
     # tokenize the examples
     def convert_to_features(example_batch):
-        model_inputs = tokenizer(example_batch['text'], max_length=512, truncation=True, pad_to_max_length = True)
+        input_encodings = tokenizer.batch_encode_plus(example_batch['text'], pad_to_max_length=True, max_length=512)
 
-        labels = tokenizer(text_target=example_batch['title'], max_length=128, truncation=True, pad_to_max_length = True)
+        encodings = {
+            'input_ids': input_encodings['input_ids'], 
+            'attention_mask': input_encodings['attention_mask'],
+        }
 
-        model_inputs["labels"] = labels["input_ids"]
+        return encodings
 
-        # inputs = example_batch['text']
-        # targets = example_batch['title']
-        # model_inputs = tokenizer(
-        #     inputs, text_target=targets, max_length=512, truncation=True, pad_to_max_length=True
-        # )
-
-        return model_inputs
-
-    tokenizer.padding_side = "right" # Fix weird overflow issue with fp16 training
-
+    # dataset = dataset.map(add_eos_to_examples)
     dataset = dataset.map(convert_to_features, batched=True)
 
+    model = AutoModelForSequenceClassification.from_pretrained(
+        model_name,
+        low_cpu_mem_usage=True,
+        return_dict=True,
+        torch_dtype=torch.float16,
+        quantization_config=bnb_config, 
+        num_labels=13,
+        id2label=idx2label,
+        label2id=label2idx,
+    )
+
     peft_config = LoraConfig(
-        task_type="SEQ_2_SEQ_LM", 
+        task_type="SEQ_CLS", 
         inference_mode=False, 
         r=16, 
         lora_alpha=32, 
@@ -210,16 +230,7 @@ def train_enc_dec_model():
         use_dora=True
     )
 
-    model = AutoModelForSeq2SeqLM.from_pretrained(
-        model_name,
-        low_cpu_mem_usage=True,
-        return_dict=True,
-        torch_dtype=torch.float16,
-        quantization_config=bnb_config
-    )
-
     model = prepare_model_for_kbit_training(model)
-
     model = get_peft_model(model, peft_config)
 
     trainer = Trainer(
@@ -242,4 +253,4 @@ if model_name_arg in ['llama2-7b', 'mistral-7b']:
 
 else:
     print('training encoder-decoder pre-trained model')
-    train_enc_dec_model()
+    train_enc_model()
