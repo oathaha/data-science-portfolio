@@ -1,0 +1,326 @@
+---
+title: "R Notebook"
+output: html_notebook
+fig_height: 200 
+---
+
+<h2>Import library</h2>
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(gridExtra)
+
+# knitr::opts_chunk$set(fig.height=15) 
+
+library(usethis) 
+usethis::edit_r_environ()
+```
+
+<h2>Read file</h2>
+
+```{r}
+
+# real file name
+df = read.csv('../dataset/cleaned/cleaned_dataset.csv')
+
+
+# just for testing
+
+# df = read.csv('../dataset/cleaned/sample_cleaned_dataset.csv')
+
+# print(names(df))
+
+head(df, 5)
+```
+
+
+
+Completion time by assignment_gs_correct_count,  assignment_gs_count, assignment_price, microtasks_count.
+
+Each plot is categorized by assignment_status, device_category, assignment_type
+
+```{r}
+
+prepare.df.by.category = function(cat){
+  
+  data.by.cat = df %>% select('assignment_gs_correct_count',  'assignment_gs_count', 'assignment_price', 'microtasks_count', 'completion.time.in.minutes', cat)
+  
+  data.by.cat = data.by.cat %>% 
+  pivot_longer(cols=c('assignment_gs_correct_count',  'assignment_gs_count', 'assignment_price', 'microtasks_count'), names_to = 'parameter')
+  
+  return(data.by.cat)
+}
+```
+
+```{r fig.height=2.5, fig.width=5.5}
+
+df2 = prepare.df.by.category('assignment_status')
+
+plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment_status)) +
+  geom_point(alpha = 0.5) +
+  facet_wrap(vars(parameter), nrow=1, scales = "free_x") +
+  xlab('') + ylab('completion time (in minute)') + 
+  ggtitle('plot by assignment status') + 
+  theme(
+    strip.text = element_text(size = 5),
+    axis.title.y = element_text(size = 8),
+    legend.position = 'bottom'
+  )
+
+plt
+```
+
+
+```{r fig.height=3.5}
+
+df2 = prepare.df.by.category('device_category')
+
+plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=device_category)) +
+  geom_point(alpha = 0.5) +
+  facet_wrap(vars(parameter), nrow=1, scales = "free_x") +
+  xlab('') + ylab('completion time (in minute)') + 
+  ggtitle('plot by device type') + 
+  theme(
+    strip.text = element_text(size = 5),
+    axis.title.y = element_text(size = 8),
+    legend.position = 'bottom'
+  )
+
+plt
+```
+
+
+```{r fig.height=3}
+
+
+df2 = prepare.df.by.category('assignment_type')
+
+plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment_type)) +
+  geom_point(alpha = 0.5) +
+  facet_wrap(vars(parameter), nrow=1, scales = "free_x") +
+  xlab('') + ylab('completion time (in minute)') + 
+  ggtitle('plot by assignment type') + 
+  theme(
+    strip.text = element_text(size = 5),
+    axis.title.y = element_text(size = 8),
+    legend.position = 'bottom'
+  )
+
+plt
+```
+
+
+```{r fig.height=}
+
+df2 = prepare.df.by.category('project_instruction_language')
+
+plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=project_instruction_language)) +
+  geom_point(alpha = 0.5) +
+  facet_wrap(vars(parameter), nrow=1, scales = "free_x") +
+  xlab('') + ylab('completion time (in minute)') + 
+  ggtitle('plot by instruction language') + 
+  theme(
+    strip.text = element_text(size = 5),
+    axis.title.y = element_text(size = 8),
+    legend.position = 'bottom'
+  )
+
+plt
+```
+
+
+Completion time by project attribute (has_audio, has_button, has_checkbox_input, has_externalHtml, has_fileAudio_input, has_fileImg_input, has_fileVideo_input, has_file_input, has_iframe, has_image, has_radio_input, has_sbs, has_select_input, has_sourcesRecorder_input, has_string_input, has_suggest_input, has_textarea_input, has_video)
+
+Each plot is categorized by assignment_status, device_category, assignment_type
+
+```{r fig.width=10, fig.height=8}
+
+prepare.df.by.category = function(cat){
+  
+  data.by.cat = df %>% select(project_has_audio, project_has_externalHtml, project_has_fileAudio_input, project_has_fileImg_input, project_has_file_input, project_has_iframe, project_has_sbs, project_has_select_input, project_has_sourcesRecorder_input, project_has_suggest_input, project_has_textarea_input, project_has_video, cat, completion.time.in.minutes)
+  
+  data.by.cat = data.by.cat %>% 
+  pivot_longer(cols=c('project_has_audio', 'project_has_externalHtml', 'project_has_fileAudio_input', 'project_has_fileImg_input', 'project_has_file_input', 'project_has_iframe', 'project_has_sbs', 'project_has_select_input', 'project_has_sourcesRecorder_input', 'project_has_suggest_input', 'project_has_textarea_input', 'project_has_video'), names_to = 'parameter')
+  
+  return(data.by.cat)
+}
+
+```
+
+```{r fig.width=10, fig.height=8}
+
+df2 = prepare.df.by.category('assignment_status')
+
+plt = df2 %>% ggplot(aes(x=factor(value), y=completion.time.in.minutes, color=assignment_status)) +
+  geom_boxplot() +
+  facet_wrap(vars(parameter), nrow=4, scales = "free_x") +
+  xlab('') + ylab('completion time (in minute)') + 
+  ggtitle('plot by assignment status') + 
+  theme(
+    strip.text = element_text(size = 12),
+    axis.text.x = element_text(size=15),
+    axis.text.y = element_text(size = 15),
+    legend.position = 'bottom'
+  )
+
+plt
+```
+
+
+```{r fig.width=10, fig.height=8}
+
+df2 = prepare.df.by.category('device_category')
+
+plt = df2 %>% ggplot(aes(x=factor(value), y=completion.time.in.minutes, color=device_category)) +
+  geom_boxplot() +
+  facet_wrap(vars(parameter), nrow=4, scales = "free_x") +
+  xlab('') + ylab('completion time (in minute)') + 
+  ggtitle('plot by assignment status') + 
+  theme(
+    strip.text = element_text(size = 12),
+    axis.text.x = element_text(size=15),
+    axis.text.y = element_text(size = 15),
+    legend.position = 'bottom'
+  )
+
+plt
+```
+
+
+```{r fig.width=10, fig.height=8}
+
+df2 = prepare.df.by.category('assignment_type')
+
+plt = df2 %>% ggplot(aes(x=factor(value), y=completion.time.in.minutes, color=assignment_type)) +
+  geom_boxplot() +
+  facet_wrap(vars(parameter), nrow=4, scales = "free_x") +
+  xlab('') + ylab('completion time (in minute)') + 
+  ggtitle('plot by assignment status') + 
+  theme(
+    strip.text = element_text(size = 12),
+    axis.text.x = element_text(size=15),
+    axis.text.y = element_text(size = 15),
+    legend.position = 'bottom'
+  )
+
+plt
+```
+
+
+```{r fig.width=10, fig.height=8}
+
+df2 = prepare.df.by.category('project_instruction_language')
+
+plt = df2 %>% ggplot(aes(x=factor(value), y=completion.time.in.minutes, color=project_instruction_language)) +
+  geom_boxplot() +
+  facet_wrap(vars(parameter), nrow=4, scales = "free_x") +
+  xlab('') + ylab('completion time (in minute)') + 
+  ggtitle('plot by assignment status') + 
+  theme(
+    strip.text = element_text(size = 12),
+    axis.text.x = element_text(size=15),
+    axis.text.y = element_text(size = 15),
+    legend.position = 'bottom'
+  )
+
+plt
+```
+
+
+Completion time by project attribute (instruction_FK, instruction_language, instruction_len, instruction_wordCount, required_fields, spec_length, project_has_button,  project_has_checkbox_input, project_has_image, project_has_radio_input, project_has_string_input)
+
+Each plot is categorized by assignment_status, device_category, assignment_type, instruction_language
+
+```{r}
+prepare.df.by.category = function(cat){
+  
+  data.by.cat = df %>% select(project_instruction_FK, project_instruction_len, project_instruction_wordCount, project_required_fields, project_spec_length, project_has_button,  project_has_checkbox_input, project_has_image, project_has_radio_input, project_has_string_input, completion.time.in.minutes, cat)
+  
+  data.by.cat = data.by.cat %>% 
+  pivot_longer(cols=c('project_instruction_FK', 'project_instruction_len', 'project_instruction_wordCount', 'project_required_fields', 'project_spec_length', 'project_has_button',  'project_has_checkbox_input', 'project_has_image', 'project_has_radio_input', 'project_has_string_input'), names_to = 'parameter')
+  
+  return(data.by.cat)
+}
+
+```
+
+
+
+```{r fig.height=3.5, fig.width=8.5}
+
+df2 = prepare.df.by.category('assignment_status')
+
+plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment_status)) +
+  geom_point(alpha = 0.5) +
+  facet_wrap(vars(parameter), nrow=2, scales = "free_x") +
+  xlab('') + ylab('completion time (in minute)') + 
+  ggtitle('plot by assignment status') + 
+  theme(
+    strip.text = element_text(size = 8),
+    axis.text.x = element_text(size=8, angle = 30),
+    axis.text.y = element_text(size = 8),
+    legend.position = 'bottom'
+  )
+
+plt
+```
+
+
+```{r fig.height=3.5, fig.width=8.5}
+df2 = prepare.df.by.category('device_category')
+
+plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=device_category)) +
+  geom_point(alpha = 0.5) +
+  facet_wrap(vars(parameter), nrow=2, scales = "free_x") +
+  xlab('') + ylab('completion time (in minute)') + 
+  ggtitle('plot by device type') + 
+  theme(
+    strip.text = element_text(size = 8),
+    axis.text.x = element_text(size=8, angle = 30),
+    axis.text.y = element_text(size = 8),
+    legend.position = 'bottom'
+  )
+
+plt
+```
+
+
+```{r fig.height=3.5, fig.width=8.5}
+
+df2 = prepare.df.by.category('assignment_type')
+
+plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment_type)) +
+  geom_point(alpha = 0.5) +
+  facet_wrap(vars(parameter), nrow=2, scales = "free_x") +
+  xlab('') + ylab('completion time (in minute)') + 
+  ggtitle('plot by assignment type') + 
+  theme(
+    strip.text = element_text(size = 8),
+    axis.text.x = element_text(size=8, angle = 30),
+    axis.text.y = element_text(size = 8),
+    legend.position = 'bottom'
+  )
+
+plt
+```
+
+
+```{r fig.height=3.5, fig.width=8.5}
+
+df2 = prepare.df.by.category('project_instruction_language')
+
+plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=project_instruction_language)) +
+  geom_point(alpha = 0.5) +
+  facet_wrap(vars(parameter), nrow=2, scales = "free_x") +
+  xlab('') + ylab('completion time (in minute)') + 
+  ggtitle('plot by instruction language') + 
+  theme(
+    strip.text = element_text(size = 8),
+    axis.text.x = element_text(size=8, angle = 30),
+    axis.text.y = element_text(size = 8),
+    legend.position = 'bottom'
+  )
+
+plt
+```
