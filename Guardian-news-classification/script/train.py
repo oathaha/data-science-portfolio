@@ -1,8 +1,5 @@
 
 #%%
-
-## note: code for llm only, will add code for T5 later...
-
 import os, argparse, pickle
 
 import torch
@@ -27,7 +24,6 @@ args = parser.parse_args()
 
 model_names = {
     'llama2-7b': 'meta-llama/Llama-2-7b-hf',
-    'mistral-7b': 'mistralai/Mistral-7B-v0.3',
     'bert': 'google-bert/bert-large-cased',
     'deberta': 'microsoft/deberta-v3-large'
 }
@@ -89,6 +85,12 @@ learning_rate = 2e-5
 # eval_every_step = round(0.1*len(dataset['train'])/train_batch_size)
 eval_every_step = 1090 ## total steps are 10902 as seen from screen.
 
+if model_name_arg == 'llama2-7b':
+    fp16 = True
+
+else:
+    fp16 = False
+
 training_args = TrainingArguments(
     do_train=True,
     do_eval=True,
@@ -106,7 +108,7 @@ training_args = TrainingArguments(
     save_total_limit=7,
     save_steps = eval_every_step,
     group_by_length = True,
-    fp16=True,
+    fp16=fp16,
     metric_for_best_model = 'eval_loss', ## for early stopping
     load_best_model_at_end = True ## for early stopping
 )

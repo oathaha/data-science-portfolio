@@ -1,8 +1,5 @@
 
 #%%
-
-## note: code for llm only, will add code for T5 later...
-
 import os, argparse
 
 import torch
@@ -75,7 +72,7 @@ learning_rate = 1e-5
 eval_every_step = 3050 ## total steps are 30516 as seen from screen.
 
 
-if model_name_arg in ['llama2-7b', 'mistral-7b']:
+if model_name_arg == 'llama2-7b':
     fp16 = True
 
 else:
