@@ -68,11 +68,18 @@ bnb_config = BitsAndBytesConfig(
 
 train_batch_size = 8
 eval_batch_size = 8
-learning_rate = 2e-5
+learning_rate = 1e-5
 
 ## real one
 # eval_every_step = round(0.1*len(dataset['train'])/train_batch_size)
 eval_every_step = 3050 ## total steps are 30516 as seen from screen.
+
+
+if model_name_arg in ['llama2-7b', 'mistral-7b']:
+    fp16 = True
+
+else:
+    fp16 = False
 
 training_args = TrainingArguments(
     do_train=True,
@@ -91,7 +98,7 @@ training_args = TrainingArguments(
     save_total_limit=7,
     save_steps = eval_every_step,
     group_by_length = True,
-    fp16=True,
+    fp16=fp16,
     metric_for_best_model = 'eval_loss', ## for early stopping
     load_best_model_at_end = True ## for early stopping
 )
@@ -175,12 +182,21 @@ def train_enc_dec_model():
 
     # tokenize the examples
     def convert_to_features(example_batch):
-        inputs = example_batch['text']
-        targets = example_batch['title']
-        model_inputs = tokenizer(
-            inputs, text_target=targets, max_length=512, truncation=True, pad_to_max_length=True
-        )
+        model_inputs = tokenizer(example_batch['text'], max_length=512, truncation=True, pad_to_max_length = True)
+
+        labels = tokenizer(text_target=example_batch['title'], max_length=128, truncation=True, pad_to_max_length = True)
+
+        model_inputs["labels"] = labels["input_ids"]
+
+        # inputs = example_batch['text']
+        # targets = example_batch['title']
+        # model_inputs = tokenizer(
+        #     inputs, text_target=targets, max_length=512, truncation=True, pad_to_max_length=True
+        # )
+
         return model_inputs
+
+    tokenizer.padding_side = "right" # Fix weird overflow issue with fp16 training
 
     dataset = dataset.map(convert_to_features, batched=True)
 
