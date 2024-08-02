@@ -69,10 +69,6 @@ cat_transformer = Pipeline(
     ]
 )
 
-# enc = OneHotEncoder(
-#     categories=cats,
-#     handle_unknown='ignore'
-# )
 
 col_transformer = ColumnTransformer(
     transformers=[
