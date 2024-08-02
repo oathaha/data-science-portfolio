@@ -14,10 +14,13 @@ from sklearn.ensemble import  AdaBoostRegressor, BaggingRegressor
 # %%
 ## Prepare dataset
 
-# df = pd.read_csv('../dataset/cleaned/train_df.csv')
+df = pd.read_csv('../dataset/cleaned/train_processed_df.csv')
+
+print('load data finished')
+print('-'*30)
 
 ### just for testing
-df = pd.read_csv('../dataset/cleaned/sample_train_df.csv')
+# df = pd.read_csv('../dataset/cleaned/sample_train_df.csv')
 
 df = df.reset_index()
 
@@ -27,11 +30,10 @@ train_idx, test_idx = train_test_split(indices, test_size=0.15, shuffle=False)
 y = df['completion-time-in-minutes']
 x = df.drop(['completion-time-in-minutes', 'index'], axis=1)
 
+print('prepare data finished')
+print('-'*30)
 
 del df
-
-model_dir = '../model/'
-os.makedirs(model_dir, exist_ok=True)
 
 
 # %%
@@ -56,8 +58,8 @@ search_params = {
         'solver': solver
     },
     'lasso': {
-        'alpha': alpha[:2],
-        'max_iter': max_iter[:2]
+        'alpha': alpha,
+        'max_iter': max_iter
     },
     'elasticNet': {
         'alpha': alpha,
@@ -70,7 +72,7 @@ search_params = {
         'loss': loss_func
     },
     'bagging': {
-        'n_estimators': n_estimator[:2]
+        'n_estimators': n_estimator
     }
 }
 
@@ -78,6 +80,9 @@ search_params = {
 #%%
 
 ## initialize regression model
+
+model_dir = '../model/'
+os.makedirs(model_dir, exist_ok=True)
 
 linear = LinearRegression(n_jobs=32)
 ridge = Ridge(random_state=random_state)
@@ -143,7 +148,7 @@ def grid_search_reg_model(model, params):
         model,
         param_grid=params,
         scoring='neg_root_mean_squared_error',
-        n_jobs=32,
+        n_jobs=1,
         cv=[(train_idx, test_idx)]
     )
 
@@ -159,17 +164,22 @@ def grid_search_reg_model(model, params):
 
 ## fit simple regression model here
 
+# print('training a regression model')
+# print('-'*30)
+
 # linear.fit(x.loc[train_idx], y.loc[train_idx])
 # log_artifacts(linear, log_grid_search_result=False)
 
+# print('finished training')
+# print('-'*30)
 
 # %%
 
 ## grid search for single regression models
 
 grid_search_reg_model(lasso, search_params['lasso'])
-# grid_search_reg_model(ridge, search_params['ridge'])
-# grid_search_reg_model(elasticNet, search_params['elasticNet'])
+grid_search_reg_model(ridge, search_params['ridge'])
+grid_search_reg_model(elasticNet, search_params['elasticNet'])
 
 # %%
 
@@ -226,7 +236,7 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params):
         model,
         param_grid=params,
         scoring='neg_root_mean_squared_error',
-        n_jobs=32,
+        n_jobs=1,
         cv=[(train_idx, test_idx)]
     )
 
@@ -237,5 +247,13 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params):
 
     log_artifacts(gs, is_ensemble=True)
     
+#%%
+
+grid_search_ensemble_model('Lasso', 'adaboost', search_params['adaboost'])
+grid_search_ensemble_model('Ridge', 'adaboost', search_params['adaboost'])
+grid_search_ensemble_model('ElasticNet', 'adaboost', search_params['adaboost'])
+
 grid_search_ensemble_model('Lasso', 'bagging', search_params['bagging'])
+grid_search_ensemble_model('Ridge', 'bagging', search_params['bagging'])
+grid_search_ensemble_model('ElasticNet', 'bagging', search_params['bagging'])
 # %%
