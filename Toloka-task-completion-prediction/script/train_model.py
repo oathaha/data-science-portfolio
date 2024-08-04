@@ -43,7 +43,7 @@ del df
 random_state = 0
 
 alpha = [1, 5, 10]
-solver = ['svd', 'lsqr', 'saga']
+solver = ['svd', 'lsqr']
 l1_ratio = [0.3, 0.5, 0.7, 1.0]
 max_iter = [100, 500, 1000]
 n_estimator = [10, 50, 100]
@@ -149,7 +149,8 @@ def grid_search_reg_model(model, params):
         param_grid=params,
         scoring='neg_root_mean_squared_error',
         n_jobs=1,
-        cv=[(train_idx, test_idx)]
+        cv=[(train_idx, test_idx)],
+        verbose = True
     )
 
     gs.fit(x, y)
@@ -177,9 +178,9 @@ def grid_search_reg_model(model, params):
 
 ## grid search for single regression models
 
-grid_search_reg_model(lasso, search_params['lasso'])
-grid_search_reg_model(ridge, search_params['ridge'])
+# grid_search_reg_model(lasso, search_params['lasso'])
 grid_search_reg_model(elasticNet, search_params['elasticNet'])
+grid_search_reg_model(ridge, search_params['ridge'])
 
 # %%
 
