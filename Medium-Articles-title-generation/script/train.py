@@ -118,14 +118,14 @@ def train_LLM():
 
         inputs = tokenizer.decode(
                     tokenizer.encode(
-                        inputs,truncation=True, max_length = 970),
+                        inputs,truncation=True, max_length = 3950),
                     skip_special_tokens=True)
         targets = tokenizer.decode(
                     tokenizer.encode(
                         targets,truncation=True, max_length = 50),
                     skip_special_tokens=True)
         
-        examples['text'] = '<s>[INST] {} [/INST] {} </s>'.format(inputs, targets)
+        examples['text'] = '<s>[INST]generate title from the given article below\n\n###article\n\n {} \n\n[/INST]###title: {} </s>'.format(inputs, targets)
 
         return examples
 
@@ -207,17 +207,26 @@ def train_enc_dec_model():
         use_dora=True
     )
 
-    model = AutoModelForSeq2SeqLM.from_pretrained(
+    if model_name_arg == 't5':
+
+        model = AutoModelForSeq2SeqLM.from_pretrained(
+            model_name,
+            low_cpu_mem_usage=True,
+            return_dict=True,
+            torch_dtype=torch.float16,
+            quantization_config=bnb_config
+        )
+
+    else:
+        model = AutoModelForSeq2SeqLM.from_pretrained(
         model_name,
         low_cpu_mem_usage=True,
-        return_dict=True,
-        torch_dtype=torch.float16,
-        quantization_config=bnb_config
+        return_dict=True
     )
 
-    model = prepare_model_for_kbit_training(model)
+    # model = prepare_model_for_kbit_training(model)
 
-    model = get_peft_model(model, peft_config)
+    # model = get_peft_model(model, peft_config)
 
     trainer = Trainer(
         model=model,
