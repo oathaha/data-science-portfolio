@@ -1,9 +1,9 @@
 import os, argparse
 
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, AutoModelForSeq2SeqLM
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, AutoModelForSeq2SeqLM, BitsAndBytesConfig, pipeline
 
-from peft import PeftModel
+from peft import PeftModel, AutoPeftModelForCausalLM
 
 from datasets import load_dataset
 
@@ -22,7 +22,6 @@ args = parser.parse_args()
 
 model_names = {
     'llama2-7b': 'meta-llama/Llama-2-7b-hf',
-    'mistral-7b': 'mistralai/Mistral-7B-v0.3',
     't5': 'google-t5/t5-3b',
     'bart': 'facebook/bart-large'
 }
@@ -52,7 +51,7 @@ if model_name == '':
 dataset = load_dataset('csv', data_files={'test': os.path.join(data_dir,'test.csv')})
 
 
-dataloader = DataLoader(dataset['test'], batch_size=4)
+
 
 ############## load tokenizer ##############
 
@@ -64,14 +63,19 @@ bnb_config = BitsAndBytesConfig(
     load_in_8bit=True
 )
 
-if model_name_arg in ['llama2-7b', 'mistral-7b']:
+if model_name_arg == 'llama2-7b':
     print('loading LLM')
+    # model = AutoPeftModelForCausalLM.from_pretrained(real_model_path)
+
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         low_cpu_mem_usage=True,
         return_dict=True,
-        torch_dtype=torch.float16
+        torch_dtype=torch.float16,
+        quantization_config=bnb_config
     )
+
+    # model.load_adapter(real_model_path)
 
     model = PeftModel.from_pretrained(model, real_model_path)
     model = model.merge_and_unload()
@@ -91,30 +95,90 @@ generated_title_list = []
 
 
 def preprocess_batch(batch):
-    if model_name_arg in ['llama2-7b', 'mistral-7b']:
+    if model_name_arg == 'llama2-7b':
+
+        # inputs = tokenizer.decode(
+        #             tokenizer.encode(
+        #                 inputs,truncation=True, max_length = 970),
+        #             skip_special_tokens=True)
+
+        batch['text'] = [tokenizer.decode(
+                    tokenizer.encode(
+                        s,truncation=True, max_length = 970),
+                    skip_special_tokens=True) for s in batch['text']]
+
         batch['text'] = ['<s>[INST] {} [/INST] '.format(s) for s in batch['text']]
+
     else:
         batch['text'] = ['<s>{}</s>'.format(s) for s in batch['text']]
 
     return batch
 
 
-for batch in tqdm(dataloader):
+if model_name_arg == 'llama2-7b':
+    dataloader = DataLoader(dataset['test'], batch_size=1)
 
-    batch = preprocess_batch(batch)
+    pipe = pipeline(task='summarization',model=model, tokenizer=tokenizer, framework='pt', device_map='auto')
 
-    input_encodings = tokenizer.batch_encode_plus(batch['text'], pad_to_max_length=True, max_length=512)
-    input_ids = input_encodings['input_ids'], 
-    attention_mask = input_encodings['attention_mask']
+    for d in tqdm(dataloader):
 
-    outs = model.generate(
-        input_ids=batch['input_ids'], 
-        attention_mask=batch['attention_mask'],
-        max_length=64,
-        early_stopping=True)
-    outs = [tokenizer.decode(ids) for ids in outs]
+        # print(d['text'])
 
-    generated_title_list.extend(outs)
+        input_text = d['text'][0]
+        input_text = tokenizer.decode(
+                        tokenizer.encode(
+                            input_text,truncation=True, max_length = 4090),
+                        skip_special_tokens=True)
+
+        output = pipe(input_text)
+
+        print(output)
+
+        generated_title_list.append(output)
+
+        # messages = [
+        #     {"role": "user", 
+        #     "content": },
+        # ]
+
+        # # prepare the messages for the model
+        # input_ids = tokenizer.apply_chat_template(messages, truncation=True, return_tensors="pt").to("cuda")
+
+        # outputs = model.generate(
+        #             input_ids=input_ids,
+        #             max_new_tokens=max_output_len,
+        #             do_sample=True,
+        #             temperature=0.7,
+        #             top_k=10,
+        #             top_p=1.0
+        #         )
+
+        # out_str = tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
+
+        # generated_title_list.append(output_text)
+
+        break
+
+
+else:
+    for batch in tqdm(dataloader):
+
+        batch = preprocess_batch(batch)
+
+        input_encodings = tokenizer.batch_encode_plus(batch['text'], pad_to_max_length=True, max_length=512)
+        # input_ids = input_encodings['input_ids'], 
+        # attention_mask = input_encodings['attention_mask']
+
+        outs = model.generate(
+            input_ids=torch.tensor(input_encodings['input_ids'],dtype=torch.long), 
+            attention_mask=torch.tensor(input_encodings['attention_mask'],dtype=torch.long),
+            max_length=512,
+            early_stopping=False)
+        outs = [tokenizer.decode(ids) for ids in outs]
+
+        generated_title_list.extend(outs)
+
+        break
 
 # # pipe = pipeline(task="text-generation", model=model, tokenizer=tokenizer, max_length=64)
 
