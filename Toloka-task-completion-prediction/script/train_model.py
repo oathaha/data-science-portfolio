@@ -242,7 +242,8 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
         param_grid=params,
         scoring='neg_root_mean_squared_error',
         n_jobs=1,
-        cv=[(train_idx, test_idx)]
+        cv=[(train_idx, test_idx)],
+        verbose=1
     )
 
     gs.fit(x, y)

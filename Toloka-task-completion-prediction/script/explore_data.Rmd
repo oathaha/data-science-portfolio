@@ -22,7 +22,7 @@ library(gridExtra)
 ```{r}
 
 # real file name
-df = read.csv('../dataset/cleaned/cleaned_dataset.csv')
+df = read.csv('../dataset/cleaned/cleaned_data_no_outlier_label.csv')
 
 
 # just for testing
@@ -38,7 +38,7 @@ head(df, 5)
 
 Completion time by assignment_gs_correct_count,  assignment_gs_count, assignment_price, microtasks_count.
 
-Each plot is categorized by assignment_status, device_category, assignment_type
+Each plot is categorized by device_category, assignment_type
 
 ```{r}
 
@@ -53,26 +53,8 @@ prepare.df.by.category = function(cat){
 }
 ```
 
-```{r fig.height=2.5, fig.width=5.5}
 
-df2 = prepare.df.by.category('assignment_status')
-
-plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment_status)) +
-  geom_point(alpha = 0.5) +
-  facet_wrap(vars(parameter), nrow=1, scales = "free_x") +
-  xlab('') + ylab('completion time (in minute)') + 
-  ggtitle('plot by assignment status') + 
-  theme(
-    strip.text = element_text(size = 5),
-    axis.title.y = element_text(size = 8),
-    legend.position = 'bottom'
-  )
-
-plt
-```
-
-
-```{r fig.height=3.5}
+```{r fig.width=10, fig.height=3.5}
 
 df2 = prepare.df.by.category('device_category')
 
@@ -82,7 +64,7 @@ plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=device_cat
   xlab('') + ylab('completion time (in minute)') + 
   ggtitle('plot by device type') + 
   theme(
-    strip.text = element_text(size = 5),
+    strip.text = element_text(size = 10),
     axis.title.y = element_text(size = 8),
     legend.position = 'bottom'
   )
@@ -91,7 +73,7 @@ plt
 ```
 
 
-```{r fig.height=3}
+```{r fig.width=10, fig.height=3}
 
 
 df2 = prepare.df.by.category('assignment_type')
@@ -102,7 +84,7 @@ plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment
   xlab('') + ylab('completion time (in minute)') + 
   ggtitle('plot by assignment type') + 
   theme(
-    strip.text = element_text(size = 5),
+    strip.text = element_text(size = 10),
     axis.title.y = element_text(size = 8),
     legend.position = 'bottom'
   )
@@ -146,25 +128,6 @@ prepare.df.by.category = function(cat){
   return(data.by.cat)
 }
 
-```
-
-```{r fig.width=10, fig.height=8}
-
-df2 = prepare.df.by.category('assignment_status')
-
-plt = df2 %>% ggplot(aes(x=factor(value), y=completion.time.in.minutes, color=assignment_status)) +
-  geom_boxplot() +
-  facet_wrap(vars(parameter), nrow=4, scales = "free_x") +
-  xlab('') + ylab('completion time (in minute)') + 
-  ggtitle('plot by assignment status') + 
-  theme(
-    strip.text = element_text(size = 12),
-    axis.text.x = element_text(size=15),
-    axis.text.y = element_text(size = 15),
-    legend.position = 'bottom'
-  )
-
-plt
 ```
 
 
@@ -248,27 +211,6 @@ prepare.df.by.category = function(cat){
 ```
 
 
-
-```{r fig.height=3.5, fig.width=10}
-
-df2 = prepare.df.by.category('assignment_status')
-
-plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment_status)) +
-  geom_point(alpha = 0.5) +
-  facet_wrap(vars(parameter), nrow=1, scales = "free_x") +
-  xlab('') + ylab('completion time (in minute)') + 
-  ggtitle('plot by assignment status') + 
-  theme(
-    strip.text = element_text(size = 10),
-    axis.text.x = element_text(size=8, angle = 30),
-    axis.text.y = element_text(size = 8),
-    legend.position = 'bottom'
-  )
-
-plt
-```
-
-
 ```{r fig.height=3.5, fig.width=10}
 df2 = prepare.df.by.category('device_category')
 
@@ -346,27 +288,6 @@ prepare.df.by.category = function(cat){
   return(data.by.cat)
 }
 
-```
-
-
-
-```{r fig.height=3.5, fig.width=10}
-
-df2 = prepare.df.by.category('assignment_status')
-
-plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment_status)) +
-  geom_point(alpha = 0.5) +
-  facet_wrap(vars(parameter), nrow=1, scales = "free_x") +
-  xlab('') + ylab('completion time (in minute)') + 
-  ggtitle('plot by assignment status') + 
-  theme(
-    strip.text = element_text(size = 10),
-    axis.text.x = element_text(size=8, angle = 30),
-    axis.text.y = element_text(size = 8),
-    legend.position = 'bottom'
-  )
-
-plt
 ```
 
 

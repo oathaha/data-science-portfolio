@@ -115,6 +115,16 @@ def preprocess_batch(batch):
     return batch
 
 
+def preprocess_input_txt(input_txt):
+    input_txt = tokenizer.decode(
+                    tokenizer.encode(
+                        input_txt,truncation=True, max_length = 3950),
+                    skip_special_tokens=True)
+
+    input_txt = '<s>[INST]generate title from the given article below\n\n###article\n\n {} \n\n[/INST]###title: '.format(input_txt)
+
+    return input_txt
+
 if model_name_arg == 'llama2-7b':
     dataloader = DataLoader(dataset['test'], batch_size=1)
 
@@ -125,10 +135,8 @@ if model_name_arg == 'llama2-7b':
         # print(d['text'])
 
         input_text = d['text'][0]
-        input_text = tokenizer.decode(
-                        tokenizer.encode(
-                            input_text,truncation=True, max_length = 4090),
-                        skip_special_tokens=True)
+
+        input_text = preprocess_input_txt(input_text)
 
         output = pipe(input_text)
 

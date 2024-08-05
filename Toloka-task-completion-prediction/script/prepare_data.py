@@ -15,6 +15,23 @@ df = pd.read_csv(os.path.join(data_dir, 'cleaned_dataset.csv'))
 
 #%%
 
+## remove records that time-to-complete is marked as outlier
+
+q1=df['completion-time-in-minutes'].quantile(0.25)
+
+q3=df['completion-time-in-minutes'].quantile(0.75)
+
+IQR=q3-q1
+
+outlier_threshold = q3+1.5*IQR
+
+print('outlier threshold:', outlier_threshold)
+
+df = df[df['completion-time-in-minutes'] <= outlier_threshold]
+
+
+#%%
+
 ## sort data by time
 df['assignment_start_date'] = pd.to_datetime(df['assignment_start_date'])
 df = df.sort_values(by='assignment_start_date')
@@ -47,7 +64,7 @@ test_df = df.iloc[train_end:]
 ## save original one for later usage
 train_df.to_csv(os.path.join(data_dir, 'train_original_df.csv'),index=False)
 test_df.to_csv(os.path.join(data_dir, 'test_original_df.csv'),index=False)
-
+df.to_csv(os.path.join(data_dir, 'cleaned_data_no_outlier_label.csv'),index=False)
 #%%
 
 ## convert categorical features into numerical features
