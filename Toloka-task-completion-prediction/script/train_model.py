@@ -43,7 +43,7 @@ del df
 random_state = 0
 
 alpha = [1, 5, 10]
-solver = ['svd', 'lsqr']
+solver = ['sparse_cg']
 l1_ratio = [0.3, 0.5, 0.7, 1.0]
 max_iter = [100, 500, 1000]
 n_estimator = [10, 50, 100]
@@ -179,8 +179,8 @@ def grid_search_reg_model(model, params):
 ## grid search for single regression models
 
 # grid_search_reg_model(lasso, search_params['lasso'])
-grid_search_reg_model(elasticNet, search_params['elasticNet'])
-grid_search_reg_model(ridge, search_params['ridge'])
+# grid_search_reg_model(elasticNet, search_params['elasticNet'])
+# grid_search_reg_model(ridge, search_params['ridge'])
 
 # %%
 
@@ -193,7 +193,7 @@ def get_best_params_from_base_model(base_model_name):
     return best_params
 
 
-def grid_search_ensemble_model(base_model_name, ensemble_model_name, params):
+def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None):
 
     if base_model_name not in ['Lasso', 'Ridge', 'ElasticNet']:
         print('wrong base model name')
@@ -203,11 +203,13 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params):
         print('wrong ensemble model name')
         exit(0)
 
-    try:
-        best_params = get_best_params_from_base_model(base_model_name)
-    except:
-        print('please train the base {} model first'.format(base_model_name))
-        exit(0)
+    if base_model_name in ['Lasso', 'Ridge', 'ElasticNet']:
+
+        try:
+            best_params = get_best_params_from_base_model(base_model_name)
+        except:
+            print('please train the base {} model first'.format(base_model_name))
+            exit(0)
 
     if base_model_name == 'Lasso':
         base_model = Lasso(
@@ -222,6 +224,8 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params):
             alpha = best_params['alpha'], max_iter=best_params['max_iter'],
             l1_ratio=best_params['l1_ratio']
         )
+    elif base_model_name == 'Linear':
+        base_model = LinearRegression(n_jobs=1)
 
     if ensemble_model_name == 'adaboost':
         model = AdaBoostRegressor(estimator=base_model, random_state=random_state)
@@ -250,11 +254,13 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params):
     
 #%%
 
-grid_search_ensemble_model('Lasso', 'adaboost', search_params['adaboost'])
-grid_search_ensemble_model('Ridge', 'adaboost', search_params['adaboost'])
-grid_search_ensemble_model('ElasticNet', 'adaboost', search_params['adaboost'])
+grid_search_ensemble_model('Lasso', 'adaboost', params=search_params['adaboost'])
+grid_search_ensemble_model('ElasticNet', 'adaboost', params=search_params['adaboost'])
+# grid_search_ensemble_model('Ridge', 'adaboost', params=search_params['adaboost'])
+grid_search_ensemble_model('Linear', 'adaboost')
 
 grid_search_ensemble_model('Lasso', 'bagging', search_params['bagging'])
-grid_search_ensemble_model('Ridge', 'bagging', search_params['bagging'])
 grid_search_ensemble_model('ElasticNet', 'bagging', search_params['bagging'])
+# grid_search_ensemble_model('Ridge', 'bagging', search_params['bagging'])
+grid_search_ensemble_model('Linear', 'bagging')
 # %%
