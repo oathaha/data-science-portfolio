@@ -1,20 +1,59 @@
 #%%
 ## Import library
 
-import os, pickle, json
+import os, pickle, json, argparse
 
 import pandas as pd
 import numpy as np
 
 from sklearn.model_selection import GridSearchCV, train_test_split
-from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet
-from sklearn.ensemble import  AdaBoostRegressor, BaggingRegressor
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import  AdaBoostClassifier, BaggingClassifier, RandomForestClassifier, HistGradientBoostingClassifier
+
+## from https://xgboost.readthedocs.io/en/stable/get_started.html
+from xgboost import XGBClassifier
+
+
+## has import error, will fix later...
+# from imblearn.over_sampling import SMOTE
+# from imblearn.under_sampling import TomekLinks
+
+
+#%%
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--task', type = str, required=True)
+parser.add_argument('--handle_imb_data', type=str, default='', required=False)
+
+args = parser.parse_args()
+
+task = args.task
+handle_imb_data = args.handle_imb_data
 
 
 # %%
 ## Prepare dataset
 
-df = pd.read_csv('../dataset/cleaned/train_processed_df.csv')
+if task == 'loan-app-pred':
+    data_subdir = 'loan_approval_prediction'
+    model_subdir = 'loan_approval_prediction'
+    target_col = 'is_approved'
+
+elif task == 'priority-pred':
+    data_subdir = 'review_priority_prediction'
+    model_subdir = 'review_priority_prediction'
+    target_col = 'is_high_priority'
+
+else:
+    print('wrong task name')
+    print('task name must be "loan-app-pred" or "priority-pred"')
+    exit(0)
+
+
+df = pd.read_csv('../dataset/cleaned/{}/train_processed_data.csv'.format(data_subdir))
 
 print('load data finished')
 print('-'*30)
@@ -27,48 +66,110 @@ df = df.reset_index()
 indices = np.arange(len(df))
 train_idx, test_idx = train_test_split(indices, test_size=0.15, shuffle=False)
 
-y = df['completion-time-in-minutes']
-x = df.drop(['completion-time-in-minutes', 'index'], axis=1)
+random_state = 0
+
+#%%
+
+## handle imbalanced data here
+
+def split_x_and_y(df, target_col):
+    y = df[target_col]
+    x = df.drop([target_col, 'index'], axis=1)
+
+    return x, y
+
+class_weight = None
+
+if handle_imb_data == '':
+    imb_handling_method = 'imb-data'
+    x, y = split_x_and_y(df, target_col)
+    
+elif handle_imb_data in ['over-sampling', 'under-sampling']:
+
+    train_df = df.iloc[train_idx]
+    valid_df = df.iloc[test_idx]
+
+    x_train, y_train = split_x_and_y(train_df, target_col)
+    x_valid, y_valid = split_x_and_y(valid_df, target_col)
+
+    if handle_imb_data == 'over-sampling':
+        imb_handling_method = 'SMOTE'
+        resampler = SMOTE(random_state=random_state)
+
+    elif handle_imb_data == 'under-sampling':
+        imb_handling_method = 'Tomek'
+        resampler = TomekLinks()
+
+    x_train, y_train = resampler.fit_resample(x_train, y_train)
+
+    train_idx = np.arange(len(x_train))
+
+    x = pd.concat([x_train, x_valid])
+    y = pd.concat([y_train, y_valid])
+
+elif handle_imb_data == 'weight':
+    imb_handling_method = 'class-weight'
+    class_weight = 'balanced'
+
 
 print('prepare data finished')
 print('-'*30)
 
 del df
 
-
 # %%
 
 ## Define hyper-parameters for model fine-tuning with grid search
 
-random_state = 0
-
-alpha = [1, 5, 10]
-solver = ['sparse_cg']
-l1_ratio = [0.3, 0.5, 0.7, 1.0]
-max_iter = [100, 500, 1000]
-n_estimator = [10, 50, 100]
-learning_rate = [0.1, 0.5, 1.0, 5.0]
+C = [1.0, 10.0, 100.0]
+kernel = ['linear', 'poly', 'rbf']
+solver = ['lbfgs', 'liblinear', 'newton-cg']
+criterion = ['gini', 'entropy'] 
+min_samples_split = [2, 3, 5, 7]
+min_samples_leaf = [1, 3, 5, 7]
+n_estimator = [50, 100, 300]
+n_neighbors = [3, 5, 7, 10]
+power = [1,2]
+learning_rate = [0.1, 0.3, 0.5, 1.0]
+l2_regularization = [0, 0.3, 0.5, 1.0]
+learning_rate_ada = [0.1, 0.5, 1.0, 5.0]
 loss_func = ['linear', 'square']
 
-
 search_params = {
-    'ridge': {
-        'alpha': alpha,
-        'max_iter': max_iter,
+    'decision-tree': {
+        'min_samples_split': min_samples_split,
+        'min_samples_leaf': min_samples_leaf,
+        'criterion': criterion
+    },
+    'SVM':{
+        'C': C,
+        'kernel': kernel
+    },
+    'Logistic-regression': {
+        'C': C,
         'solver': solver
     },
-    'lasso': {
-        'alpha': alpha,
-        'max_iter': max_iter
+    'KNN': {
+        'n_neighbors': n_neighbors,
+        'p': power
     },
-    'elasticNet': {
-        'alpha': alpha,
-        'max_iter': max_iter,
-        'l1_ratio': l1_ratio
+    'random-forest':
+    {
+        'min_samples_split': min_samples_split,
+        'min_samples_leaf': min_samples_leaf,
+        'n_estimator': n_estimator
+    },
+    'gradient-boosting':{
+        'learning_rate': learning_rate,
+        'l2_regularization': l2_regularization
+    },
+    'xgboost': {
+        'n_estimator': n_estimator,
+        'learning_rate': learning_rate
     },
     'adaboost': {
         'n_estimators': n_estimator,
-        'learning_rate': learning_rate,
+        'learning_rate': learning_rate_ada,
         'loss': loss_func
     },
     'bagging': {
@@ -79,15 +180,19 @@ search_params = {
 
 #%%
 
-## initialize regression model
+## initialize classification models
 
-model_dir = '../model/'
+
+model_dir = '../model/{}/{}'.format(model_subdir, imb_handling_method)
 os.makedirs(model_dir, exist_ok=True)
 
-linear = LinearRegression(n_jobs=32)
-ridge = Ridge(random_state=random_state)
-lasso = Lasso(random_state=random_state)
-elasticNet = ElasticNet(random_state=random_state)
+decision_tree = DecisionTreeClassifier(random_state=random_state, class_weight=class_weight)
+svm = SVC(random_state=random_state, class_weight=class_weight)
+knn = KNeighborsClassifier()
+lr = LogisticRegression(random_state=random_state, class_weight=class_weight)
+gbt = HistGradientBoostingClassifier(random_state=random_state, class_weight=class_weight)
+xgb = XGBClassifier(random_state=random_state, class_weight=class_weight)
+rf = RandomForestClassifier(random_state=random_state, class_weight=class_weight)
 
 
 def log_artifacts(model_obj, log_grid_search_result = True, is_ensemble = False):
@@ -139,7 +244,7 @@ def print_training_info(model_name, params):
 
     print('-'*30)
 
-def grid_search_reg_model(model, params):
+def grid_search_cls_model(model, params):
     model_name = type(model).__name__
 
     print_training_info(model_name, params)
@@ -163,29 +268,22 @@ def grid_search_reg_model(model, params):
 
 #%%
 
-## fit simple regression model here
+## grid search for single classification models
 
-# print('training a regression model')
-# print('-'*30)
+# grid_search_cls_model(decision_tree, search_params['decision-tree'])
+# grid_search_cls_model(knn, search_params['KNN'])
+# grid_search_cls_model(lr, search_params['Logistic-regression'])
+grid_search_cls_model(svm, search_params['SVM'])
+grid_search_cls_model(rf, search_params['random-forest'])
+grid_search_cls_model(gbt, search_params['gradient-boosting'])
+grid_search_cls_model(xgb, search_params['xgboost'])
 
-# linear.fit(x.loc[train_idx], y.loc[train_idx])
-# log_artifacts(linear, log_grid_search_result=False)
 
-# print('finished training')
-# print('-'*30)
-
-# %%
-
-## grid search for single regression models
-
-# grid_search_reg_model(lasso, search_params['lasso'])
-# grid_search_reg_model(elasticNet, search_params['elasticNet'])
-# grid_search_reg_model(ridge, search_params['ridge'])
 
 # %%
 
 def get_best_params_from_base_model(base_model_name):
-    model_dir = '../model/{}'.format(base_model_name)
+    model_dir = os.path.join(model_dir, base_model_name)
 
     with open(os.path.join(model_dir, 'best_params.json')) as f:
         best_params = json.load(f)
@@ -195,7 +293,7 @@ def get_best_params_from_base_model(base_model_name):
 
 def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None):
 
-    if base_model_name not in ['Lasso', 'Ridge', 'ElasticNet']:
+    if base_model_name not in ['LogisticRegression', 'DecisionTree']:
         print('wrong base model name')
         exit(0)
 
@@ -203,35 +301,32 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
         print('wrong ensemble model name')
         exit(0)
 
-    if base_model_name in ['Lasso', 'Ridge', 'ElasticNet']:
 
-        try:
-            best_params = get_best_params_from_base_model(base_model_name)
-        except:
-            print('please train the base {} model first'.format(base_model_name))
-            exit(0)
+    best_params = get_best_params_from_base_model(base_model_name)
 
-    if base_model_name == 'Lasso':
-        base_model = Lasso(
-            alpha = best_params['alpha'], max_iter=best_params['max_iter']
-        )
-    elif base_model_name == 'Ridge':
-        base_model = Ridge(
-            alpha = best_params['alpha'], max_iter=best_params['max_iter'], solver=best_params['solver']
-        )
-    elif base_model_name == 'ElasticNet':
-        base_model = ElasticNet(
-            alpha = best_params['alpha'], max_iter=best_params['max_iter'],
-            l1_ratio=best_params['l1_ratio']
-        )
-    elif base_model_name == 'Linear':
-        base_model = LinearRegression(n_jobs=1)
 
+    if base_model_name == 'LogisticRegression':
+        base_model = LogisticRegression(
+            C=best_params['C'], 
+            solver=best_params['solver'], 
+            random_state=random_state,
+            class_weight=class_weight
+        )
+
+    elif base_model_name == 'DecisionTree':
+        base_model = DecisionTreeClassifier(
+            min_samples_split=best_params['min_samples_split'], 
+            min_samples_leaf=best_params['min_samples_leaf'], 
+            criterion=best_params['criterion'], 
+            random_state=random_state, 
+            class_weight=class_weight
+        )
+        
     if ensemble_model_name == 'adaboost':
-        model = AdaBoostRegressor(estimator=base_model, random_state=random_state)
+        model = AdaBoostClassifier(estimator=base_model, random_state=random_state)
 
     elif ensemble_model_name == 'bagging':
-        model = BaggingRegressor(estimator=base_model, random_state=random_state)
+        model = BaggingClassifier(estimator=base_model, random_state=random_state)
 
     model_name = ensemble_model_name + '_' + base_model_name
 
@@ -255,13 +350,10 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
     
 #%%
 
-grid_search_ensemble_model('Lasso', 'adaboost', params=search_params['adaboost'])
-grid_search_ensemble_model('ElasticNet', 'adaboost', params=search_params['adaboost'])
-# grid_search_ensemble_model('Ridge', 'adaboost', params=search_params['adaboost'])
-grid_search_ensemble_model('Linear', 'adaboost')
+# grid_search_ensemble_model('DecisionTree', 'adaboost', params=search_params['adaboost'])
+# grid_search_ensemble_model('LogisticRegression', 'adaboost', params=search_params['adaboost'])
 
-grid_search_ensemble_model('Lasso', 'bagging', search_params['bagging'])
-grid_search_ensemble_model('ElasticNet', 'bagging', search_params['bagging'])
-# grid_search_ensemble_model('Ridge', 'bagging', search_params['bagging'])
-grid_search_ensemble_model('Linear', 'bagging')
+# grid_search_ensemble_model('DecisionTree', 'bagging', search_params['bagging'])
+# grid_search_ensemble_model('LogisticRegression', 'bagging', search_params['bagging'])
+
 # %%
