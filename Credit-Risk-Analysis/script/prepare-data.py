@@ -45,6 +45,7 @@ cols_to_drop = [
     'NAME_PRODUCT_TYPE',
     'CHANNEL_TYPE',
     'NAME_PAYMENT_TYPE',
+    'AMT_CREDIT'
 ]
 
 df = df.drop(cols_to_drop, axis=1)
@@ -56,17 +57,13 @@ df = df.drop_duplicates()
 ## shuffle dataset
 df = df.sample(frac = 1.0)
 
-
-
 #%%
 
 ## prepare pipeline for data preprocessing
 
-
 num_cols = [
     'AMT_ANNUITY',
     'AMT_APPLICATION',
-    'AMT_CREDIT',
     'AMT_DOWN_PAYMENT',
     'AMT_GOODS_PRICE',
 ]
