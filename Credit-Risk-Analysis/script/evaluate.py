@@ -30,6 +30,12 @@ x = df.drop([target_col], axis=1)
 
 ## Get evaluation results
 
+## class order num is 0, 1
+col_names = {
+    'loan_approval_prediction': ['Refused', 'Approved'],
+    'review_priority_prediction': ['Low-Priority', 'High-Priority']
+}
+
 def eval_result(model_name, imb_data_handling_method):
 
     model_dir = '../model/{}/{}/{}/'.format(task_name, imb_data_handling_method, model_name)
@@ -40,7 +46,7 @@ def eval_result(model_name, imb_data_handling_method):
         model = pickle.load(f)
 
     pred = model.predict(x)
-    prob = model.predict_proba(x)[:, 1]
+    prob = model.predict_proba(x)
 
     result = classification_report(y, pred, output_dict=True)
 
@@ -64,8 +70,8 @@ def eval_result(model_name, imb_data_handling_method):
     ## store result of each class
     result_all_class_df = pd.DataFrame(result_rows)
 
-    ## store result of all classes
-    roc_auc = roc_auc_score(y, prob)
+    ## store result of all classes (roc_auc is for positive label only)
+    roc_auc = roc_auc_score(y, prob[:, 1])
     mcc = matthews_corrcoef(y, pred)
 
     result_dict = {
@@ -75,34 +81,48 @@ def eval_result(model_name, imb_data_handling_method):
         'MCC': mcc
     }
 
-    return result_all_class_df, result_dict
+
+    prob_df = pd.DataFrame(prob, columns = col_names[task_name])
+    prob_df['model_name'] = model_name
+
+    return result_all_class_df, result_dict, prob_df
 
 # %%
-result_dir = '../result/'
+base_result_dir = '../result'
+result_dir = os.path.join(base_result_dir, 'eval_metrics')
+prob_dir = os.path.join(base_result_dir, 'prob_values', task_name)
 
 os.makedirs(result_dir, exist_ok=True)
+os.makedirs(prob_dir, exist_ok=True)
 
 ## just for testing (change to real value later...)
-model_names = ['DecisionTreeClassifier']
-data_imb_handling_methods = ['imb-data']
+model_names = ['DecisionTreeClassifier', 'LogisticRegression']
+data_imb_handling_methods = ['imb-data', 'Tomek']
 
 alL_result_each_class_df = []
 all_result_all_classes_rows = []
+prob_val = {s:[] for s in data_imb_handling_methods}
+
 
 for model_name in model_names:
     for method in data_imb_handling_methods:
-        result_all_class_df, result_dict = eval_result(model_name, method)
+        result_all_class_df, result_dict, prob_df = eval_result(model_name, method)
 
         alL_result_each_class_df.append(result_all_class_df)
-        all_result_all_classes_rows.append(result_dict)  
+        all_result_all_classes_rows.append(result_dict)
+        prob_val[method].append(prob_df)
 
 # %%
 
-result_each_class = pd.concat(alL_result_df)
-result_all_classes = pd.DataFrame(all_result_rows)
+result_each_class = pd.concat(alL_result_each_class_df)
+result_all_classes = pd.DataFrame(all_result_all_classes_rows)
 
 result_each_class.to_csv(os.path.join(result_dir, '{}_result_each_class.csv'.format(task_name)), index=False)
 result_all_classes.to_csv(os.path.join(result_dir, '{}_result_all_classes.csv'.format(task_name)), index=False)
+
+for data_imb_handling_method, df_list in prob_val.items():
+    final_df = pd.concat(df_list)
+    final_df.to_csv(os.path.join(prob_dir, '{}_prob.csv'.format( data_imb_handling_method)), index=False)
 
 #%%
 
