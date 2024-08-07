@@ -18,8 +18,8 @@ from xgboost import XGBClassifier
 
 
 ## has import error, will fix later...
-# from imblearn.over_sampling import SMOTE
-# from imblearn.under_sampling import TomekLinks
+from imblearn.over_sampling import SMOTE
+from imblearn.under_sampling import TomekLinks
 
 
 #%%
@@ -80,9 +80,16 @@ def split_x_and_y(df, target_col):
 
 class_weight = None
 
+
 if handle_imb_data == '':
+    print('train model with original dataset')
     imb_handling_method = 'imb-data'
     x, y = split_x_and_y(df, target_col)
+
+elif handle_imb_data == 'weight':
+    print('use balanced class weight to train model')
+    imb_handling_method = 'class-weight'
+    class_weight = 'balanced'
     
 elif handle_imb_data in ['over-sampling', 'under-sampling']:
 
@@ -93,24 +100,28 @@ elif handle_imb_data in ['over-sampling', 'under-sampling']:
     x_valid, y_valid = split_x_and_y(valid_df, target_col)
 
     if handle_imb_data == 'over-sampling':
+        print('use SMOTE to rebalance data')
         imb_handling_method = 'SMOTE'
         resampler = SMOTE(random_state=random_state)
 
     elif handle_imb_data == 'under-sampling':
+        print('use Tomek to rebalance data')
         imb_handling_method = 'Tomek'
         resampler = TomekLinks()
 
     x_train, y_train = resampler.fit_resample(x_train, y_train)
 
-    train_idx = np.arange(len(x_train))
-
     x = pd.concat([x_train, x_valid])
     y = pd.concat([y_train, y_valid])
 
-elif handle_imb_data == 'weight':
-    imb_handling_method = 'class-weight'
-    class_weight = 'balanced'
+    ## reset index for indicing in grid search
+    x = x.reset_index().drop('index', axis=1)
 
+    train_idx = np.arange(len(x_train))
+    test_idx = np.arange(len(x_train), len(x))
+
+    print('train idx:', train_idx)
+    print('valid idx:', test_idx)
 
 print('prepare data finished')
 print('-'*30)
@@ -122,7 +133,7 @@ del df
 ## Define hyper-parameters for model fine-tuning with grid search
 
 C = [1.0, 10.0, 100.0]
-kernel = ['linear', 'poly', 'rbf']
+# kernel = ['linear', 'poly', 'rbf']
 solver = ['lbfgs', 'liblinear', 'newton-cg']
 criterion = ['gini', 'entropy'] 
 min_samples_split = [2, 3, 5, 7]
@@ -133,7 +144,6 @@ power = [1,2]
 learning_rate = [0.1, 0.3, 0.5, 1.0]
 l2_regularization = [0, 0.3, 0.5, 1.0]
 learning_rate_ada = [0.1, 0.5, 1.0, 5.0]
-loss_func = ['linear', 'square']
 
 search_params = {
     'decision-tree': {
@@ -143,7 +153,7 @@ search_params = {
     },
     'SVM':{
         'C': C,
-        'kernel': kernel
+        # 'kernel': kernel
     },
     'Logistic-regression': {
         'C': C,
@@ -157,20 +167,19 @@ search_params = {
     {
         'min_samples_split': min_samples_split,
         'min_samples_leaf': min_samples_leaf,
-        'n_estimator': n_estimator
+        'n_estimators': n_estimator
     },
     'gradient-boosting':{
         'learning_rate': learning_rate,
         'l2_regularization': l2_regularization
     },
     'xgboost': {
-        'n_estimator': n_estimator,
+        'n_estimators': n_estimator,
         'learning_rate': learning_rate
     },
     'adaboost': {
         'n_estimators': n_estimator,
-        'learning_rate': learning_rate_ada,
-        'loss': loss_func
+        'learning_rate': learning_rate_ada
     },
     'bagging': {
         'n_estimators': n_estimator
@@ -184,16 +193,20 @@ search_params = {
 
 
 model_dir = '../model/{}/{}'.format(model_subdir, imb_handling_method)
+
+print('create directory {} to store models'.format(model_dir))
+
 os.makedirs(model_dir, exist_ok=True)
 
+# exit(0)
+
 decision_tree = DecisionTreeClassifier(random_state=random_state, class_weight=class_weight)
-svm = SVC(random_state=random_state, class_weight=class_weight)
 knn = KNeighborsClassifier()
 lr = LogisticRegression(random_state=random_state, class_weight=class_weight)
 gbt = HistGradientBoostingClassifier(random_state=random_state, class_weight=class_weight)
 xgb = XGBClassifier(random_state=random_state, class_weight=class_weight)
 rf = RandomForestClassifier(random_state=random_state, class_weight=class_weight)
-
+# svm = SVC(kernel='linear',random_state=random_state, class_weight=class_weight)
 
 def log_artifacts(model_obj, log_grid_search_result = True, is_ensemble = False):
 
@@ -273,19 +286,19 @@ def grid_search_cls_model(model, params):
 # grid_search_cls_model(decision_tree, search_params['decision-tree'])
 # grid_search_cls_model(knn, search_params['KNN'])
 # grid_search_cls_model(lr, search_params['Logistic-regression'])
-grid_search_cls_model(svm, search_params['SVM'])
-grid_search_cls_model(rf, search_params['random-forest'])
-grid_search_cls_model(gbt, search_params['gradient-boosting'])
-grid_search_cls_model(xgb, search_params['xgboost'])
+# grid_search_cls_model(rf, search_params['random-forest'])
+# grid_search_cls_model(gbt, search_params['gradient-boosting'])
+# grid_search_cls_model(xgb, search_params['xgboost'])
+# grid_search_cls_model(svm, search_params['SVM'])
 
 
 
 # %%
 
 def get_best_params_from_base_model(base_model_name):
-    model_dir = os.path.join(model_dir, base_model_name)
+    real_model_dir = os.path.join(model_dir, base_model_name)
 
-    with open(os.path.join(model_dir, 'best_params.json')) as f:
+    with open(os.path.join(real_model_dir, 'best_params.json')) as f:
         best_params = json.load(f)
 
     return best_params
@@ -293,7 +306,7 @@ def get_best_params_from_base_model(base_model_name):
 
 def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None):
 
-    if base_model_name not in ['LogisticRegression', 'DecisionTree']:
+    if base_model_name not in ['LogisticRegression', 'DecisionTreeClassifier']:
         print('wrong base model name')
         exit(0)
 
@@ -313,7 +326,7 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
             class_weight=class_weight
         )
 
-    elif base_model_name == 'DecisionTree':
+    elif base_model_name == 'DecisionTreeClassifier':
         base_model = DecisionTreeClassifier(
             min_samples_split=best_params['min_samples_split'], 
             min_samples_leaf=best_params['min_samples_leaf'], 
@@ -350,10 +363,10 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
     
 #%%
 
-# grid_search_ensemble_model('DecisionTree', 'adaboost', params=search_params['adaboost'])
-# grid_search_ensemble_model('LogisticRegression', 'adaboost', params=search_params['adaboost'])
+grid_search_ensemble_model('DecisionTreeClassifier', 'adaboost', params=search_params['adaboost'])
+grid_search_ensemble_model('LogisticRegression', 'adaboost', params=search_params['adaboost'])
 
-# grid_search_ensemble_model('DecisionTree', 'bagging', search_params['bagging'])
-# grid_search_ensemble_model('LogisticRegression', 'bagging', search_params['bagging'])
+
+grid_search_ensemble_model('LogisticRegression', 'bagging', search_params['bagging'])
 
 # %%

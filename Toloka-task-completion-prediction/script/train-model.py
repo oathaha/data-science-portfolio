@@ -180,7 +180,7 @@ def grid_search_reg_model(model, params):
 
 # grid_search_reg_model(lasso, search_params['lasso'])
 # grid_search_reg_model(elasticNet, search_params['elasticNet'])
-# grid_search_reg_model(ridge, search_params['ridge'])
+grid_search_reg_model(ridge, search_params['ridge'])
 
 # %%
 
@@ -195,7 +195,7 @@ def get_best_params_from_base_model(base_model_name):
 
 def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None):
 
-    if base_model_name not in ['Lasso', 'Ridge', 'ElasticNet']:
+    if base_model_name not in ['Lasso', 'Ridge', 'ElasticNet', 'Linear']:
         print('wrong base model name')
         exit(0)
 
@@ -255,13 +255,13 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
     
 #%%
 
-grid_search_ensemble_model('Lasso', 'adaboost', params=search_params['adaboost'])
-grid_search_ensemble_model('ElasticNet', 'adaboost', params=search_params['adaboost'])
-# grid_search_ensemble_model('Ridge', 'adaboost', params=search_params['adaboost'])
-grid_search_ensemble_model('Linear', 'adaboost')
+# grid_search_ensemble_model('Lasso', 'adaboost', params=search_params['adaboost'])
+# grid_search_ensemble_model('ElasticNet', 'adaboost', params=search_params['adaboost'])
+grid_search_ensemble_model('Ridge', 'adaboost', params=search_params['adaboost'])
+# grid_search_ensemble_model('Linear', 'adaboost', params=search_params['adaboost'])
 
-grid_search_ensemble_model('Lasso', 'bagging', search_params['bagging'])
-grid_search_ensemble_model('ElasticNet', 'bagging', search_params['bagging'])
-# grid_search_ensemble_model('Ridge', 'bagging', search_params['bagging'])
-grid_search_ensemble_model('Linear', 'bagging')
+# grid_search_ensemble_model('Lasso', 'bagging', search_params['bagging'])
+# grid_search_ensemble_model('ElasticNet', 'bagging', search_params['bagging'])
+grid_search_ensemble_model('Ridge', 'bagging', search_params['bagging'])
+# grid_search_ensemble_model('Linear', 'bagging', search_params['bagging'])
 # %%
