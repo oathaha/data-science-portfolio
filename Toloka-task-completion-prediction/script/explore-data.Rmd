@@ -35,7 +35,6 @@ prepare.df.by.category = function(cat){
 
 
 ```{r fig.width=10, fig.height=3.5}
-
 df2 = prepare.df.by.category('device_category')
 
 plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=device_category)) +
@@ -60,7 +59,6 @@ The graph shows that regardless device category; `assignment_gs_correct_count`, 
 
 
 ```{r fig.width=10, fig.height=3}
-
 df2 = prepare.df.by.category('assignment_type')
 
 plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment_type)) +
@@ -84,7 +82,6 @@ The graph shows that regardless assignment type; `assignment_gs_correct_count`, 
 <br/>
 
 ```{r fig.height=3}
-
 df2 = prepare.df.by.category('project_instruction_language')
 
 plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=project_instruction_language)) +
@@ -124,7 +121,6 @@ prepare.df.by.category = function(cat){
 
 
 ```{r fig.width=10, fig.height=8}
-
 df2 = prepare.df.by.category('device_category')
 
 plt = df2 %>% ggplot(aes(x=factor(value), y=completion.time.in.minutes, color=device_category)) +
@@ -141,8 +137,6 @@ plt = df2 %>% ggplot(aes(x=factor(value), y=completion.time.in.minutes, color=de
 
 plt
 ```
-
-
 The above graph shows boxplots of project attribute (i.e., `has_audio`, `has_button`, `has_checkbox_input`, `has_externalHtml`, `has_fileAudio_input`, `has_fileImg_input`, `has_fileVideo_input`, `has_file_input`, `has_iframe`, `has_image`, `has_radio_input`, `has_sbs`, `has_select_input`, `has_sourcesRecorder_input`, `has_string_input`, `has_suggest_input`, `has_textarea_input`, `has_video`) against project completion time by device category.
 
 Overall, the graph shows that 
@@ -152,7 +146,6 @@ Overall, the graph shows that
 <br/>
 
 ```{r fig.width=10, fig.height=8}
-
 df2 = prepare.df.by.category('assignment_type')
 
 plt = df2 %>% ggplot(aes(x=factor(value), y=completion.time.in.minutes, color=assignment_type)) +
@@ -169,7 +162,6 @@ plt = df2 %>% ggplot(aes(x=factor(value), y=completion.time.in.minutes, color=as
 
 plt
 ```
-
 The above graph shows boxplots of project attribute (i.e., `has_audio`, `has_button`, `has_checkbox_input`, `has_externalHtml`, `has_fileAudio_input`, `has_fileImg_input`, `has_fileVideo_input`, `has_file_input`, `has_iframe`, `has_image`, `has_radio_input`, `has_sbs`, `has_select_input`, `has_sourcesRecorder_input`, `has_string_input`, `has_suggest_input`, `has_textarea_input`, `has_video`) against project completion time by assignment type.
 
 Overall, the graph shows that regardless assignment type, the higher number of these attributes correlates with longer project completion time.
@@ -177,7 +169,6 @@ Overall, the graph shows that regardless assignment type, the higher number of t
 <br/>
 
 ```{r fig.width=10, fig.height=8}
-
 df2 = prepare.df.by.category('project_instruction_language')
 
 plt = df2 %>% ggplot(aes(x=factor(value), y=completion.time.in.minutes, color=project_instruction_language)) +
@@ -194,13 +185,11 @@ plt = df2 %>% ggplot(aes(x=factor(value), y=completion.time.in.minutes, color=pr
 
 plt
 ```
-
 The above graph shows boxplots of project attribute (i.e., `has_audio`, `has_button`, `has_checkbox_input`, `has_externalHtml`, `has_fileAudio_input`, `has_fileImg_input`, `has_fileVideo_input`, `has_file_input`, `has_iframe`, `has_image`, `has_radio_input`, `has_sbs`, `has_select_input`, `has_sourcesRecorder_input`, `has_string_input`, `has_suggest_input`, `has_textarea_input`, `has_video`) against project completion time by instruction language.
 
 Overall, the graph shows that regardless instruction language, the higher number of these attributes correlates with longer project completion time.
 
 <br/>
-
 
 ```{r}
 prepare.df.by.category = function(cat){
@@ -234,7 +223,6 @@ plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=device_cat
 
 plt
 ```
-
 The above graph shows scatter plot of `project_instruction_FK`, `project_instruction_len`, `project_instruction_wordCount`, `project_required_fields`, and `project_spec_length` against completion time by device category.
 
 The graph shows that regardless device categories; `project_instruction_FK`, `project_instruction_len`, `project_instruction_wordCount`, `project_required_fields`, and `project_spec_length` do not correlate with the completion time.
@@ -242,7 +230,6 @@ The graph shows that regardless device categories; `project_instruction_FK`, `pr
 <br/>
 
 ```{r fig.height=3.5, fig.width=10}
-
 df2 = prepare.df.by.category('assignment_type')
 
 plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment_type)) +
@@ -259,7 +246,6 @@ plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment
 
 plt
 ```
-
 The above graph shows scatter plot of `project_instruction_FK`, `project_instruction_len`, `project_instruction_wordCount`, `project_required_fields`, and `project_spec_length` against completion time by assignment type.
 
 The graph shows that regardless assignment type; `project_instruction_FK`, `project_instruction_len`, `project_instruction_wordCount`, `project_required_fields`, and `project_spec_length` do not correlate with the completion time.
@@ -267,7 +253,6 @@ The graph shows that regardless assignment type; `project_instruction_FK`, `proj
 <br/>
 
 ```{r fig.height=3.5, fig.width=10}
-
 df2 = prepare.df.by.category('project_instruction_language')
 
 plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=project_instruction_language)) +
@@ -284,13 +269,11 @@ plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=project_in
 
 plt
 ```
-
 The above graph shows scatter plot of `project_instruction_FK`, `project_instruction_len`, `project_instruction_wordCount`, `project_required_fields`, and `project_spec_length` against completion time by instruction language.
 
 The graph shows that regardless instruction language; `project_instruction_FK`, `project_instruction_len`, `project_instruction_wordCount`, `project_required_fields`, and `project_spec_length` do not correlate with the completion time.
 
 <br/>
-
 
 ```{r}
 prepare.df.by.category = function(cat){
@@ -330,7 +313,6 @@ The graph shows that regardless device categories; `project_has_button`,  `proje
 <br/>
 
 ```{r fig.height=3.5, fig.width=10}
-
 df2 = prepare.df.by.category('assignment_type')
 
 plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment_type)) +
@@ -354,7 +336,6 @@ The graph shows that regardless assignment types; `project_has_button`,  `projec
 <br/>
 
 ```{r fig.height=3.5, fig.width=10}
-
 df2 = prepare.df.by.category('project_instruction_language')
 
 plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=project_instruction_language)) +
