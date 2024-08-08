@@ -14,7 +14,7 @@ random.seed(0)
 
 #%%
 
-task_name = 'review_priority_prediction' ## loan_approval_prediction or review_priority_prediction
+task_name = 'loan_approval_prediction' ## loan_approval_prediction or review_priority_prediction
 
 target_cols = {
     'loan_approval_prediction': 'is_approved',
@@ -67,7 +67,7 @@ label_dist_pred = random.choices(labels, [neg_chance, pos_chance],k=n_test)
 
 # %%
 
-data_imbalance_methods = ['imb-data', 'class-weight', 'over-sampling', 'under-sampling']
+data_imbalance_methods = ['imb-data', 'class-weight', 'SMOTE', 'Tomek']
 
 roc_auc = roc_auc_score(y_test, prob)
 
@@ -128,5 +128,5 @@ result_single_val_df = pd.concat([result_single_val_df_major_pred, result_single
 # %%
 
 result_all_class_df.to_csv('../result/eval_metrics/{}_each_class_baseline.csv'.format(task_name), index=False)
-result_all_class_df.to_csv('../result/eval_metrics/{}_all_classes_baseline.csv'.format(task_name), index=False)
+result_single_val_df.to_csv('../result/eval_metrics/{}_all_classes_baseline.csv'.format(task_name), index=False)
 # %%

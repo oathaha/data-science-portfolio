@@ -17,8 +17,13 @@ import pickle, os
 
 ## Read test set
 
-task_name = 'loan_approval_prediction'
-target_col = 'is_approved'
+target_cols = {
+    'loan_approval_prediction': 'is_approved',
+    'review_priority_prediction': 'is_high_priority'
+}
+
+task_name = 'review_priority_prediction'
+target_col = target_cols[task_name]
 
 df = pd.read_csv('../dataset/cleaned/{}/test_processed_data.csv'.format(task_name))
 
