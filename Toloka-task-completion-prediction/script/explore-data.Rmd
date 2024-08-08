@@ -4,41 +4,21 @@ output: html_notebook
 fig_height: 200
 ---
 
-<h2>Import library</h2>
+## Import library
 
 ```{r}
 library(tidyverse)
 library(ggplot2)
 library(gridExtra)
-
-# knitr::opts_chunk$set(fig.height=15) 
-
-# library(usethis) 
-# usethis::edit_r_environ()
 ```
 
-<h2>Read file</h2>
+## Read file
 
 ```{r}
-
-# real file name
 df = read.csv('../dataset/cleaned/cleaned_data_no_outlier_label.csv')
-
-
-# just for testing
-
-# df = read.csv('../dataset/cleaned/sample_cleaned_dataset.csv')
-
-# print(names(df))
 
 head(df, 5)
 ```
-
-
-
-Completion time by assignment_gs_correct_count,  assignment_gs_count, assignment_price, microtasks_count.
-
-Each plot is categorized by device_category, assignment_type
 
 ```{r}
 
@@ -72,9 +52,14 @@ plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=device_cat
 plt
 ```
 
+The above graph shows scatter plot of `assignment_gs_correct_count`,  `assignment_gs_count`, `assignment_price` and `microtasks_count` against completion time by device category.
+
+The graph shows that regardless device category; `assignment_gs_correct_count`,  `assignment_gs_count`, `assignment_price` and `microtasks_count` do not correlate with the completion time.
+
+<br/>
+
 
 ```{r fig.width=10, fig.height=3}
-
 
 df2 = prepare.df.by.category('assignment_type')
 
@@ -92,6 +77,11 @@ plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment
 plt
 ```
 
+The above graph shows scatter plot of `assignment_gs_correct_count`,  `assignment_gs_count`, `assignment_price` and `microtasks_count` against completion time by assignment type.
+
+The graph shows that regardless assignment type; `assignment_gs_correct_count`,  `assignment_gs_count` and `microtasks_count` do not correlate with the completion time. In contrast, for the *exam* assignment type, the higher `assignment_price` correlates with low completion time.
+
+<br/>
 
 ```{r fig.height=3}
 
@@ -110,11 +100,13 @@ plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=project_in
 
 plt
 ```
+The above graph shows scatter plot of `assignment_gs_correct_count`,  `assignment_gs_count`, `assignment_price` and `microtasks_count` against completion time by project instruction language.
+
+The graph shows that regardless project instruction language; `assignment_gs_correct_count`,  `assignment_gs_count` and `microtasks_count` do not correlate with the completion time. In contrast, for the *ru* project instruction, the higher `assignment_price` correlates with low completion time.
+
+<br/>
 
 
-Completion time by project attribute (has_audio, has_button, has_checkbox_input, has_externalHtml, has_fileAudio_input, has_fileImg_input, has_fileVideo_input, has_file_input, has_iframe, has_image, has_radio_input, has_sbs, has_select_input, has_sourcesRecorder_input, has_string_input, has_suggest_input, has_textarea_input, has_video)
-
-Each plot is categorized by assignment_status, device_category, assignment_type
 
 ```{r fig.width=10, fig.height=8}
 
@@ -151,6 +143,14 @@ plt
 ```
 
 
+The above graph shows boxplots of project attribute (i.e., `has_audio`, `has_button`, `has_checkbox_input`, `has_externalHtml`, `has_fileAudio_input`, `has_fileImg_input`, `has_fileVideo_input`, `has_file_input`, `has_iframe`, `has_image`, `has_radio_input`, `has_sbs`, `has_select_input`, `has_sourcesRecorder_input`, `has_string_input`, `has_suggest_input`, `has_textarea_input`, `has_video`) against project completion time by device category.
+
+Overall, the graph shows that 
+- the higher number of these attributes correlates with longer project completion time.
+- the variety of device categories that assignments are taken has inverse relationship with the number of these attributes (e.g., assignments are done in 5 device categories when project does not have suggested input, while assignments are done in 2 device categories when project has 32 suggested input).
+
+<br/>
+
 ```{r fig.width=10, fig.height=8}
 
 df2 = prepare.df.by.category('assignment_type')
@@ -170,6 +170,11 @@ plt = df2 %>% ggplot(aes(x=factor(value), y=completion.time.in.minutes, color=as
 plt
 ```
 
+The above graph shows boxplots of project attribute (i.e., `has_audio`, `has_button`, `has_checkbox_input`, `has_externalHtml`, `has_fileAudio_input`, `has_fileImg_input`, `has_fileVideo_input`, `has_file_input`, `has_iframe`, `has_image`, `has_radio_input`, `has_sbs`, `has_select_input`, `has_sourcesRecorder_input`, `has_string_input`, `has_suggest_input`, `has_textarea_input`, `has_video`) against project completion time by assignment type.
+
+Overall, the graph shows that regardless assignment type, the higher number of these attributes correlates with longer project completion time.
+
+<br/>
 
 ```{r fig.width=10, fig.height=8}
 
@@ -190,19 +195,20 @@ plt = df2 %>% ggplot(aes(x=factor(value), y=completion.time.in.minutes, color=pr
 plt
 ```
 
+The above graph shows boxplots of project attribute (i.e., `has_audio`, `has_button`, `has_checkbox_input`, `has_externalHtml`, `has_fileAudio_input`, `has_fileImg_input`, `has_fileVideo_input`, `has_file_input`, `has_iframe`, `has_image`, `has_radio_input`, `has_sbs`, `has_select_input`, `has_sourcesRecorder_input`, `has_string_input`, `has_suggest_input`, `has_textarea_input`, `has_video`) against project completion time by instruction language.
 
-Completion time by project attribute (instruction_FK, instruction_language, instruction_len, instruction_wordCount, required_fields, spec_length)
+Overall, the graph shows that regardless instruction language, the higher number of these attributes correlates with longer project completion time.
 
-Each plot is categorized by assignment_status, device_category, assignment_type, instruction_language
+<br/>
+
 
 ```{r}
 prepare.df.by.category = function(cat){
-  
-  # data.by.cat = df %>% select(project_instruction_FK, project_instruction_len, project_instruction_wordCount, project_required_fields, project_spec_length, project_has_button,  project_has_checkbox_input, project_has_image, project_has_radio_input, project_has_string_input, completion.time.in.minutes, cat)
-  data.by.cat = df %>% select(project_instruction_FK, project_instruction_len, project_instruction_wordCount, project_required_fields, project_spec_length, completion.time.in.minutes, cat)
+
+  data.by.cat = df %>% 
+    select(project_instruction_FK, project_instruction_len, project_instruction_wordCount, project_required_fields, project_spec_length, completion.time.in.minutes, cat)
   
   data.by.cat = data.by.cat %>% 
-  # pivot_longer(cols=c('project_instruction_FK', 'project_instruction_len', 'project_instruction_wordCount', 'project_required_fields', 'project_spec_length', 'project_has_button',  'project_has_checkbox_input', 'project_has_image', 'project_has_radio_input', 'project_has_string_input'), names_to = 'parameter')
     pivot_longer(cols=c('project_instruction_FK', 'project_instruction_len', 'project_instruction_wordCount', 'project_required_fields', 'project_spec_length'), names_to = 'parameter')
   
   return(data.by.cat)
@@ -229,6 +235,11 @@ plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=device_cat
 plt
 ```
 
+The above graph shows scatter plot of `project_instruction_FK`, `project_instruction_len`, `project_instruction_wordCount`, `project_required_fields`, and `project_spec_length` against completion time by device category.
+
+The graph shows that regardless device categories; `project_instruction_FK`, `project_instruction_len`, `project_instruction_wordCount`, `project_required_fields`, and `project_spec_length` do not correlate with the completion time.
+
+<br/>
 
 ```{r fig.height=3.5, fig.width=10}
 
@@ -249,6 +260,11 @@ plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment
 plt
 ```
 
+The above graph shows scatter plot of `project_instruction_FK`, `project_instruction_len`, `project_instruction_wordCount`, `project_required_fields`, and `project_spec_length` against completion time by assignment type.
+
+The graph shows that regardless assignment type; `project_instruction_FK`, `project_instruction_len`, `project_instruction_wordCount`, `project_required_fields`, and `project_spec_length` do not correlate with the completion time.
+
+<br/>
 
 ```{r fig.height=3.5, fig.width=10}
 
@@ -269,20 +285,19 @@ plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=project_in
 plt
 ```
 
+The above graph shows scatter plot of `project_instruction_FK`, `project_instruction_len`, `project_instruction_wordCount`, `project_required_fields`, and `project_spec_length` against completion time by instruction language.
 
+The graph shows that regardless instruction language; `project_instruction_FK`, `project_instruction_len`, `project_instruction_wordCount`, `project_required_fields`, and `project_spec_length` do not correlate with the completion time.
 
-Completion time by project attribute (instruction_FK, instruction_language, instruction_len, instruction_wordCount, required_fields, spec_length, project_has_button,  project_has_checkbox_input, project_has_image, project_has_radio_input, project_has_string_input)
+<br/>
 
-Each plot is categorized by assignment_status, device_category, assignment_type, instruction_language
 
 ```{r}
 prepare.df.by.category = function(cat){
   
-  # data.by.cat = df %>% select(project_instruction_FK, project_instruction_len, project_instruction_wordCount, project_required_fields, project_spec_length, project_has_button,  project_has_checkbox_input, project_has_image, project_has_radio_input, project_has_string_input, completion.time.in.minutes, cat)
   data.by.cat = df %>% select(project_has_button,  project_has_checkbox_input, project_has_image, project_has_radio_input, project_has_string_input, completion.time.in.minutes, cat)
   
   data.by.cat = data.by.cat %>% 
-  # pivot_longer(cols=c('project_instruction_FK', 'project_instruction_len', 'project_instruction_wordCount', 'project_required_fields', 'project_spec_length', 'project_has_button',  'project_has_checkbox_input', 'project_has_image', 'project_has_radio_input', 'project_has_string_input'), names_to = 'parameter')
     pivot_longer(cols=c('project_has_button',  'project_has_checkbox_input', 'project_has_image', 'project_has_radio_input', 'project_has_string_input'), names_to = 'parameter')
   
   return(data.by.cat)
@@ -308,7 +323,11 @@ plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=device_cat
 
 plt
 ```
+The above graph shows scatter plot of `project_has_button`,  `project_has_checkbox_input`, `project_has_image`, `project_has_radio_input`, and  `project_has_string_input` against completion time by device category.
 
+The graph shows that regardless device categories; `project_has_button`,  `project_has_checkbox_input`, `project_has_image`, `project_has_radio_input`, and  `project_has_string_input` do not correlate with the completion time.
+
+<br/>
 
 ```{r fig.height=3.5, fig.width=10}
 
@@ -328,7 +347,11 @@ plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=assignment
 
 plt
 ```
+The above graph shows scatter plot of `project_has_button`,  `project_has_checkbox_input`, `project_has_image`, `project_has_radio_input`, and  `project_has_string_input` against completion time by assignment type.
 
+The graph shows that regardless assignment types; `project_has_button`,  `project_has_checkbox_input`, `project_has_image`, `project_has_radio_input`, and  `project_has_string_input` do not correlate with the completion time.
+
+<br/>
 
 ```{r fig.height=3.5, fig.width=10}
 
@@ -348,3 +371,9 @@ plt = df2 %>% ggplot(aes(x=value, y=completion.time.in.minutes, color=project_in
 
 plt
 ```
+
+The above graph shows scatter plot of `project_has_button`,  `project_has_checkbox_input`, `project_has_image`, `project_has_radio_input`, and  `project_has_string_input` against completion time by instruction language.
+
+The graph shows that regardless instruction language; `project_has_button`,  `project_has_checkbox_input`, `project_has_image`, `project_has_radio_input`, and  `project_has_string_input` do not correlate with the completion time.
+
+<br/>
