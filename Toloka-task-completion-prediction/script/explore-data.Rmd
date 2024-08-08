@@ -35,11 +35,6 @@ head(df, 5)
 ```
 
 
-
-Completion time by assignment_gs_correct_count,  assignment_gs_count, assignment_price, microtasks_count.
-
-Each plot is categorized by device_category, assignment_type
-
 ```{r}
 
 prepare.df.by.category = function(cat){
