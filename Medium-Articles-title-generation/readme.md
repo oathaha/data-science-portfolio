@@ -29,7 +29,7 @@ In the experiment, I use the following hyper-parameter settings to train models.
 |validation batch size|8|
 |weight decay|0.01|
 |validation metric|loss|
-|patience (when to stop model training if loss does not decrease)|3|
+|patience (when to stop model training if validation loss does not decrease)|3|
 |early stopping threshold|0.01|
 |max input length|3090 (for LLaMa-2) <br> 512 (for BERT and deBERTa)|
 
