@@ -171,7 +171,7 @@ def train_LLM():
         eval_dataset=dataset["valid"],
         # peft_config=peft_config,
         dataset_text_field="text",
-        max_seq_length=1024,
+        max_seq_length=4000,
         tokenizer=tokenizer,
         args=training_args,
         packing=False,
