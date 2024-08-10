@@ -43,6 +43,17 @@ df = df %>% mutate(
 
 df$Age.range = factor(df$Age.range, levels=c('<=10', '11-20', '21-30', '31-40', '41-50', '51-60', '60+', 'UNKNOWN'))
 
+df = df %>% 
+  mutate(Speed.limit.range = case_when(
+    POSTED_SPEED_LIMIT <= 20 ~ '< 20',
+    POSTED_SPEED_LIMIT > 20 & POSTED_SPEED_LIMIT <= 40 ~ '21-40',
+    POSTED_SPEED_LIMIT > 40 & POSTED_SPEED_LIMIT <= 60 ~ '41-60',
+    POSTED_SPEED_LIMIT > 60 & POSTED_SPEED_LIMIT <= 80 ~ '61-80',
+    POSTED_SPEED_LIMIT > 80  ~ '80+',
+  ))
+
+df$Speed.limit.range = factor(df$Speed.limit.range, levels=c('< 20', '21-40', '41-60', '61-80', '80+'))
+
 save.fig = function(fig.name){
   ggsave(paste0(fig.dir, fig.name,'.png'))
 }
@@ -192,3 +203,42 @@ new.df %>% ggplot(aes(x=reorder(STATE, -n), y=n, fill=STATE)) +
   )
 
 save.fig('top-10 states with accidents')
+
+
+## detailed visualization
+
+### number of accidents by speed limits
+
+new.df = df %>% 
+  count(Month, Speed.limit.range) %>% 
+  mutate(n = log10(n))
+
+new.df %>% ggplot(aes(x=Month, y=n, group=Speed.limit.range, color = Speed.limit.range)) + 
+  geom_line() +
+  geom_point() +
+  labs(
+    title = 'Number of accidents in each month by speed limit range',
+    y = 'Count',
+    color = 'Speed Limit Range'
+  )
+
+save.fig('num_accidents_each_month_by_spd_lim')
+
+
+### number of accidents by speed limits
+
+new.df = df %>% 
+  count(Month, WEATHER_CONDITION) %>%
+  mutate(n = log10(n))
+
+new.df %>% ggplot(aes(x=Month, y=n, group=WEATHER_CONDITION, color = WEATHER_CONDITION)) + 
+  geom_line() +
+  geom_point() +
+  labs(
+    title = 'Number of accidents in each month by weather condition',
+    y = 'Count',
+    color = 'Weather Condition'
+  ) + 
+  theme(legend.position = 'bottom')
+
+save.fig('num_accidents_each_month_by_weather')
