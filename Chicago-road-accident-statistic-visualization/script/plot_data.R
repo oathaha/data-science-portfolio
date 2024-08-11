@@ -54,6 +54,11 @@ df = df %>%
 
 df$Speed.limit.range = factor(df$Speed.limit.range, levels=c('< 20', '21-40', '41-60', '61-80', '80+'))
 
+df = df %>%
+  mutate(WORK_ZONE_TYPE = if_else(
+    WORK_ZONE_TYPE == 'UNKNOWN', 'NOT-AT-WORK-ZONE', WORK_ZONE_TYPE
+  ))
+
 save.fig = function(fig.name){
   ggsave(paste0(fig.dir, fig.name,'.png'))
 }
@@ -225,7 +230,7 @@ new.df %>% ggplot(aes(x=Month, y=n, group=Speed.limit.range, color = Speed.limit
 save.fig('num_accidents_each_month_by_spd_lim')
 
 
-### number of accidents by speed limits
+### number of accidents by weather condition
 
 new.df = df %>% 
   count(Month, WEATHER_CONDITION) %>%
@@ -236,9 +241,120 @@ new.df %>% ggplot(aes(x=Month, y=n, group=WEATHER_CONDITION, color = WEATHER_CON
   geom_point() +
   labs(
     title = 'Number of accidents in each month by weather condition',
-    y = 'Count',
+    y = 'Count (log base 10)',
     color = 'Weather Condition'
   ) + 
   theme(legend.position = 'bottom')
 
 save.fig('num_accidents_each_month_by_weather')
+
+
+### number of accidents by crash type
+
+new.df = df %>% 
+  count(Month, CRASH_TYPE) 
+  # mutate(n = log10(n))
+
+new.df %>% ggplot(aes(x=Month, y=n, group=CRASH_TYPE, color = CRASH_TYPE)) + 
+  geom_line() +
+  geom_point() +
+  labs(
+    title = 'Number of accidents in each month by crash type',
+    y = 'Count',
+    color = 'Crash Type'
+  ) + 
+  theme(legend.position = 'bottom') + 
+  guides(color = guide_legend(nrow=2))
+
+save.fig('num_accidents_each_month_by_crash_type')
+
+
+### number of accidents by work zone type
+
+new.df = df %>% 
+  count(Month, WORK_ZONE_TYPE) %>%
+  mutate(n = log10(n))
+
+new.df %>% ggplot(aes(x=Month, y=n, group=WORK_ZONE_TYPE, color = WORK_ZONE_TYPE)) + 
+  geom_line() +
+  geom_point() +
+  labs(
+    title = 'Number of accidents in each month by type of work zone',
+    y = 'Count (log base 10)',
+    color = 'Type of work zone'
+  ) + 
+  theme(legend.position = 'bottom') + 
+  guides(color = guide_legend(nrow=2))
+
+save.fig('num_accidents_each_month_by_work_zone')
+
+
+### number of accidents by surrounding conditions 
+
+new.df = df %>% 
+  select(Month, WORK_ZONE_I,WORKERS_PRESENT_I, DOORING_I, INTERSECTION_RELATED_I, HIT_AND_RUN_I, NOT_RIGHT_OF_WAY_I) %>%
+  rename(
+    AT_WORK_ZONE = WORK_ZONE_I,
+    WORKERS_PRESENT = WORKERS_PRESENT_I,
+    DOOR_OPEN = DOORING_I,
+    INTERSECTION_INVOLVED = INTERSECTION_RELATED_I,
+    NOT_RIGHT_OF_WAY_INVOLVED = NOT_RIGHT_OF_WAY_I,
+    HIT_AND_RUN = HIT_AND_RUN_I
+  ) %>% 
+  pivot_longer(!Month, names_to='Surrounding_Condition') %>%
+  mutate(value = case_when(
+    value == 'Y' ~ 'Yes',
+    value == 'N' ~ 'No',
+    value == 'UNKNOWN' ~ 'UNKNOWN'
+    )
+  )
+
+new.df = new.df %>% 
+  filter(value == 'Yes') %>%
+  count(Month, Surrounding_Condition, value) %>%
+  mutate(
+    # n = round(log10(n),2),
+    value = factor(value, levels=c('Yes', 'No', 'UNKNOWN'))
+  ) 
+
+new.df %>% ggplot(aes(x=Month, y=n, group=Surrounding_Condition, color = Surrounding_Condition)) + 
+  geom_line() +
+  geom_point() +
+  labs(
+    title = 'Number of accidents in each month based on different surrounding conditions',
+    y = 'Count',
+    color = 'Surrounding conditions'
+  )
+
+
+save.fig('num_accidents_by_month_and_scenarios')
+
+
+### number of accidents in each month based on relationship between accidents and safety equipement, categorized by gender and person type 
+
+### WILL PRESENT TABLE OF ALL TYPES LATER...
+new.df = df %>%
+  select(Month, SAFETY_EQUIPMENT, Sex, PERSON_TYPE) %>%
+  mutate(SAFETY_EQUIPMENT = factor(SAFETY_EQUIPMENT)) %>%
+  mutate(SAFETY_EQUIPMENT = fct_recode(SAFETY_EQUIPMENT,
+         "UNKNOWN" = "USAGE UNKNOWN",
+         "UNKNOWN" = "UNKNOWN",
+         "SAFETY BELT" = "SAFETY BELT USED",
+         "NONE" = "SAFETY BELT NOT USED",
+         "NONE" = "NONE PRESENT",
+         "NONE" = "HELMET NOT USED",
+         "HELMET" = "BICYCLE HELMET (PEDACYCLIST INVOLVED ONLY)",
+         "HELMET" = "HELMET USED",
+         "HELMET" = "DOT COMPLIANT MOTORCYCLE HELMET",
+         "HELMET" = "NOT DOT COMPLIANT MOTORCYCLE HELMET",
+         "CHILD RESTRAINT" = "CHILD RESTRAINT - REAR FACING",
+         "CHILD RESTRAINT" = "CHILD RESTRAINT - TYPE UNKNOWN",
+         "CHILD RESTRAINT" = "CHILD RESTRAINT - FORWARD FACING",
+         "NONE" = "CHILD RESTRAINT NOT USED",
+         "BOOSTER SEAT" = "BOOSTER SEAT",
+         "IMPROPER EQUIPEMENT USED" = "SHOULD/LAP BELT USED IMPROPERLY",
+         "IMPROPER EQUIPEMENT USED" = "CHILD RESTRAINT USED IMPROPERLY",
+         "WHEELCHAIR" = "WHEELCHAIR",
+         "STRETCHER" = "STRETCHER"
+         )
+  )
