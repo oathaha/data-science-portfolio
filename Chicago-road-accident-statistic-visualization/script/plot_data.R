@@ -327,14 +327,14 @@ new.df %>% ggplot(aes(x=Month, y=n, group=Surrounding_Condition, color = Surroun
   )
 
 
-save.fig('num_accidents_by_month_and_scenarios')
+save.fig('num_accidents_by_month_and_conditions')
 
 
-### number of accidents in each month based on relationship between accidents and safety equipement, categorized by gender and person type 
+### number of accidents based on relationship between INJURY_CLASSIFICATION and safety equipement, categorized by gender and person type 
 
 ### WILL PRESENT TABLE OF ALL TYPES LATER...
 new.df = df %>%
-  select(Month, SAFETY_EQUIPMENT, Sex, PERSON_TYPE) %>%
+  select(Month, INJURY_CLASSIFICATION, SAFETY_EQUIPMENT, Sex) %>%
   mutate(SAFETY_EQUIPMENT = factor(SAFETY_EQUIPMENT)) %>%
   mutate(SAFETY_EQUIPMENT = fct_recode(SAFETY_EQUIPMENT,
          "UNKNOWN" = "USAGE UNKNOWN",
@@ -358,3 +358,38 @@ new.df = df %>%
          "STRETCHER" = "STRETCHER"
          )
   )
+
+
+
+new.df = new.df %>%
+  count(INJURY_CLASSIFICATION, Sex, SAFETY_EQUIPMENT) %>%
+  mutate(n = log10(n))
+
+new.df = new.df %>% 
+  mutate(
+    INJURY_CLASSIFICATION = fct_recode(INJURY_CLASSIFICATION,
+    'FATAL' = 'FATAL',
+    'INCAPACITATING' = 'INCAPACITATING INJURY',
+    'NO INJURY' = 'NO INDICATION OF INJURY',
+    'NONINCAPACITATING' = 'NONINCAPACITATING INJURY',
+    'NOT EVIDENT' = 'REPORTED, NOT EVIDENT',
+    'UNKNOWN' = 'UNKNOWN'
+    )
+  )
+
+new.df %>% ggplot(aes(x=Sex, y=n, fill = SAFETY_EQUIPMENT)) + 
+  geom_bar(stat = 'identity', position = 'dodge') + 
+  facet_wrap(vars(INJURY_CLASSIFICATION), nrow = 2) + 
+  theme(
+    legend.position = 'bottom',
+    axis.text.x = element_text(angle=15)
+    ) +
+  labs(
+    title = 'Number of accidents for each injury type categorized by sefety equipement',
+    x = 'Sex',
+    y = 'Count (log base 10)',
+    fill = 'Safety Equipment'
+    ) + 
+  guides(fill = guide_legend(nrow=2))
+
+save.fig('num_accidents_by_safety_equipement_and_injury_type')
