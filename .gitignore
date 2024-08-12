@@ -4,3 +4,5 @@
 */model
 Medium-Articles-title-generation/script/mlruns/*
 */result
+*/model_*
+*/model-*
