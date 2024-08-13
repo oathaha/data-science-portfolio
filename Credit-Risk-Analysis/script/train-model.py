@@ -265,8 +265,8 @@ def grid_search_cls_model(model, params):
     gs = GridSearchCV(
         model,
         param_grid=params,
-        scoring='neg_root_mean_squared_error',
-        n_jobs=1,
+        scoring='neg_log_loss',
+        n_jobs=4,
         cv=[(train_idx, test_idx)],
         verbose = True
     )
@@ -283,12 +283,12 @@ def grid_search_cls_model(model, params):
 
 ## grid search for single classification models
 
-# grid_search_cls_model(decision_tree, search_params['decision-tree'])
-# grid_search_cls_model(knn, search_params['KNN'])
-# grid_search_cls_model(lr, search_params['Logistic-regression'])
-# grid_search_cls_model(rf, search_params['random-forest'])
-# grid_search_cls_model(gbt, search_params['gradient-boosting'])
-# grid_search_cls_model(xgb, search_params['xgboost'])
+grid_search_cls_model(decision_tree, search_params['decision-tree'])
+grid_search_cls_model(knn, search_params['KNN'])
+grid_search_cls_model(lr, search_params['Logistic-regression'])
+grid_search_cls_model(rf, search_params['random-forest'])
+grid_search_cls_model(gbt, search_params['gradient-boosting'])
+grid_search_cls_model(xgb, search_params['xgboost'])
 # grid_search_cls_model(svm, search_params['SVM'])
 
 
@@ -348,8 +348,8 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
     gs = GridSearchCV(
         model,
         param_grid=params,
-        scoring='neg_root_mean_squared_error',
-        n_jobs=1,
+        scoring='neg_log_loss',
+        n_jobs=4,
         cv=[(train_idx, test_idx)],
         verbose=1
     )
