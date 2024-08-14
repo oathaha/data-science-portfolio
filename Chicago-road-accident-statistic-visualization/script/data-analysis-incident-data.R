@@ -1,4 +1,5 @@
 library(tidyverse)
+library(ggmosaic)
 
 options(scipen=1000000)
 theme_set(theme_bw())
@@ -179,23 +180,41 @@ save.fig('num_accidents_each_month_by_situation')
 
 new.df = df %>%
   filter(ROADWAY_SURFACE_COND != 'UNKNOWN') %>%
-  count(FIRST_CRASH_TYPE, ROADWAY_SURFACE_COND) %>%
+  # count(FIRST_CRASH_TYPE, ROADWAY_SURFACE_COND) %>%
   mutate(
     ROADWAY_SURFACE_COND = factor(ROADWAY_SURFACE_COND, levels=c('DRY', 'ICE', 'WET', 'SAND, MUD, DIRT', 'SNOW OR SLUSH', 'OTHER'))
-  )
+  ) %>%
+  select(ROADWAY_SURFACE_COND, FIRST_CRASH_TYPE)
 
-
-
-new.df %>% ggplot(aes(x=n, y = reorder(FIRST_CRASH_TYPE, n), fill=ROADWAY_SURFACE_COND)) + 
-  geom_bar(stat = 'identity', position = 'fill') + 
+new.df %>% ggplot() + 
+  geom_mosaic(aes(x=product(FIRST_CRASH_TYPE,ROADWAY_SURFACE_COND), fill=FIRST_CRASH_TYPE), offset = 0.03) + 
+  theme(
+    legend.position = 'none',
+    axis.text.x = element_text(
+      angle = 90, 
+      vjust=0.5,
+      # size = 20
+    ),
+    # axis.text.y = element_text(size = 20),
+    # plot.title = element_text(size = 40)
+  ) + 
   labs(
     title = 'Number of accident by crash type and roadway surface condition',
-    x = 'Ratio',
-    y = 'Crash Type',
-    fill = 'Roadway Surface Condition'
+    x = 'Roadway Surface Condition',
+    y = 'Crash Type'
+    # fill = 'Driver Action'
   )
 
-save.fig('num_accident_by_crash_type_and_roadway_surface')  
+# new.df %>% ggplot(aes(x=n, y = reorder(FIRST_CRASH_TYPE, n), fill=ROADWAY_SURFACE_COND)) + 
+#   geom_bar(stat = 'identity', position = 'fill') + 
+#   labs(
+#     title = 'Number of accident by crash type and roadway surface condition',
+#     x = 'Ratio',
+#     y = 'Crash Type',
+#     fill = 'Roadway Surface Condition'
+#   )
+
+save.fig('num_accident_by_crash_type_and_roadway_surface', scale=1.5)  
 
 
 

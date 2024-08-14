@@ -48,8 +48,8 @@ df = df %>%
          "CHILD RESTRAINT" = "CHILD RESTRAINT - FORWARD FACING",
          "NONE" = "CHILD RESTRAINT NOT USED",
          "BOOSTER SEAT" = "BOOSTER SEAT",
-         "IMPROPER EQUIPEMENT USED" = "SHOULD/LAP BELT USED IMPROPERLY",
-         "IMPROPER EQUIPEMENT USED" = "CHILD RESTRAINT USED IMPROPERLY",
+         "IMPROPER EQUIPMENT USED" = "SHOULD/LAP BELT USED IMPROPERLY",
+         "IMPROPER EQUIPMENT USED" = "CHILD RESTRAINT USED IMPROPERLY",
          "WHEELCHAIR" = "WHEELCHAIR",
          "STRETCHER" = "STRETCHER"
          ),
@@ -122,19 +122,39 @@ new.df = df %>%
     !PEDPEDAL_ACTION_TYPE %in% c('UNKNOWN', "UNKNOWN/NA") &
       !PEDPEDAL_LOCATION %in% c('UNKNOWN', "UNKNOWN/NA")
   ) %>%
-  count(PEDPEDAL_ACTION_TYPE, PEDPEDAL_LOCATION)
+  select(PEDPEDAL_ACTION_TYPE, PEDPEDAL_LOCATION)
+  # count(PEDPEDAL_ACTION_TYPE, PEDPEDAL_LOCATION)
 
-new.df %>% ggplot(aes(x=PEDPEDAL_LOCATION, y=PEDPEDAL_ACTION_TYPE, fill=n)) + 
-  geom_tile() + 
-  theme(axis.text.x = element_text(angle=15, vjust = 0.5)) + 
+new.df %>% ggplot() + 
+  geom_mosaic(aes(x=product(PEDPEDAL_ACTION_TYPE,PEDPEDAL_LOCATION), fill=PEDPEDAL_ACTION_TYPE), offset = 0.06) + 
+  theme(
+    legend.position = 'none',
+    axis.text.x = element_text(
+      angle = 90, 
+      vjust=0.5,
+      # size = 20
+    ),
+    # axis.text.y = element_text(size = 20),
+    # plot.title = element_text(size = 40)
+  ) + 
   labs(
-    title = 'Number of pedestraints that involved in accidents by action and location',
+    title = 'Pedpedal location and action',
     x = 'Pedpedal Location',
-    y = 'Pedpedal Action',
-    fill = ''
+    y = 'Pedpedal Action'
+    # fill = 'Driver Action'
   )
 
-save.fig('num_pedpedal_by_action_and_location')
+# new.df %>% ggplot(aes(x=PEDPEDAL_LOCATION, y=PEDPEDAL_ACTION_TYPE, fill=n)) + 
+#   geom_tile() + 
+#   theme(axis.text.x = element_text(angle=15, vjust = 0.5)) + 
+#   labs(
+#     title = 'Number of pedestraints that involved in accidents by action and location',
+#     x = 'Pedpedal Location',
+#     y = 'Pedpedal Action',
+#     fill = ''
+#   )
+
+save.fig('num_pedpedal_by_action_and_location', scale = 1)
 
 
 
@@ -174,9 +194,9 @@ new.df %>% ggplot(aes(x=n, y=SAFETY_EQUIPMENT, fill = INJURY_CLASSIFICATION)) +
   geom_bar(stat = 'identity', position = 'fill') +
   theme(axis.text.x = element_text(angle=15, vjust = 0.5)) + 
   labs(
-    title = 'Number of people that involved in accidents by injury type and safety equipement',
-    x = 'Count',
-    y = 'Safety Equipement',
+    title = 'Number of people that involved in accidents by injury type and safety equipment',
+    x = 'Ratio',
+    y = 'Safety Equipment',
     fill = 'Injury Type'
   )
   # theme(legend.position = 'bottom')
@@ -222,7 +242,7 @@ new.df %>% ggplot(aes(x=n, y=DRIVER_VISION, fill = INJURY_CLASSIFICATION)) +
   theme(axis.text.x = element_text(angle=15, vjust = 0.5)) + 
   labs(
     title = 'Number of driver that involved in accidents by injury type and vision',
-    x = 'Count',
+    x = 'Ratio',
     y = 'Vision Type',
     fill = 'Injury Type'
   )
