@@ -1,4 +1,5 @@
 library(tidyverse)
+library(ggmosaic)
 
 options(scipen=1000000)
 theme_set(theme_bw())
@@ -107,7 +108,7 @@ new.df %>% ggplot(aes(x=Age.range, y=n, fill=Sex)) +
   labs(
     title = 'Number of people that involved in accidents by age and gender',
     x = 'Age Range',
-    y = 'Count'
+    y = 'Number of people'
   ) + 
   theme(legend.position = 'bottom')
 
@@ -173,7 +174,7 @@ new.df %>% ggplot(aes(x=INJURY_CLASSIFICATION, y=n, fill = AIRBAG_DEPLOYED)) +
   labs(
     title = 'Number of people that involved in accidents by injury type and airbag deployment',
     x = 'Injury Type',
-    y = 'Count (log base 10)',
+    y = 'Number of people (log base 10)',
     fill = 'Airbag Deployment'
   ) 
   # theme(legend.position = 'bottom')
@@ -219,7 +220,7 @@ new.df %>% ggplot(aes(x=INJURY_CLASSIFICATION, y=n, fill = EJECTION)) +
   labs(
     title = 'Number of people that involved in accidents by injury type and ejection status',
     x = 'Injury Type',
-    y = 'Count',
+    y = 'Number of people',
     fill = 'Ejection Status'
   ) +
   theme(legend.position = 'bottom')
@@ -249,3 +250,4 @@ new.df %>% ggplot(aes(x=n, y=DRIVER_VISION, fill = INJURY_CLASSIFICATION)) +
   # theme(legend.position = 'bottom')
 
 save.fig('num_driver_by_injury_and_vision')
+

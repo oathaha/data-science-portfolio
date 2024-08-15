@@ -51,9 +51,9 @@ new.df %>% ggplot(aes(x=Month, y=WEATHER_CONDITION, fill=n)) +
   geom_tile() + 
   theme(axis.text.x = element_text(angle=15, vjust = 0.5)) +
   labs(
-    title = 'Number of accidents in each month by weather condition',
+    title = 'Number of accident in each month by weather condition',
     y = 'Weather Condition',
-    fill = 'Count'
+    fill = 'Number of Accident'
   )
   # theme(legend.position = 'bottom')
 
@@ -72,7 +72,7 @@ new.df %>% ggplot(aes(x=Month, y=n, color=day_of_week, group=day_of_week)) +
   geom_point() +
   labs(
     title = 'Number of accidents in each month by day of week',
-    y = 'Count'
+    y = 'Number of Accident'
   ) + 
   theme(legend.position = 'bottom') +
   scale_color_manual(values = c('red', 'yellow', 'pink', 'green', 'orange', 'blue', 'purple'))
@@ -96,7 +96,7 @@ new.df %>% ggplot(aes(y=reorder(PRIM_CONTRIBUTORY_CAUSE, n), x=n, fill=PRIM_CONT
   geom_text(aes(label=n, hjust = 0.7)) +
   labs(
     title = 'Top-10 causes of accidents', 
-    x = 'Count',
+    x = 'Number of Accident',
     y = 'Primary Contribution Cause'
   )
 
@@ -118,8 +118,8 @@ new.df %>% ggplot(aes(y=reorder(FIRST_CRASH_TYPE, n), x=n, fill=FIRST_CRASH_TYPE
   theme(legend.position = 'none') +
   geom_text(aes(label=n, hjust = 0.7)) +
   labs(
-    title = 'Top-10 crash type', 
-    x = 'Count',
+    title = 'Top-10 crash type in accident', 
+    x = 'Number of Accident',
     y = 'Crash Type'
   )
 
@@ -146,7 +146,7 @@ new.df %>% ggplot(aes(x=Month, y = value, color = Injury_Type, group = Injury_Ty
   geom_point() +
   labs(
     title = 'Number of people at crash site in each month by injury type',
-    y = 'Count',
+    y = 'Number of People',
     color = 'Injury Type'
   )
 
@@ -167,8 +167,8 @@ new.df %>% ggplot(aes(x=Month, y = n, color = Surrounding_Condition, group = Sur
   geom_line() + 
   geom_point() +
   labs(
-    title = 'Total accidents in each month by surrounding situation',
-    y = 'Count',
+    title = 'Total accident in each month by surrounding situation',
+    y = 'Number of Accident',
     color = 'Surrounding Situation'
   )
 
@@ -244,3 +244,4 @@ new.df %>% ggplot(aes(x=value, y = reorder(ROAD_DEFECT, value), fill=Injury_Type
   theme(legend.position = 'bottom')
 
 save.fig('num_injured_people_each_month_by_injury_type')
+

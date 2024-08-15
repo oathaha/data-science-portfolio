@@ -126,7 +126,7 @@ new.df %>% ggplot(aes(x=Month, y=n, color = Sex, group = Sex)) +
   geom_point() +
   labs(
     title = 'Number of people involved in accident in each month by gender',
-    y = 'Count'
+    y = 'Number of People'
   )
 
 save.fig('num_people_each_month_by_gender')
@@ -145,7 +145,7 @@ new.df %>% ggplot(aes(x=Month, y=Age.range,fill = n)) +
   labs(
     title = 'Number of people involved in accident in each month by age',
     y = 'Age',
-    fill = 'Count'
+    fill = 'Number of People'
   ) + 
   scale_fill_gradient2()
 
@@ -170,7 +170,7 @@ new.df %>% ggplot(aes(x=Speed.limit.range, y=n, fill = INJURY_CLASSIFICATION)) +
   labs(
     title = 'Number of people involved in accident by speed limit and injury type',
     x = 'Speed Limit',
-    y = 'Count (log base 10)',
+    y = 'Number of People (log base 10)',
     fill = 'Injyry Type'
   ) + 
   theme(legend.position = 'bottom')
@@ -194,7 +194,7 @@ new.df %>% ggplot(aes(x=Age.range, y=WORK_ZONE_TYPE, fill = n)) +
     title = 'Number of people involved in accident by age and type of work zone',
     x = 'Age',
     y = 'Work Zone Type',
-    fill = 'Count'
+    fill = 'Number of People'
   ) +
   scale_fill_gradient2(low = "blue", mid = "yellow", high = "blue")
 
@@ -212,7 +212,7 @@ new.df %>% ggplot(aes(x=n, y=LIGHTING_CONDITION, fill = PEDPEDAL_VISIBILITY)) +
   geom_bar(stat = 'identity', position = 'dodge') + 
   labs(
     title = 'Number of poeple involved in accident by lightning condition and visibility',
-    x = 'Count',
+    x = 'Number of People',
     y = 'Lightning Condition',
     fill = 'Pedpedal Visibility'
   )
