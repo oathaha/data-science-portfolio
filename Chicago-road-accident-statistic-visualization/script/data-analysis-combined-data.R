@@ -304,8 +304,8 @@ new.df %>% ggplot(aes(x = x,
                       label = node)) + 
    geom_sankey(flow.alpha = 0.5, 
                node.color = "black",
-               show.legend = FALSE) + 
-   geom_sankey_label(size = 4.55, color = "black", fill= "white", hjust = -0.2) + 
+               show.legend = FALSE, space = 10000) + 
+   geom_sankey_label(size = 4.55, color = "black", fill= "white", hjust = -0.2, space = 10000) + 
   labs(
     title = 'Top-10 accident cause by physical condition of driver',
     x = ''
@@ -316,7 +316,7 @@ new.df %>% ggplot(aes(x = x,
     axis.text.y = element_blank()
     )
 
-save.fig('test_sankey', scale=4)
+save.fig('top_accident_cause_by_physical_condition', scale=2)
 
 
 
