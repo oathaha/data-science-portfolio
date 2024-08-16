@@ -30,7 +30,15 @@ df = df %>%
     INJURIES_FATAL = as.numeric(str_replace(INJURIES_FATAL, 'UNKNOWN','0')),
         INJURIES_INCAPACITATING = as.numeric(str_replace(INJURIES_INCAPACITATING, 'UNKNOWN','0')),
         INJURIES_NON_INCAPACITATING = as.numeric(str_replace(INJURIES_NON_INCAPACITATING, 'UNKNOWN','0')),
-        INJURIES_REPORTED_NOT_EVIDENT = as.numeric(str_replace(INJURIES_REPORTED_NOT_EVIDENT, 'UNKNOWN','0'))
+        INJURIES_REPORTED_NOT_EVIDENT = as.numeric(str_replace(INJURIES_REPORTED_NOT_EVIDENT, 'UNKNOWN','0')),
+    FIRST_CRASH_TYPE = recode(FIRST_CRASH_TYPE,
+      "REAR TO FRONT" = "REAR",
+      "REAR END" = "REAR",
+      "REAR TO SIDE" = "REAR",
+      "REAR TO REAR" = "REAR",
+      "SIDESWIPE SAME DIRECTION" = "SIDESWIPE",
+      "SIDESWIPE OPPOSITE DIRECTION" = "SIDESWIPE"
+    )
   )
   
 
@@ -76,7 +84,8 @@ new.df %>% ggplot(aes(x=Month, y=n, color=day_of_week, group=day_of_week)) +
     y = 'Number of Accident'
   ) + 
   theme(legend.position = 'bottom') +
-  scale_color_manual(values = c('red', 'yellow', 'pink', 'green', 'orange', 'blue', 'purple'))
+  scale_color_manual(values = c('red', 'yellow', 'pink', 'green', 'orange', 'blue', 'purple')) + 
+  expand_limits(y=0)
 
 save.fig('num_accidents_by_day_of_week')
 
@@ -148,14 +157,14 @@ new.df %>% ggplot(aes(x=Month, y = value, color = Injury_Type, group = Injury_Ty
   geom_line() + 
   geom_point() +
   labs(
-    title = str_wrap('Number of people at crash site in each month by injury type', width=50),
+    title = str_wrap('Number of people at crash site in each month by injury type', width=60),
     y = 'Number of People',
     color = 'Injury Type'
   ) + 
   theme(legend.position = 'bottom') + 
   guides(color = guide_legend(nrow=2))
 
-save.fig('num_injured_people_each_month_by_injury_type')
+save.fig('num_injured_people_each_month_by_injury_type', 1.5)
 
 
 
@@ -172,11 +181,11 @@ new.df %>% ggplot(aes(x=Month, y = n, color = Surrounding_Condition, group = Sur
   geom_line() + 
   geom_point() +
   labs(
-    title = str_wrap('Total accident in each month by surrounding situation', width=50),
+    title = str_wrap('Total accident in each month by surrounding situation', width=70),
     y = 'Number of Accident',
     color = 'Surrounding Situation'
-  )
-  # theme(legend.position = 'bottom') + 
+  ) +
+  theme(axis.text.x = element_text(angle=30))
   # guides(color = guide_legend(nrow=3))
 
 save.fig('num_accidents_each_month_by_situation')
@@ -249,5 +258,5 @@ new.df %>% ggplot(aes(x=value, y = reorder(ROAD_DEFECT, value), fill=Injury_Type
     fill = 'Roadway Surface\nCondition'
   )
 
-save.fig('num_injured_people_each_month_by_injury_type',1.3)
+save.fig('num_injured_people_by_road_defect',1.3)
 
