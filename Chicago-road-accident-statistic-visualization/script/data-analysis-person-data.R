@@ -2,7 +2,7 @@ library(tidyverse)
 library(ggmosaic)
 
 options(scipen=1000000)
-theme_set(theme_bw())
+theme_set(theme_bw(base_size = 15))
 
 df = read.csv('../dataset/cleaned/cleaned_person_data.csv')
 
@@ -106,7 +106,7 @@ new.df = df %>%
 new.df %>% ggplot(aes(x=Age.range, y=n, fill=Sex)) + 
   geom_bar(stat = 'identity', position = 'dodge') + 
   labs(
-    title = 'Number of people that involved in accidents by age and gender',
+    title = str_wrap('Number of people that involved in accidents by age and gender', width=45),
     x = 'Age Range',
     y = 'Number of people'
   ) + 
@@ -172,7 +172,7 @@ new.df %>% ggplot(aes(x=INJURY_CLASSIFICATION, y=n, fill = AIRBAG_DEPLOYED)) +
   geom_bar(stat = 'identity', position = 'dodge') +
   theme(axis.text.x = element_text(angle=15, vjust = 0.5)) + 
   labs(
-    title = 'Number of people that involved in accidents by injury type and airbag deployment',
+    title = str_wrap('Number of people that involved in accidents by injury type and airbag deployment', width=50),
     x = 'Injury Type',
     y = 'Number of people (log base 10)',
     fill = 'Airbag Deployment'
@@ -195,14 +195,15 @@ new.df %>% ggplot(aes(x=n, y=SAFETY_EQUIPMENT, fill = INJURY_CLASSIFICATION)) +
   geom_bar(stat = 'identity', position = 'fill') +
   theme(axis.text.x = element_text(angle=15, vjust = 0.5)) + 
   labs(
-    title = 'Number of people that involved in accidents by injury type and safety equipment',
+    title = str_wrap('Number of people that involved in accidents by injury type and safety equipment', width=65),
     x = 'Ratio',
     y = 'Safety Equipment',
     fill = 'Injury Type'
-  )
+  ) + 
+  scale_y_discrete(labels = label_wrap_gen(10))
   # theme(legend.position = 'bottom')
 
-save.fig('num_people_by_injury_and_safety_equipment')
+save.fig('num_people_by_injury_and_safety_equipment', scale=1.5)
 
 
 
@@ -218,12 +219,13 @@ new.df %>% ggplot(aes(x=INJURY_CLASSIFICATION, y=n, fill = EJECTION)) +
   geom_bar(stat = 'identity', position = 'dodge') +
   theme(axis.text.x = element_text(angle=15, vjust = 0.5)) + 
   labs(
-    title = 'Number of people that involved in accidents by injury type and ejection status',
+    title = str_wrap('Number of people that involved in accidents by injury type and ejection status', width=55),
     x = 'Injury Type',
     y = 'Number of people',
     fill = 'Ejection Status'
   ) +
-  theme(legend.position = 'bottom')
+  theme(legend.position = 'bottom') + 
+  guides(fill = guide_legend(nrow=2))
 
 save.fig('num_people_by_injury_and_ejection')
 
@@ -242,11 +244,12 @@ new.df %>% ggplot(aes(x=n, y=DRIVER_VISION, fill = INJURY_CLASSIFICATION)) +
   geom_bar(stat = 'identity', position = 'fill') +
   theme(axis.text.x = element_text(angle=15, vjust = 0.5)) + 
   labs(
-    title = 'Number of driver that involved in accidents by injury type and vision',
+    title = str_wrap('Number of driver that involved in accidents by injury type and vision', width=50),
     x = 'Ratio',
     y = 'Vision Type',
     fill = 'Injury Type'
-  )
+  ) + 
+  scale_y_discrete(labels = label_wrap_gen(10))
   # theme(legend.position = 'bottom')
 
 save.fig('num_driver_by_injury_and_vision')

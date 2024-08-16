@@ -2,7 +2,7 @@ library(tidyverse)
 library(ggmosaic)
 
 options(scipen=1000000)
-theme_set(theme_bw())
+theme_set(theme_bw(base_size = 15))
 
 df = read.csv('../dataset/cleaned/cleaned_incident_data.csv')
 
@@ -51,13 +51,14 @@ new.df %>% ggplot(aes(x=Month, y=WEATHER_CONDITION, fill=n)) +
   geom_tile() + 
   theme(axis.text.x = element_text(angle=15, vjust = 0.5)) +
   labs(
-    title = 'Number of accident in each month by weather condition',
+    title = str_wrap('Number of accident in each month by weather condition', width=50),
     y = 'Weather Condition',
-    fill = 'Number of Accident'
-  )
+    fill = 'Number of \nAccident'
+  ) + 
+  scale_y_discrete(labels = label_wrap_gen(15)) 
   # theme(legend.position = 'bottom')
 
-save.fig('num_accidents_each_month_by_weather')
+save.fig('num_accidents_each_month_by_weather', 1.3)
 
 
 
@@ -71,7 +72,7 @@ new.df %>% ggplot(aes(x=Month, y=n, color=day_of_week, group=day_of_week)) +
   geom_line() +
   geom_point() +
   labs(
-    title = 'Number of accidents in each month by day of week',
+    title = str_wrap('Number of accidents in each month by day of week', width=40),
     y = 'Number of Accident'
   ) + 
   theme(legend.position = 'bottom') +
@@ -98,9 +99,10 @@ new.df %>% ggplot(aes(y=reorder(PRIM_CONTRIBUTORY_CAUSE, n), x=n, fill=PRIM_CONT
     title = 'Top-10 causes of accidents', 
     x = 'Number of Accident',
     y = 'Primary Contribution Cause'
-  )
+  ) + 
+  scale_y_discrete(labels = label_wrap_gen(20))
 
-save.fig('top_10_accidents_causes')
+save.fig('top_10_accidents_causes', 1.3)
 
 
 
@@ -121,9 +123,10 @@ new.df %>% ggplot(aes(y=reorder(FIRST_CRASH_TYPE, n), x=n, fill=FIRST_CRASH_TYPE
     title = 'Top-10 crash type in accident', 
     x = 'Number of Accident',
     y = 'Crash Type'
-  )
+  ) + 
+  scale_y_discrete(labels = label_wrap_gen(10))
 
-save.fig('top_10_crash_type')
+save.fig('top_10_crash_type', 1.3)
 
 
 
@@ -145,10 +148,12 @@ new.df %>% ggplot(aes(x=Month, y = value, color = Injury_Type, group = Injury_Ty
   geom_line() + 
   geom_point() +
   labs(
-    title = 'Number of people at crash site in each month by injury type',
+    title = str_wrap('Number of people at crash site in each month by injury type', width=50),
     y = 'Number of People',
     color = 'Injury Type'
-  )
+  ) + 
+  theme(legend.position = 'bottom') + 
+  guides(color = guide_legend(nrow=2))
 
 save.fig('num_injured_people_each_month_by_injury_type')
 
@@ -167,10 +172,12 @@ new.df %>% ggplot(aes(x=Month, y = n, color = Surrounding_Condition, group = Sur
   geom_line() + 
   geom_point() +
   labs(
-    title = 'Total accident in each month by surrounding situation',
+    title = str_wrap('Total accident in each month by surrounding situation', width=50),
     y = 'Number of Accident',
     color = 'Surrounding Situation'
   )
+  # theme(legend.position = 'bottom') + 
+  # guides(color = guide_legend(nrow=3))
 
 save.fig('num_accidents_each_month_by_situation')
 
@@ -236,12 +243,11 @@ new.df = new.df %>%
 new.df %>% ggplot(aes(x=value, y = reorder(ROAD_DEFECT, value), fill=Injury_Type)) + 
   geom_bar(stat = 'identity', position = 'fill') + 
   labs(
-    title = 'Number of accident by crash type and roadway surface condition',
+    title = str_wrap('Number of accident by crash type and roadway surface condition', width=45),
     x = 'Ratio',
     y = 'Crash Type',
-    fill = 'Roadway Surface Condition'
-  ) + 
-  theme(legend.position = 'bottom')
+    fill = 'Roadway Surface\nCondition'
+  )
 
-save.fig('num_injured_people_each_month_by_injury_type')
+save.fig('num_injured_people_each_month_by_injury_type',1.3)
 

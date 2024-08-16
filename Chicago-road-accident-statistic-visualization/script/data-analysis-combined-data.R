@@ -3,7 +3,7 @@ library(ggsankey)
 library(ggmosaic)
 
 options(scipen=1000000)
-theme_set(theme_bw())
+theme_set(theme_bw(base_size = 15))
 
 df = read.csv('../dataset/cleaned/cleaned_joined_data.csv')
 
@@ -125,7 +125,7 @@ new.df %>% ggplot(aes(x=Month, y=n, color = Sex, group = Sex)) +
   geom_line() + 
   geom_point() +
   labs(
-    title = 'Number of people involved in accident in each month by gender',
+    title = str_wrap('Number of people involved in accident in each month by gender', width = 40),
     y = 'Number of People'
   )
 
@@ -143,7 +143,7 @@ new.df = df %>%
 new.df %>% ggplot(aes(x=Month, y=Age.range,fill = n)) +
   geom_tile() +
   labs(
-    title = 'Number of people involved in accident in each month by age',
+    title = str_wrap('Number of people involved in accident in each month by age',width=40),
     y = 'Age',
     fill = 'Number of People'
   ) + 
@@ -168,12 +168,13 @@ new.df %>% ggplot(aes(x=Speed.limit.range, y=n, fill = INJURY_CLASSIFICATION)) +
   geom_bar(stat = 'identity', position = 'dodge') + 
   facet_wrap(vars(PERSON_TYPE)) + 
   labs(
-    title = 'Number of people involved in accident by speed limit and injury type',
+    title = str_wrap('Number of people involved in accident by speed limit and injury type', width=40),
     x = 'Speed Limit',
     y = 'Number of People (log base 10)',
     fill = 'Injyry Type'
   ) + 
-  theme(legend.position = 'bottom')
+  theme(legend.position = 'bottom') + 
+  guides(fill = guide_legend(nrow=2))
 
 save.fig('num_people_in_accident_by_speed_limit_and_injury_type')
 
@@ -191,7 +192,7 @@ new.df %>% ggplot(aes(x=Age.range, y=WORK_ZONE_TYPE, fill = n)) +
   geom_tile() +
   facet_wrap(vars(Sex), nrow=2) + 
   labs(
-    title = 'Number of people involved in accident by age and type of work zone',
+    title = str_wrap('Number of people involved in accident by age and type of work zone',width=40),
     x = 'Age',
     y = 'Work Zone Type',
     fill = 'Number of People'
@@ -211,11 +212,12 @@ new.df = df %>%
 new.df %>% ggplot(aes(x=n, y=LIGHTING_CONDITION, fill = PEDPEDAL_VISIBILITY)) + 
   geom_bar(stat = 'identity', position = 'dodge') + 
   labs(
-    title = 'Number of poeple involved in accident by lightning condition and visibility',
+    title = str_wrap('Number of poeple involved in accident by lightning condition and visibility', width=40),
     x = 'Number of People',
     y = 'Lightning Condition',
     fill = 'Pedpedal Visibility'
-  )
+  ) + 
+  scale_y_discrete(labels = label_wrap_gen(10))
 
 save.fig('num_people_in_accident_by_light_cond_and_pedpedal_vis')
 
@@ -305,7 +307,7 @@ new.df %>% ggplot(aes(x = x,
    geom_sankey(flow.alpha = 0.5, 
                node.color = "black",
                show.legend = FALSE, space = 10000) + 
-   geom_sankey_label(size = 4.55, color = "black", fill= "white", hjust = -0.2, space = 10000) + 
+   geom_sankey_label(size = 5, color = "black", fill= "white", hjust = -0.2, space = 10000) + 
   labs(
     title = 'Top-10 accident cause by physical condition of driver',
     x = ''
@@ -314,9 +316,12 @@ new.df %>% ggplot(aes(x = x,
     plot.title = element_text(size = 24),
     axis.text.x = element_text(size = 20),
     axis.text.y = element_blank()
-    )
+    ) + 
+  scale_x_discrete(labels = c(
+    'PHYSICAL CONDITION',
+    'PRIMARY CONTRIBUTORY CAUSE'))
 
-save.fig('top_accident_cause_by_physical_condition', scale=2)
+save.fig('top_accident_cause_by_physical_condition', scale=2.5)
 
 
 
@@ -345,7 +350,7 @@ new.df %>% ggplot(aes(x = BAC_RESULT.VALUE, y=FIRST_CRASH_TYPE, color=Sex)) +
   geom_boxplot() + 
   theme(legend.position = 'bottom') + 
   labs(
-    title = 'Relationship between crash type and blood alcohol concentration of driver',
+    title = str_wrap('Relationship between crash type and blood alcohol concentration of driver', width=30),
     x = 'Blood Alcohol Concentration (%)',
     y = 'Crash Type'
   )
