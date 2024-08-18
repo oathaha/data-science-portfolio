@@ -7,3 +7,5 @@ Medium-Articles-title-generation/script/mlruns/*
 */model_*
 */model-*
 */script/mlruns
+*/script/.RData
+*/script/.Rhistory
