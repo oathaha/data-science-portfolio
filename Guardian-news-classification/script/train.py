@@ -79,7 +79,7 @@ bnb_config = BitsAndBytesConfig(
 
 train_batch_size = 8
 eval_batch_size = 8
-learning_rate = 2e-5
+learning_rate = 1e-5
 
 ## real one
 # eval_every_step = round(0.1*len(dataset['train'])/train_batch_size)
@@ -171,7 +171,7 @@ def train_LLM():
         eval_dataset=dataset["valid"],
         # peft_config=peft_config,
         dataset_text_field="text",
-        max_seq_length=4000,
+        max_seq_length=1024,
         tokenizer=tokenizer,
         args=training_args,
         packing=False,
@@ -208,32 +208,32 @@ def train_enc_model():
 
         return encodings
 
-    # dataset = dataset.map(add_eos_to_examples)
     dataset = dataset.map(convert_to_features, batched=True)
 
     model = AutoModelForSequenceClassification.from_pretrained(
         model_name,
-        low_cpu_mem_usage=True,
-        return_dict=True,
-        torch_dtype=torch.float16,
-        quantization_config=bnb_config, 
+        # low_cpu_mem_usage=True,
+        # return_dict=True,
+        # torch_dtype=torch.float16,
+        # quantization_config=bnb_config, 
         num_labels=13,
         id2label=idx2label,
-        label2id=label2idx,
+        label2id=label2idx, 
+        # problem_type="multi_label_classification"
     )
 
-    peft_config = LoraConfig(
-        task_type="SEQ_CLS", 
-        inference_mode=False, 
-        r=16, 
-        lora_alpha=32, 
-        lora_dropout=0.1,
-        bias="none",
-        use_dora=True
-    )
+    # peft_config = LoraConfig(
+    #     task_type="SEQ_CLS", 
+    #     inference_mode=False, 
+    #     r=16, 
+    #     lora_alpha=32, 
+    #     lora_dropout=0.1,
+    #     bias="none",
+    #     use_dora=True
+    # )
 
-    model = prepare_model_for_kbit_training(model)
-    model = get_peft_model(model, peft_config)
+    # model = prepare_model_for_kbit_training(model)
+    # model = get_peft_model(model, peft_config)
 
     trainer = Trainer(
         model=model,

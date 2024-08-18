@@ -24,7 +24,8 @@ args = parser.parse_args()
 model_names = {
     'llama2-7b': 'meta-llama/Llama-2-7b-hf',
     't5': 'google-t5/t5-3b',
-    'bart': 'facebook/bart-large'
+    'bart': 'facebook/bart-large',
+    'long-t5': 'google/long-t5-tglobal-xl'
 }
 
 data_dir = '../dataset/cleaned/'
