@@ -54,9 +54,6 @@ if model_name == '':
 
 dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.csv'), 'valid': os.path.join(data_dir,'valid.csv')})
 
-## just for testing
-# dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.csv'), 'valid': os.path.join(data_dir,'valid_for_testing.csv')})
-
 idx2label = pickle.load(open('../dataset/cleaned/idx2class.pkl', 'rb'))
 label2idx = pickle.load(open('../dataset/cleaned/class2idx.pkl', 'rb'))
 
@@ -69,13 +66,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
 
 
-
 ############## load model for training ##############
-
-bnb_config = BitsAndBytesConfig(
-    load_in_8bit=True
-)
-
 
 train_batch_size = 8
 eval_batch_size = 8
@@ -112,7 +103,6 @@ training_args = TrainingArguments(
     metric_for_best_model = 'eval_loss', ## for early stopping
     load_best_model_at_end = True ## for early stopping
 )
-
 
 
 
@@ -153,6 +143,11 @@ def train_LLM():
         use_dora=True
     )
 
+
+    bnb_config = BitsAndBytesConfig(
+        load_in_8bit=True
+    )
+
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         low_cpu_mem_usage=True,
@@ -162,7 +157,6 @@ def train_LLM():
     )
 
     model = prepare_model_for_kbit_training(model)
-
     model = get_peft_model(model, peft_config)
 
     trainer = SFTTrainer(
@@ -186,16 +180,10 @@ def train_enc_model():
 
     # global tokenizer
 
-    # tokenizer.pad_token = tokenizer.eos_token
     if tokenizer.pad_token is None:
         tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 
     global dataset
-
-    # def add_eos_to_examples(example):
-    #     example['Article'] = '<s> {} </s>'.format(example['text'])
-    #     example['title'] = '<s> {} </s>'.format(example['title'])
-    #     return example
 
     # tokenize the examples
     def convert_to_features(example_batch):
@@ -212,28 +200,10 @@ def train_enc_model():
 
     model = AutoModelForSequenceClassification.from_pretrained(
         model_name,
-        # low_cpu_mem_usage=True,
-        # return_dict=True,
-        # torch_dtype=torch.float16,
-        # quantization_config=bnb_config, 
         num_labels=13,
         id2label=idx2label,
-        label2id=label2idx, 
-        # problem_type="multi_label_classification"
+        label2id=label2idx
     )
-
-    # peft_config = LoraConfig(
-    #     task_type="SEQ_CLS", 
-    #     inference_mode=False, 
-    #     r=16, 
-    #     lora_alpha=32, 
-    #     lora_dropout=0.1,
-    #     bias="none",
-    #     use_dora=True
-    # )
-
-    # model = prepare_model_for_kbit_training(model)
-    # model = get_peft_model(model, peft_config)
 
     trainer = Trainer(
         model=model,

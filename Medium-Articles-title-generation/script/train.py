@@ -218,16 +218,15 @@ def train_enc_dec_model():
             quantization_config=bnb_config
         )
 
+        model = prepare_model_for_kbit_training(model)
+        model = get_peft_model(model, peft_config)
+
     else:
         model = AutoModelForSeq2SeqLM.from_pretrained(
         model_name,
         low_cpu_mem_usage=True,
         return_dict=True
     )
-
-    # model = prepare_model_for_kbit_training(model)
-
-    # model = get_peft_model(model, peft_config)
 
     trainer = Trainer(
         model=model,

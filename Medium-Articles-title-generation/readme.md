@@ -31,7 +31,7 @@ In the experiment, I use the following hyper-parameter settings to train models.
 |validation metric|loss|
 |patience (when to stop model training if validation loss does not decrease)|3|
 |early stopping threshold|0.01|
-|max input length|3090 (for LLaMa-2) <br> 512 (for BERT and deBERTa)|
+|max input length|3090 (for LLaMa-2) <br> 512 (for T5 and BART)|
 
 ## Result
 
