@@ -121,7 +121,7 @@ def train_LLM():
 
         inputs = tokenizer.decode(
                     tokenizer.encode(
-                        inputs,truncation=True, max_length = 4000),
+                        inputs,truncation=True, max_length = 900),
                     skip_special_tokens=True)
         
         examples['text'] = '<s>[INST]predict news category of the given news article below\n\n###news article\n\n {} \n\n[/INST]###news category: {} </s>'.format(inputs, targets)

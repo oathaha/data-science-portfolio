@@ -119,11 +119,11 @@ def train_LLM():
 
         inputs = tokenizer.decode(
                     tokenizer.encode(
-                        inputs,truncation=True, max_length = 3950),
+                        inputs,truncation=True, max_length = 800),
                     skip_special_tokens=True)
         targets = tokenizer.decode(
                     tokenizer.encode(
-                        targets,truncation=True, max_length = 50),
+                        targets,truncation=True, max_length = 128),
                     skip_special_tokens=True)
         
         examples['text'] = '<s>[INST]generate title from the given article below\n\n###article\n\n {} \n\n[/INST]###title: {} </s>'.format(inputs, targets)
