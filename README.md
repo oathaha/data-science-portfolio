@@ -19,4 +19,4 @@ You can setup python environment by running the following command in the command
 
 To run PySpark, you have to install Spark from this website: https://spark.apache.org/downloads.html first.
 
-To run R script, you need to install Rstudio and the following packages: `tidyverse`
+To run R script, you need to install Rstudio and the following packages: `tidyverse`, `ggsankey` and `ggmosaic`

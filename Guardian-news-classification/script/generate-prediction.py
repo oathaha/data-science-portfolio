@@ -2,7 +2,7 @@
 import os, argparse, pickle
 
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, AutoModelForSequenceClassification
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, AutoModelForSequenceClassification, pipeline
 
 from peft import PeftModel
 
@@ -23,12 +23,14 @@ model_names = {
     'deberta': 'microsoft/deberta-v3-large'
 }
 
+args = parser.parse_args()
+
 data_dir = '../dataset/cleaned/'
 model_name_arg = args.model_name
 model_name = model_names.get(model_name_arg, '')
 ckpt_num = args.ckpt_num
 
-output_model_dir = '../fine-tuned-model/{}'.format(model_name_arg)
+output_model_dir = '../fine-tuned-model/{}-train-with-original-data'.format(model_name_arg)
 real_model_path = os.path.join(output_model_dir, 'checkpoint-{}'.format(ckpt_num))
 
 result_dir = '../generated_result/'
@@ -78,7 +80,7 @@ def preprocess_input_txt(input_text):
     
     input_text = '<s>[INST]predict news category of the given news article below\n\n###news article\n\n {} \n\n[/INST]###news category: '.format(input_text)
 
-    return examples
+    return input_text
 
 if model_name_arg == 'llama2-7b':
     print('loading LLM')
@@ -86,11 +88,14 @@ if model_name_arg == 'llama2-7b':
         model_name,
         low_cpu_mem_usage=True,
         return_dict=True,
-        torch_dtype=torch.float16
+        torch_dtype=torch.float16,
+        quantization_config=bnb_config
     )
 
     model = PeftModel.from_pretrained(model, real_model_path)
     model = model.merge_and_unload()
+
+    pipe = pipeline(task = "text-generation", model = model, tokenizer = tokenizer)
 
     for d in tqdm(dataloader):
 
@@ -101,7 +106,7 @@ if model_name_arg == 'llama2-7b':
 
         input_text = preprocess_input_txt(input_text)
         
-        output = pipe(input_text, max_new_tokens=max_output_len, return_full_text = False)
+        output = pipe(input_text, max_new_tokens=5, return_full_text = False)
 
         output_text = output[0]['generated_text']
         output_text = output_text.replace('\n',' ').strip()
@@ -115,6 +120,8 @@ if model_name_arg == 'llama2-7b':
 
 else:
     print('loading encoder pre-trained model')
+    if tokenizer.pad_token is None:
+        tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 
     model = AutoModelForSequenceClassification.from_pretrained(
         real_model_path,
@@ -127,16 +134,23 @@ else:
         label2id=label2idx,
     )
 
+    model.cuda()
+
     for batch in tqdm(dataloader):
 
-        input_encodings = tokenizer.batch_encode_plus(example_batch['text'], pad_to_max_length=True, max_length=512)
+        input_encodings = tokenizer.batch_encode_plus(batch['text'], pad_to_max_length=True, max_length=512)
 
         with torch.no_grad():
             logits = model(
-                input_ids = input_encodings['input_ids'], 
-                attention_mask = input_encodings['attention_mask']).logits
+                    input_ids = torch.tensor(input_encodings['input_ids'], dtype=torch.long).cuda(), 
+                    attention_mask = torch.tensor(input_encodings['attention_mask'], dtype=torch.long).cuda()
+                ).logits
 
-        predicted_class_id = logits.argmax().item()
+        # print('logis:', logits)
+
+        predicted_class_id = torch.argmax(logits, dim=1).tolist()
+
+        print(predicted_class_id)
 
         predicted_class_id = list(predicted_class_id)
         predicted_class_id = [str(pred) for pred in predicted_class_id]

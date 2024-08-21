@@ -1,0 +1,7 @@
+model,metric,value
+t5,BLEU-4,99.32
+t5,METEOR,98.63
+t5,ROUGE-L,40.32
+t5,BERTScore-Precision,89.24
+t5,BERTScore-Recall,88.48
+t5,BERTScore-F1,88.82
