@@ -68,7 +68,8 @@ ref_title = test_df['title'].tolist()
 
 #%%
 
-tok_generated_title = [word_tokenize(s) for s in ref_title]
+tok_generated_title = [word_tokenize(s) for s in generated_title]
+
 tok_ref_title = [[word_tokenize(s)] for s in ref_title]
 
 eval_result_list = []
