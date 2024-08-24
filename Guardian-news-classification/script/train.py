@@ -159,6 +159,8 @@ def train_LLM():
     model = prepare_model_for_kbit_training(model)
     model = get_peft_model(model, peft_config)
 
+    model.print_trainable_parameters()
+
     trainer = SFTTrainer(
         model=model,
         train_dataset=dataset["train"],
@@ -214,7 +216,7 @@ def train_enc_model():
         callbacks = [EarlyStoppingCallback(early_stopping_patience=3, early_stopping_threshold = 0.01)]
     )
 
-    trainer.train()
+    trainer.train(resume_from_checkpoint=True)
 
 
 #%%

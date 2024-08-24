@@ -75,7 +75,7 @@ def preprocess_input_txt(input_text):
         
     input_text = tokenizer.decode(
                 tokenizer.encode(
-                    input_text,truncation=True, max_length = 4000),
+                    input_text,truncation=True, max_length = 900),
                 skip_special_tokens=True)
     
     input_text = '<s>[INST]predict news category of the given news article below\n\n###news article\n\n {} \n\n[/INST]###news category: '.format(input_text)
