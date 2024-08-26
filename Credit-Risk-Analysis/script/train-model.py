@@ -6,6 +6,8 @@ import os, pickle, json, argparse
 import pandas as pd
 import numpy as np
 
+from sklearn.utils.class_weight import compute_sample_weight
+
 from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
@@ -79,17 +81,39 @@ def split_x_and_y(df, target_col):
     return x, y
 
 class_weight = None
+sample_weight = None
 
-
-if handle_imb_data == '':
-    print('train model with original dataset')
-    imb_handling_method = 'imb-data'
+if handle_imb_data in ['', 'weight']:
     x, y = split_x_and_y(df, target_col)
+    
+    if handle_imb_data == '':
+        print('train model with original dataset')
+        imb_handling_method = 'imb-data'
+        
 
-elif handle_imb_data == 'weight':
-    print('use balanced class weight to train model')
-    imb_handling_method = 'class-weight'
-    class_weight = 'balanced'
+    elif handle_imb_data == 'weight':
+        print('use balanced class weight to train model')
+        imb_handling_method = 'class-weight'
+        class_weight = 'balanced'
+
+        ## compute sample weight for xgboost
+        ## only compute for training set
+        ## all samples in validation set have the same weight (i.e., 1)
+        train_df = df.iloc[train_idx]
+        valid_df = df.iloc[test_idx]
+
+        x_train, y_train = split_x_and_y(train_df, target_col)
+        x_valid, y_valid = split_x_and_y(valid_df, target_col)
+
+        sample_weight_train = compute_sample_weight(class_weight='balanced', y = y_train)
+        sample_weight_valid = np.array([1]*len(y_valid))
+
+        sample_weight = np.concatenate((sample_weight_train, sample_weight_valid), axis=0)
+
+        print(sample_weight)
+
+        del x_train, y_train, x_valid, y_valid
+
     
 elif handle_imb_data in ['over-sampling', 'under-sampling']:
 
@@ -204,7 +228,7 @@ decision_tree = DecisionTreeClassifier(random_state=random_state, class_weight=c
 knn = KNeighborsClassifier()
 lr = LogisticRegression(random_state=random_state, class_weight=class_weight)
 gbt = HistGradientBoostingClassifier(random_state=random_state, class_weight=class_weight)
-xgb = XGBClassifier(random_state=random_state, class_weight=class_weight)
+xgb = XGBClassifier(random_state=random_state)
 rf = RandomForestClassifier(random_state=random_state, class_weight=class_weight)
 # svm = SVC(kernel='linear',random_state=random_state, class_weight=class_weight)
 
@@ -271,7 +295,10 @@ def grid_search_cls_model(model, params):
         verbose = True
     )
 
-    gs.fit(x, y)
+    if 'XGB' in model_name:
+        gs.fit(x, y, sample_weight = sample_weight)
+    else:
+        gs.fit(x,y)
 
     print('train model done')
     print('saving results')
