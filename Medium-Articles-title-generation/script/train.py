@@ -171,7 +171,7 @@ def train_LLM():
     )
 
 
-    trainer.train(resume_from_checkpoint=True)
+    trainer.train()
 
 
 def train_enc_dec_model():
