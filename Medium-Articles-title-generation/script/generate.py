@@ -23,7 +23,8 @@ args = parser.parse_args()
 model_names = {
     'llama2-7b': 'meta-llama/Llama-2-7b-hf',
     't5': 'google-t5/t5-3b',
-    'bart': 'facebook/bart-large'
+    'bart': 'facebook/bart-large',
+    'long-t5': 'google/long-t5-tglobal-xl'
 }
 
 data_dir = '../dataset/cleaned/'
@@ -48,7 +49,7 @@ if model_name == '':
 
 ############## load dataset ##############
 
-if model_name_arg == 'llama2-7b':
+if model_name_arg in 'llama2-7b':
     test_batch_size = 1
 else:
     test_batch_size = 8
@@ -87,7 +88,22 @@ if model_name_arg == 'llama2-7b':
 else:
     print('loading encoder-decoder pre-trained model')
 
-    model = AutoModelForSeq2SeqLM.from_pretrained(
+    if model_name_arg == 'long-t5':
+        model = AutoModelForSeq2SeqLM.from_pretrained(
+            model_name,
+            low_cpu_mem_usage=True,
+            return_dict=True,
+            torch_dtype=torch.float16,
+            quantization_config=bnb_config
+        )
+
+        print('load LORA for model')
+        
+        model = PeftModel.from_pretrained(model, real_model_path)
+        model = model.merge_and_unload()
+
+    else:
+        model = AutoModelForSeq2SeqLM.from_pretrained(
         real_model_path,
         low_cpu_mem_usage=True,
         return_dict=True,

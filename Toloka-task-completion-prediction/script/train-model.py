@@ -54,8 +54,7 @@ loss_func = ['linear', 'square']
 search_params = {
     'ridge': {
         'alpha': alpha,
-        'max_iter': max_iter,
-        'solver': solver
+        'max_iter': max_iter
     },
     'lasso': {
         'alpha': alpha,
@@ -180,7 +179,7 @@ def grid_search_reg_model(model, params):
 
 # grid_search_reg_model(lasso, search_params['lasso'])
 # grid_search_reg_model(elasticNet, search_params['elasticNet'])
-grid_search_reg_model(ridge, search_params['ridge'])
+# grid_search_reg_model(ridge, search_params['ridge'])
 
 # %%
 
@@ -217,7 +216,8 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
         )
     elif base_model_name == 'Ridge':
         base_model = Ridge(
-            alpha = best_params['alpha'], max_iter=best_params['max_iter'], solver=best_params['solver']
+            alpha = best_params['alpha'], max_iter=best_params['max_iter'], 
+            # solver=best_params['solver']
         )
     elif base_model_name == 'ElasticNet':
         base_model = ElasticNet(

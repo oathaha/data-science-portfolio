@@ -99,9 +99,6 @@ if model_name_arg == 'llama2-7b':
 
     for d in tqdm(dataloader):
 
-        # print(d['text'])
-        # print('-'*30)
-
         input_text = d['text'][0]
 
         input_text = preprocess_input_txt(input_text)
@@ -125,10 +122,7 @@ else:
 
     model = AutoModelForSequenceClassification.from_pretrained(
         real_model_path,
-        # low_cpu_mem_usage=True,
         return_dict=True,
-        # torch_dtype=torch.float16,
-        # quantization_config=bnb_config,
         num_labels=13,
         id2label=idx2label,
         label2id=label2idx,
@@ -146,8 +140,6 @@ else:
                     attention_mask = torch.tensor(input_encodings['attention_mask'], dtype=torch.long).cuda()
                 ).logits
 
-        # print('logis:', logits)
-
         predicted_class_id = torch.argmax(logits, dim=1).tolist()
 
         print(predicted_class_id)
@@ -158,32 +150,3 @@ else:
         with open(result_file_path, 'a') as f:
             f.write('\n'.join(predicted_class_id)+'\n')
 
-
-# def preprocess_batch(batch):
-#     if model_name_arg in ['llama2-7b', 'mistral-7b']:
-#         batch['text'] = ['<s>[INST] {} [/INST] '.format(s) for s in batch['text']]
-#     else:
-#         batch['text'] = ['<s>{}</s>'.format(s) for s in batch['text']]
-
-#     return batch
-
-
-## Continue from here
-## may need to have if...else for LLaMa-2 and encoder-only models
-
-# for batch in tqdm(dataloader):
-
-#     batch = preprocess_batch(batch)
-
-#     input_encodings = tokenizer.batch_encode_plus(batch['text'], pad_to_max_length=True, max_length=512)
-#     input_ids = input_encodings['input_ids'], 
-#     attention_mask = input_encodings['attention_mask']
-
-#     outs = model.generate(
-#         input_ids=batch['input_ids'], 
-#         attention_mask=batch['attention_mask'],
-#         max_length=64,
-#         early_stopping=True)
-#     outs = [tokenizer.decode(ids) for ids in outs]
-
-#     generated_title_list.extend(outs)

@@ -2,10 +2,15 @@
 
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 import pickle
 
 import pickle
+
+from nltk.tokenize import word_tokenize
+
+from multiprocessing import Pool
 
 #%%
 
@@ -27,6 +32,34 @@ plot.set_xticklabels(plot.get_xticklabels(), rotation=30)
 plot.bar_label(plot.containers[0])
 
 plot
+
+#%%
+
+def get_word_count(text):
+    return len(word_tokenize(text))
+
+articles = [[s] for s in df['Article'].tolist()]
+
+
+pool = Pool(processes=16)
+word_count = pool.starmap(get_word_count, articles)
+
+
+df['word_count'] = word_count
+
+#%%
+
+plt.figure(figsize=(5,4.5))
+plot = sns.boxplot(data = df, y='label', x='word_count', hue='label')
+
+plot.set_xticklabels(plot.get_xticklabels(), rotation=30)
+
+
+plot
+
+#%%
+
+df = df.drop('word_count', axis=1)
 
 #%%
 

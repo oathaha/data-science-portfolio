@@ -11,6 +11,7 @@ import pandas as pd
 
 import pickle, os
 
+import sys
 
 
 # %%
@@ -22,7 +23,8 @@ target_cols = {
     'review_priority_prediction': 'is_high_priority'
 }
 
-task_name = 'review_priority_prediction'
+# task_name = 'loan_approval_prediction'
+task_name = sys.argv[1]
 target_col = target_cols[task_name]
 
 df = pd.read_csv('../dataset/cleaned/{}/test_processed_data.csv'.format(task_name))
@@ -89,6 +91,7 @@ def eval_result(model_name, imb_data_handling_method):
 
     prob_df = pd.DataFrame(prob, columns = col_names[task_name])
     prob_df['model_name'] = model_name
+    prob_df['label'] = y
 
     return result_all_class_df, result_dict, prob_df
 
@@ -101,8 +104,19 @@ os.makedirs(result_dir, exist_ok=True)
 os.makedirs(prob_dir, exist_ok=True)
 
 ## just for testing (change to real value later...)
-model_names = ['DecisionTreeClassifier', 'LogisticRegression']
-data_imb_handling_methods = ['imb-data', 'Tomek']
+# model_names = ['DecisionTreeClassifier', 'LogisticRegression']
+model_names = [
+    "AdaBoostClassifier_DecisionTreeClassifier", 
+    "KNeighborsClassifier", 
+    "AdaBoostClassifier_LogisticRegression", 
+    "LogisticRegression", 
+    "BaggingClassifier_LogisticRegression", 
+    "RandomForestClassifier", 
+    "DecisionTreeClassifier", 
+    "XGBClassifier", 
+    "HistGradientBoostingClassifier"
+]
+data_imb_handling_methods = ['imb-data', 'Tomek', 'class-weight', 'SMOTE']
 
 alL_result_each_class_df = []
 all_result_all_classes_rows = []

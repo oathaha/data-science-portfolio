@@ -178,9 +178,14 @@ def train_enc_dec_model():
 
     global dataset
 
+    if 't5' in model_name_arg:
+        max_input_len = 512
+    else:
+        max_input_len = 800
+
     # tokenize the examples
     def convert_to_features(example_batch):
-        model_inputs = tokenizer(example_batch['text'], max_length=512, truncation=True, pad_to_max_length = True)
+        model_inputs = tokenizer(example_batch['text'], max_length=max_input_len, truncation=True, pad_to_max_length = True)
 
         labels = tokenizer(text_target=example_batch['title'], max_length=128, truncation=True, pad_to_max_length = True)
 
@@ -205,10 +210,11 @@ def train_enc_dec_model():
         lora_alpha=32, 
         lora_dropout=0.1,
         bias="none",
-        use_dora=True
+        use_dora=True,
+        target_modules=["q","k","v","o"],
     )
 
-    if model_name_arg == 't5':
+    if model_name_arg == 'long-t5':
 
         model = AutoModelForSeq2SeqLM.from_pretrained(
             model_name,
@@ -218,8 +224,15 @@ def train_enc_dec_model():
             quantization_config=bnb_config
         )
 
+        # print(model)
+        # exit()
+
         model = prepare_model_for_kbit_training(model)
         model = get_peft_model(model, peft_config)
+
+        print('enable inputs require grad')
+        model.base_model.model.encoder.enable_input_require_grads()
+        model.base_model.model.decoder.enable_input_require_grads()
 
     else:
         model = AutoModelForSeq2SeqLM.from_pretrained(
