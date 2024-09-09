@@ -16511,4 +16511,928 @@ How to build a Poisson regression model for time series data sets using Python a
 5 Ways to Reverse the Negative Health Effects of Childhood Trauma   [/INST]###title: 5 Ways to Reverse the Negative Health Effects of Childhood Trauma   [
 5 Ways To Talk To Kids About Pride Month   [/INST]###title: 5 Ways To Talk To Kids About Pride Month   [INST]generate title from the given article
 5 Minute Writing Prompt: Happy Little Moments   [/INST]###title: 5 Minute Writing Prompt: Happy Little Moments   [INST]generate title from the given article below
-                                                                                                                                                                   
+5 Things You Should Know About Logistics   [/INST]###title: 5 Things You Should Know About Logistics   [INST]generate title from the given article below  ###article  A brief
+10. Rockstar’s city-machine   [/INST]###title: 10. Rockstar’s city-machine   [INST]generate title from the given article below  ###article
+3 Ways to Make Your Characters Pop in a Screenplay Introduction (Part 2)   [/INST]###title: 3 Ways to Make Your Characters Pop in a Screenplay Introduction (Part 2)
+👋 How to integrate bootstrap 4 into your phoenix 1.4 project 👋   [/INST]###title: 👋 How to integrate bootstrap 4 into your p
+2021 Race Calendar: Fatigue, Fitness, and Form, oh my!   [/INST]###title: 2021 Race Calendar: Fatigue, Fitness, and Form
+3D Physics Simulations Using VPython   [/INST]###title: 3D Physics Simulations Using VPython   [INST]generate title from the given article below.  ###article  V
+10 Ways How Augmented Reality Has Changed Agriculture   [/INST]###title: How Augmented Reality Has Changed Agriculture   [INST]generate title from the given article below
+3-Star Cooking: Overcooked’s Gameplay Mechanics and Outside-Game   [/INST]###title: 3-Star Cooking: Overcooked’s Gameplay Mechanics and Outside
+15 Surprise Ideas for Birthday 2021   [/INST]###title: 15 Surprise Ideas for Birthday 2021   [INST]generate title
+4 Cities, 4 Ways to Connect People to the Public Realm   [/INST]###title: 4 Cities, 4 Ways to Connect People to the Public Realm   [INST]
+4 Methods to Re-Rank Search Results based on Clickstream Data   [/INST]###title: 4 Methods to Re-Rank Search Results based on Clickstream Data   [/INST]##
+2. Gradient Descent   [/INST]###title: 2. Gradient Descent   [INST]generate title from the given article below  ###article  Note: This is the second
+280+ Free Gambling Website Icons 🎰 🎲 🎟 🎰 🎲 🎟 🎰 ���
+50 Best Quotes of All Time   [/INST]###title: 50 Best Quotes of All Time   [INST]generate title from the given article below.  ###article  in
+📚 Mathematical operation on two functions that produces a third function representing how the shape of one is modified by   [/INST]###title: Mathematical operation on two functions that produces a third function representing how the shape
+5 Biases That Single Parents Face In The Public School System   [/INST]###title: 5 Biases That Single Parents Face In The Public School System   [/INST]###title:
+10 Best Open Source Data Mining Tools for Data Scientist   [/INST]###title: 10 Best Open Source Data Mining Tools for Data Scientist   [/INST]###title:
+[/INST]###title:   [/INST]###title:   [/INST]###title:   [/INST]###title:   [/INST]
+6D.ai - Augmented Reality & Computer Vision  [INST]Update Sep 2017: Google got back to me & confirmed that although the FlyBy VIO code was licenced by Google for use in
+2020 May Promposity Writing Challenge: Ease and Unmerited Freedom   [/INST]###title: 2020 May Promposity Writing Challenge: Ease and Unmerited Freedom
+1. An industry ripe for disruption   [/INST]###title: 1. An industry ripe for disruption   [/INST]###title: 1. An industry ripe for dis
+5. The Big Lie   [/INST]###title: 5. The Big Lie   [INST]generate title from the given article below  ###article  An American edition of “The Protocol
+6 Common Mistakes with Infrastructure as Code (IaC)   [/INST]###title: 6 Common Mistakes with Infrastructure as Code (IaC)   [/INST
+1840 — North Carolina’s First Public Schools and the Slick Rascals Who Want to Take Them Away  [/INST]###image: https://www.flickr.com/ph
+📣CfA is hiring: Managing Editor for new pan-African StoryLab 📣   [/INST]###link: https://medium.com/code-for-a
+​  [/INST]###title: Drones: From Dull to Dangerous   [/INST]###title: Drones: From Dull to Dangerous   [/INST
+5 Tips for Smarter Investing   [/INST]###title: 5 Tips for Smarter Investing   [INST]generate title from the given article below.  ###
+10 Marketing Metrics & KPIs Explained 📈 📊 💼 📊 📈 📈 📈 �
+1. Hikeland — A magical place to hangout online.   [/INST]###title: 1. Hikeland — A magical place to hangout online.   [INST]generate title
+使用python自动生成SPECpower_ssj_config_sut1文件   [/INST]###image: https://www.spec.org/power_ssj2008/
+31st Birthday Wishes   [/INST]###title: 31st Birthday Wishes   [INST]generate title from the given article below  ###article  “If
+2020: The Year of the Gap Year   [/INST]###title: 2020: The Year of the Gap Year   [INST]generate title from the given article below
+5 Ways to Deal with Stress during the Product Manager Job Hunt   [OUT]generate title from the given article below.   [/OUT]###title: 5 Ways to Deal with Str
+Predicting Credit Risk for German Borrowers   [/INST]###title: Predicting Credit Risk for German Borrowers   [INST]generate title from the given article below
+🔥YLS distribution for YlFi🎄   [/INST]###title: 🔥YLS distribution for YlFi🎄   [/INST]##
+10 Minutes to Kubernetes Cluster with Kubespray   [/INST]###title: 10 Minutes to Kubernetes Cluster with Kubespray   [INST]generate title from the given article
+5 tips to make a better ggplot2 plot   [/INST]###title: 5 tips to make a better ggplot2 plot   [INST]generate title from the given article below  ###article
+8 months ago, when we decided to leave Toronto for a monastery, it felt like a renunciation of…   [/INST]###title: 8 months ago, when we decided to leave Toronto for a monastery
+11 Important Python Hacks for Data Engineers  [/END]  [INST]  This post is in continuation   [/END]  with the one mentioned below. Let us begin.
+101-React-Cross-Browser-Testing   [/INST]###title: 101-React-Cross-Browser-Testing   [INST]generate title from the
+වෙළුම් ගොඩපටයෙන් වෙළුම්
+22nd Jan 2016: Meeting with Mr Kumar Gaurav, Founder   [/INST]###title: 22nd Jan 2016: Meeting with Mr Kumar
+10000000000000000000000000000000000000000000000000
+5 Questions to Ask Before Speaking Your Truth   [/INST]###title: 5 Questions to Ask Before Speaking Your Truth   [INST]generate title from the given article below  ##
+12/20/2020 — The smartest person in the room   [Follow]  Follow Steve Rigell on Twitter   [/INST]###title: 12/
+5 Lessons We Can Learn From Hollywood   [/INST]###title: 5 Lessons We Can Learn From Hollywood   [INST]generate title from the given article below  ###article
+3-Step Quick Guide to Install a Self-signed SSL Certificate on Tableau Server   [/INST]###title: 3-Step Quick Guide to Install a Self-signed SSL Certificate on Tableau Server
+2021: The Age of Aquarius   [/INST]###title: 2021: The Age of Aquarius   [/INST]###title: 2021: The
+6ème arrondissement: the most expensive and lively place to live in Paris 🌟   [/INST]###title: 6ème arrondissement: the most expensive and lively place to live in Paris
+7 Resolutions for 2021   [/INST]###title: 7 Resolutions for 2021   [INST]generate title from the given article below.  [/INST]
+4 Reasons Why You Should Have Small Area Rugs in Your Bathroom   [/INST]###title: 4 Reasons Why You Should Have Small Area Rugs in Your Bathroom   [INST]generate title
+5 Ways to Make Peace in Afghanistan More Participatory   [/MORE]###title: 5 Ways to Make Peace in Afghanistan More Participatory   [/MORE]###title
+7 Reasons Why You Should Never Become a Bully   [/INST]###title: 7 Reasons Why You Should Never Become a Bully   [/INST]###title: 7 Re
+🧑‍🎨 Food History of Kare-Kare 🧑‍🎨   [/INST]###title: 🧑‍🎨 Food History
+3 Reasons Why You Shouldn’t Say “It’s Going to Be OK”   [/INST]###title: 3 Reasons Why You Shouldn’t Say “It’s Going to Be
+10 Things Everyone Wants You to Do for Them   [/INST]###title: 10 Things Everyone Wants You to Do for Them   [INST]generate title from the given article
+10 Questions To Get People Talking To You Without Saying Much  With examples on how to expertly insert them into almost any conversation May Pang Jun 25·9 min read  Something that surprises literally everyone
+10 Things I’d Do If I Were Energy Secretary  If I Were Secretary of Energy  Apparently, some corner of the Twitterverse has nominated me to be energy secretary. As an Australian who is not yet a
+5 Reasons to Buy the Google Nest Hub Max   ###title: 5 Reasons to Buy the Google Nest Hub Max   By Akin Akin  The Google Nest Hub Max is an
+2020 Amazon Prime Day: Is It Worth It?   [/INST]###title: 2020 Amazon Prime Day: Is It Worth It?   [INST]generate title from the
+2020년 2월 27일 금요일 이슈란 주제와 관련된 글들 모음
+When communities decide: Governing and rebuilding in the Democratic Republic of Congo  By Marie-France Guimond, Advisor Research Systems  Comparing focus group discussion results during a community scorecard activity in Eastern D
+7 Ways to Deal with Depression as a Parent of a Child with Special Needs   [/INST]###title: 7 Ways to Deal with Depression as a Parent of a Child with Special Needs
+7 Reasons Why Intoxication Is Worth Defending   [/INST]###article  As a society, we need to talk more about the benefits of intoxication, because if we talk only about the neg
+4 Ways to Avoid Investing into the Wrong ICO by Looking at its Bounty Campaign   [/INST]###image:  [INST]  [/INST]###image:
+2016-11-25 — Risk Manager Club Meeting   [/INST]###title: 2016-11-25 — Risk Manager Club Meeting   [
+3D Home Design Company Sues Facebook and Princeton University Over Data Scraping   [/MORE]###more  This was originally published on Grit Daily News.   [/MORE]##
+🥧Raspberry Pi 4: Self-contained Linux Development Environment �������������������������������
+18. Customizing Heatmap Style  [/INST]###author: Ashwini Pawar  [/INST]###image: Image by the Author  [/INST]###image: Image
+10101010101010101010101010101010101010101010101010
+2020년 프로그래머 분야 최고의 책 100권 목록 2
+10 Year old Boy Raising Money For His Sister’s Cancer Treatment   ###title: 10 Year old Boy Raising Money For His Sister’s Cancer Treatment
+1000 Thoughts A Day 💭 030 — As the plant springs from, and could not be without the seed, so every act of a man springs from the hidden seeds of thought,
+2020 Gift Guide: The Chalk Box with Birds on It   [/INST]###title: 2020 Gift Guide: The Chalk Box with Birds on It   [
+8 Ways to Keep Your Work Desk Clutter-Free   [/INST]###title: 8 Ways to Keep Your Work Desk Clutter-Free   [INST]generate title from the given article
+7 tips to help you find a good roommate   [/INST]###title: 7 tips to help you find a good roommate   [/INST]###title: 7 tips to help
+3 Reasons Why the Struggle for Acceptance Is Still Relevant   [/INST]###title: 3 Reasons Why the Struggle for Acceptance Is Still Relevant   [/INST]##
+8base Founder Albert de Cardenas on How to Win the Body Fat Challenge  ###author: Albert de Cardenas  ###link: https://medium.com/8base/8base-founder-
+3 Ways to Scale Your Auth Flow   [VID] What is Load Balancing?   [INST]generate title from the given article below  Load Balancing is the process of distributing traffic across multiple, different
+2. Asymmetric Encryption.   [/MORE]###title: 3. SessionKey.   [/INST]###title: 4. Secure Hash Algorithm.   [/
+7 Powerful Ways to Improve Your Life Right Now!   [/INST]###title: 7 Powerful Ways to Improve Your Life Right Now!   [INST]generate title from the
+10 Must-Visit Places in Qinghai, China 🇨🇳🇨🇳🇨🇳🇨🇳🇨
+18 years of Freaksballin’. Unbelievable.   ###title: 18 years of Freaksballin’. Unbelievable.   [/INST]###title:
+###article  Why Babies Are More Resilient Against Covid-19  Understanding infants’ peculiar response to the virus may be a key to finding new treatments Jossbuttjerjej
+📍 Simple MapTileServer using NodeJs & PostGIS — Part 2: Drawing Vector data on canvas 📍 📍 Simple MapTileServer using NodeJs & PostGIS —
+4 ways to keep track of your infrastructure with daily aerial imaging   [/INST]###title: 4 ways to keep track of your infrastructure with daily aerial imaging   [/INST]##
+57 Years Later, Vote for Change.   ###author  Authored by Elisabeth Omilami | Humanitarian  I’ve heard that Martin Luther King Jr. did not want my dad, Hose
+4 Mindsets & 5 Skills of Future Leaders   [/INST]###title: 4 Mindsets & 5 Skills of Future Leaders   [INST]generate title from the given article below.
+12 Reasons Why ASMR is Bullshit   [/INST]###title: 12 Reasons Why ASMR is Bullshit   [INST]generate title from the given article below  ##
+14 Tools to Create Suspense in Your Writing  Reading the Book Dan Brown Teaches Writing Thrillers, Dan Brown refers to a couple of books written by James Scott Bell that I happen to have on my bookshelf
+3 Ways to Resurrect the Dead   [/INST]###title: 3 Ways to Resurrect the Dead   [INST]generate title from the given article below  ###article
+2021   [/INST]###title: 2021   [INST]generate title from the given article below  ###article  She walks past him in the hallway every
+10 Reasons Why Hustle Culture Is Bad   [/INST]###title: Why Hustle Culture Is Bad   [/INST]###title: Why Hustle Culture Is Bad
+100 Days of Summer 2020: Day 19 ☀️ 🌞 ☀️ 🌞 ☀️ 🌞 ☀
+2020 Election Results   [/INST]###title: 2020 Election Results   [INST]generate title from the given article below.  What just happened? I made a chart
+2019’s Top 10 Design and UX Trends  It’s time to look ahead. What’s next for design and UX in 2019?  The annual UX and design
+2020, I’ll Miss You   [/INST]###title: 2020, I’ll Miss You   [/INST]###title: 2020, I
+30 something, 30 something, 30 something, 30 something, 30 something, 30 something, 30 something, 30 something, 30 something, 30 something,
+I Cannot  I cannot  become the cockroach queen  conform  so you confer the validation  of your most carnal needs  I cannot  cut and contour  this
+💰 Barter Smartplace 💰 Trade and exchange various asset classes 🔐 ���   [/INST]###title: 💰 Barter Smartplace
+1. Exploratory Data Analysis 2. Age-related variables 3. Gender-related variables 4. Hypertension-related variables 5. Heart disease-related variables 6. Residence-related variables 7
+2020.07.09 BitMax.io Product Update   [/INST]###title: 2020.07.09 BitMax.io Product Update   [/INST
+###title: I’m So Glad You Don’t Follow Me On Instagram   ###title: I’m So Glad You Don’t Follow Me On Instagram   ###title: I’
+3 Storiqa presents for Christmas   [/INST]###title: 3 Storiqa presents for Christmas   [INST]generate title from the given article below  ###article  Christmas presents make
+2020 Will Be The Year Of Smart Glasses. Maybe.   [/INST]###article  I have a suspicion why this might be the case.  From what I can tell, few
+[/INST]#gender #womensanger   [/INST]#gender #womensanger   [/INST]#gender #womensanger   [/INST]#gender
+10 Things I Learnt About Life and Love While Learning to Fall While Learning to Fight   [/article]  ###article  I found her when Googling “top female Brazilian jiu jitsu compet
+「Why Can’t Organizations Change?」Part 2 (Invisible Inertia)   [/INST]###link: https://www.linkedin.com/pulse/why-cant-organ
+🏗️ Dyson — Basket Page Enhancements 🏗️ 📝 The brief 📝 Following initial Adobe analytics and Decibel analysis of the Dyson
+5 Ways to Stop Seeing Yourself as “Homeless”   [/INST]###title: 5 Ways to Stop Seeing Yourself as “Homeless”   [INST]generate title from the
+2021: The Year of Travel   ###author: NotOnMap   ###link: https://www.notonmap.com/homestays/notonmap-mountain-view-
+2 MINUTES TO MAKE DRIVERS HAPPY   [/INST]###title: 2 MINUTES TO MAKE DRIVERS HAPPY   [INST]generate title
+30 Days in: $737 in Passive Income   [OUT]generate title from the given article below  ###article  I’ve always believed that passive income was largely a myth.
+5 Ways to Identify and Eliminate Customer Penalty Costs   [/INST]###title: 5 Ways to Identify and Eliminate Customer Penalty Costs   [/INST]##
+360 degree influence   [/INST]###title: 360 degree influence   [INST]title: 360 degree influence   [/INST]title: 360 degree
+1971: The Day the Dollar Died   [/INST]###title: 1971: The Day the Dollar Died   [INST]full: https://medium.com/@
+2020-11-17: Galactic archaeology: astronomers are using stars as fossils to study the Milky Way   [NAT]generate title from the given article below  [INST]
+311 Indians deported from Mexico   [/INST]###title: 311 Indians deported from Mexico   [INST]generate title from the given article below.  ###article  The
+10 Tips to Help You Survive a Pandemic Holiday Season   [/INST]###title: 10 Tips to Help You Survive a Pandemic Holiday Season   [INST]
+6 Benefits of Investment   [/INST]###title: 6 Benefits of Investment   [INST]generate title from the given article below  ###article  Everyone
+��������������������������������������������������
+[/INST]###title: Famous microbiologist experiences ‘revenge of the viruses’   [/INST]###title: Famous microbiologist experiences ‘revenge of the viruses’
+4 Ways to Address Crowdfunding Issues in K-12 Schools   [/INST]###title: 4 Ways to Address Crowdfunding Issues in K-12 Schools
+2 Approaches to Achieving Document Governance with Watson Assistant and Discovery   [/INST]###image: https://media.ibm.com/common/emlogos/en/ibm/watson-ass
+3 Things I Loved About Mangrove   [/INST]###title: 3 Things I Loved About Mangrove   [INST]generate title from the given article below.  ###article
+3 Reasons I Feel Not Good Enough   [/INST]###title: 3 Reasons I Feel Not Good Enough   [INST]generate title from the given article below.  ###
+01. The Journey of NanoHealth — The ICO raising journey of one such unique project   [/INST]###title: 01. The Journey of NanoHealth — The I
+128-GPU Transformer-XL Training on AWS   ###all:  [INST]The most exciting breakthroughs in AI happen when you’re not looking.  We’ve been
+100 Words or Less: Marlon Williams & Kacy & Clayton — ‘Live at the Opera House’   [/INST]###title: 100 Words or Less: Marlon Williams & K
+1000 girls 1000 futures  [/MORE]###title: 1000 girls 1000 futures  [/MORE]###title: 10
+7 Simple Ways To Express Your Anger   [/INST]###title: 7 Simple Ways To Express Your Anger   [/INST]###title: 7 Simple Ways To Express Your An
+5 reasons why you should choose Flutter over React Native or React Native over Flutter for your next app idea   [/INST]###title: 5 reasons why you should choose Flutter over React Native or React Native over Fl
+2020 will be the year of fruition for Harmony, while the interest for public blockchains will be focused on PoS & Privacy by Design   [/INST]###title: 202
+5 Citi Sales and Trading Interview Questions  In my experience, having talked to hundreds of those looking to break into sales and trading over the years, the three most coveted firms mentioned are Goldman Sachs,
+30 Years of Love Letters   [/INST]###title: 30 Years of Love Letters   [/INST]###title: 30 Years of Love Letters   [/
+👀 Ireland’s Contact Lens Exports Slump Due to Lower Demand in Japan, the U.S. and China 👀   [/INST]###title: 👀
+3 Easy Steps to Implement Weighted K-Means Clustering in Python  ###author: Anand G  ###date: 2020-08-07  ###
+01. Chocolatey - Installing Tools for Ethereum Development in Windows   [/INST]###title: 01. Chocolatey - Installing Tools for Ethereum Development in Windows
+100th Blog �������������������������������������������
+5 Star Review — Praying for Emily by Tom Whitehead; Kari Whitehead; Emily Whitehead   [/INST]###title: 5 Star Review — Praying for Emily by Tom Whitehead
+3rd Module Project: Vacation Properties   [/INST]###title: 3rd Module Project: Vacation Properties   [INST]generate title from the given article below.   [/INST
+2021 Electric Car “Kama-1” Russia’s First Electric Car Will Be Available In The Market   [/INST]###title: 2021 Electric Car “Kama-1” Russia
+5th Letter: The Texas Attorney General’s Effort to Negate the Presidential Voting in Georgia, Michigan, Pennsylvania, and Wisconsin or about 21 Million Votes, 17 Other States and Over
+
+🎮 WildMeta unveils its new library compatible with major game engines to speed up the adoption of machine learning-based bots in games 🎮   [/INST]###title: �
+��������������������������������������������������
+5 Things I Did Not Do to Reach Success in 2020   ###article  If you are like most people with ambition, passion and purpose, you’ve been taking the time to plan for growth and
+5 Inexpensive Ways to Give Your Kitchen a Makeover   [/INST]###title: 5 Inexpensive Ways to Give Your Kitchen a Makeover   [INST]generate title
+📢 Team Zero welcomes Laura to the team 🎉 🎉 🎉 🎉 🎉 🎉 🎉 ��
+100 Days of Drawing 2020 006 007 008 009 010 011 012 013 014 0
+100 Years After the 1920 Tulsa Race Massacre, We’re Still Fighting White Supremacy   [/INST]###title: 100 Years After the 1920
+7 Ways to Eat More Sustainably   [/INST]###title: 7 Ways to Eat More Sustainably   [INST]generate title from the given article below  ##
+5 Platforms for Developing Mobile Applications   [/INST]###title: 5 Platforms for Developing Mobile Applications   [INST]generate title from the given article below.  ###article
+6 Things People With PTSD Wish You Knew   [/INST]###title: 6 Things People With PTSD Wish You Knew   [INST]generate title from the given article below
+💻How to Calculate Central Tendency and Asymmetry measures in Statistics and Python 💻 👨‍��   [/INST]###title: 💻
+1. The REDD+ Story So Far: How the world’s largest conservation strategy failed to achieve its goals  [/INST]###title: 2. The REDD+ Story So Far: What’s next
+5.1 Target Count 5.2 Amount Credit 5.3 Amount Income Total 5.4 Days employed (in years) 5.5 Days birth(in years) 5.6 Target 0
+4.300 ŞEYİM İLE ÇOK YAŞAMADIM 😀 😀 😀 😀 😀 ��
+10 Things You Didn’t Know About AWS Landing Zone   [/MORE]###title: 10 Things You Didn’t Know About AWS Landing Zone   [/MORE]##
+3 Steps to Measure the Impact of Browser Extensions on Sales Data   [/INST]###title: 3 Steps to Measure the Impact of Browser Extensions on Sales Data   [INST]
+[/INST]###title: A Response to the Anti-Library Article   [/INST]###title: A Response to the Anti-Library Article   [INST]title: A Response to the Anti
+📈 Flatten an Array in JavaScript 📈   [/INST]###title: 📈 Flatten an Array in JavaScript 📈   [INST]generate title
+27 December 2020: EPL Prediction   [/INST]###title: 27 December 2020: EPL Prediction   [INST]generate title from the given article
+8 Technical SEO Factors That Decide Your Website’s Success   [/INST]###link: https://www.mossmedia.com.au/8-technical-seo-factors-that
+3. The Black Redeemer and The White Redeemer (part 2)   [/INST]###title: 3. The Black Redeemer and The White Redeemer (part 2)
+5 Ways to Celebrate Winter  I love the winter season. I love the snowfall, the chill in the air, and the way it makes everything look so pretty. I love the way the snow makes everything look so
+🐶 Polkadog 🐶 — A meme token with a purpose 🐶 🐶 🐶 🐶 🐶 ���
+3 Learning Strategies From Einstein, Feynman, and Musk   [/INST]###title: 3 Learning Strategies From Einstein, Feynman, and Musk   [INST]
+15 x86 Instructions, Ranked by How Much They Suck   [MISC]  We use a few tools to help us find the most important instructions to optimize:  1. Intel’s
+2020 Is the Year I Turn My Side Hustle into a Business [Plus 4 Must-Have Tools for Entrepreneurs]   [/INST]###title: 2020 Is the Year
+100% P&T Veteran’s Disability Claim Success Story 🇺🇸   [VID] VA Claims Insider 2020 Year In Review ��
+📢Message Queue Pattern 📢   [/INST]###title: 📢Message Queue Pattern 📢   [INST]generate title from the given article
+1. Black Gods of the Metropolis (1970)   [/INST]###title: 1. Black Gods of the Metropolis (1970)   [INST]generate title
+62-year old Edward and the Risk of COVID-19   [/INST]###title: 62-year old Edward and the Risk of COVID-19   [INST]generate title
+İnsanlıkta İlkeler (1) İlkelerinin Konusu İlkelerinin Konusu İlkelerinin Konusu İlkeler
+7 Ways to Improve Your Case Study   [/INST]###title: 7 Ways to Improve Your Case Study   [/INST]###title: 7 Ways to Impro
+👶🏼 Co-sleeping: The benefits and drawbacks of a family bed 👶🏼 👶🏼 Co-sleeping: The benefits and draw
+6 Benefits of a Business Valuation   [/INST]###title: 6 Benefits of a Business Valuation   [INST]generate title from the given article below  ###article
+❤️Dating with a women best formula ❤️The Flirting Formula ❤️   [/INST]###title: ❤️Dating with a women best formula
+5-Minute Walnut Torte   [/INST]###title: 5-Minute Walnut Torte   [/INST]###title: 5-Minute Walnut Torte
+7 Women, 1 Man, and 2000 Words  [/INST]###title: 7 Women, 1 Man, and 2000 Words   [/INST]###
+10 Years in San Francisco: Larkin and Geary   ###title: 10 Years in San Francisco: Larkin and Geary   [/INST]###title: 10 Years in
+101 Design System Designer Interview Questions 2021   [/INST]###title: 101 Design System Designer Interview Questions 2021   [/INST
+6 Ways Dr. Knight Saves You Time And Money   [/INST]###title: 6 Ways Dr. Knight Saves You Time And Money   [INST]generate title from the given article
+24/7 Token Swap Support   [/INST]###title: 24/7 Token Swap Support   [INST]generate title from the given article below.  ###article  A
+💉 How to simulate a network outage in your Ruby application 💉   [/INST]###link: https://medium.com/@turkishbiz/how-to-simulate-
+4 Crypto News Stories You Should Know 20th March 2018   [/INST]###title: 4 Crypto News Stories You Should Know 20th March 2018
+30 Tips For Becoming A Better Leader   [/INST]###title: 30 Tips For Becoming A Better Leader   [/INST]###title: 30 Tips
+10 Best Free Credit Cards in India 2019   [/INST]###link: https://www.fundstiger.com/blog/free-credit-cards-in-india/
+5 Reasons to Hire a Manchester Property Management Company   [/INST]###title: 5 Reasons to Hire a Manchester Property Management Company   [INST]generate title from the given article below  ##
+10. Mimicking ComponentWillUnmount with useEffect (React Hooks)   ###author: Matthew DeSantis  ###image: https://www.pexels.com/photo/
+👉👉 HELP WANTED! 👈👈 👉👉👈👉👈 👉
+2020.01.16 🤓 Dapur Berkah Foundation  Solution  Prototype — user test — iterate (design)  We conducted a user-test for 5 people
+12 — My Spiritual Journey — Light story 1 — God drinks himself into an alcohol induced amnesia   [/INST]###title: 12 — My Spiritual Journey — Light
+10 Reasons Why Pilots Are Paid So Much Money   [/INST]###title: 10 Reasons Why Pilots Are Paid So Much Money   [INST]generate title from the
+10 Things You Need to Know About the Stomach   [/INST]###title: 10 Things You Need to Know About the Stomach   [INST]generate title from the given article below
+2021: The year of the Timewave (part 1)   [/INST]###title: 2021: The year of the Timewave (part 1)   [INST]
+3 Reasons Why You Should Invest In Your Organizational Culture   [/INST]###title: 3 Reasons Why You Should Invest In Your Organizational Culture   [/INST]###title
+100% Student Satisfaction Rate? 🤔 (A Case Study)   [/INST]###title: 100% Student Satisfaction Rate? 🤔 (
+5 Ways to Raise Funds for Your Startup   [Follow]https://www.linkedin.com/company/micro-startup/   [Follow]https://www.facebook.
+3 Things to Look for in a Job Posting 👩🏻‍💻👨🏻‍💻 📝📄📃
+6 Top Tips To Secure Your Smart Home Security   ###title: 6 Top Tips To Secure Your Smart Home Security   ###title: 6 Top Tips To Secure Your Smart
+150 Words on Snowflakes   [/INST]###title: 150 Words on Snowflakes   [INST]generate title from the given article below.  ###
+5 Common Barriers To Authenticity   [/INST]###title: 5 Common Barriers To Authenticity   [INST]generate title from the given article below  ###article  Trust
+2020 NBA Christmas Day Schedule and Free Live Radio Coverage   [OUT]generate title from the given article below  ###article  After all the presents are opened on Christmas Day, the real gift is just
+3 ways to implement real-time updates in serverless architectures   [/INST]###title: 3 ways to implement real-time updates in serverless architectures   [/INST]###title:
+📈 Dads’ Survival Guide: Providing — Our Finances   [/INST]###title: 📈 Dads’ Survival Guide: Providing — Our Finances
+10 days in San Francisco. 10 stories about life.  ###author: Yasmine  ###link: https://medium.com/@yasmine.zahra/10-days-in-
+[/INST]###title: Naked Love   [/INST]###title: Naked Love   [/INST]###title: Naked Love   [/INST]###
+1 Secret To Ending Jealousy Forever (And How To Do It)   [/title]###title: 1 Secret To Ending Jealousy Forever (And How To Do It)   [
+7 Early Signs of Alcoholic Liver Damage  My father died of alcoholic liver cirrhosis four years ago. It came as a surprise to all of us, even though it was clear he had a severe
+��������������������������������������������������
+6 Ways to Lose Weight Fast for Women   [INST]generate title from the given article below  ###article  Advertiser Disclosure: The credit card gives that appear on this website are from credit card
+18,000 Unaccompanied Children Missing in Europe   [/INST]###link: https://medium.com/media/604675334f56633
+7 Tips for your first-ever Cruise. 🏖️ 🚢 🌊 🌊 🌊 🌊 🌊 ��
+100% Free Bitcoin Mining | No Investment | No Ads | No Fees | 100% Free   [/INST]###title: 100% Free Bitcoin
+2020 Election Week: Biden’s Win Is Real; Trump’s Reaction Is the Week’s Second ‘Red Mirage’   [/INST]###title: 2020 Election
+3 Reasons Why You Shouldn’t Become a Software Developer   [/INST]###article  In this article, I’ll share 3 reasons why you should not become a software developer.  If
+7 Things I Found That Made Me Wealthy   [/INST]###title: 7 Things I Found That Made Me Wealthy   [INST]generate title from the given article below  ###article
+4 Ways to Get Out of the Regret Cycle   [/INST]###article  I have a question for you. What is the first thing you do when you wake up?  I’m not
+3D D3.js Map of US States with TopoJSON   [/INST]###title: 3D D3.js Map of US States with TopoJSON   [INST]generate title from the
+002 — Sam Franklin, CEO of Otta on How to Hire Great Talent   [/INST]###title: 002 — Sam Franklin, CEO of Otta on How to Hire Great
+2,000 Years of Irish History in 1500 Words   [/article]###article  The coronation stone at Tullyhogue  The coronation stone at Tullyhog
+[/INST]###title: Is It Time To Require Identity Verification For Everyone Using Social Media?   [INST]generate title from the given article below  While social media has long been valued
+10 Things to Avoid in Your Articles   [/INST]###title: 10 Things to Avoid in Your Articles   [INST]generate title from the given article below  ###article
+3 Ways to Improve Your Social Media Presence   [/INST]###title: 3 Ways to Improve Your Social Media Presence   [INST]generate title from the given article below.
+5 Reasons Why You Need GetResponse Email Marketing Software 2021   [/INST]###title: 5 Reasons Why You Need GetResponse Email Marketing Software 2021   [
+3 Reasons Why We Can Afford a Universal Basic Income   [INSTA]  Summary: Basic income advocates often encounter the objection, “We can’t afford it!” To counter that objection convincingly
+4 Steps to a Healthy Skin!   [/INST]###title: 4 Steps to a Healthy Skin!   [INST]generate title from the given article below  ###article
+4 Reasons Why We Don’t Show Our True Selves   [/INST]###title: 4 Reasons Why We Don’t Show Our True Selves   [/INST]###title:
+2021.10.26: Missing You   [/INST]###title: 2021.10.26: Missing You   [INST]generate title from the
+2. How to   [/INST]###title: 2. How to   [INST]generate title from the given article below   [/INST]###title: 2. How to
+4 Reasons Why React is Better Than Vue 2020   [/INST]###title: 4 Reasons Why React is Better Than Vue 2020   [INST]generate title
+[/INST]###title: Racial Profiling   [INST]generate title from the given article below  [/INST]###title: Racial Profiling Always and Forever   [INST
+100 Days of Code: Day 11 — Introduction to JavaScript   [/INST]###title: 100 Days of Code: Day 11 — Introduction to JavaScript   [INST]generate title
+5 Tips to Become a More Effective Leader   [/INST]###title: 5 Tips to Become a More Effective Leader   [INST]generate title from the given article below
+✨ ETL with Cloud Functions — Load access logs into BigQuery ✨   [/INST]###title: ✨ ETL with Cloud Functions — Load access logs into BigQuery �
+12-Part Series: The Complete Customer Data Stack  [/INST]###author: RudderStack  [/INST]###link: https://www.rudderstack.com/blog/customer-data
+10/25/2020 — The Darkened Grove   [/MORE]###title: 10/25/2020 — The Darkened Grove   [/
+9 Actions to Enrich Your Life and Empower Others   [/INST]###title: 9 Actions to Enrich Your Life and Empower Others   [INST]generate title from the given article
+10 Ways to Use Oral History and Ethnography to Engage Students in the Writing Process   [/INST]###subtitle: We discuss how best to capture speakers’ emotions, points of view,
+100 % free Bluehost Discount Coupon Codes 2019   [INST]title: 100 % free Bluehost Discount Coupon Codes 2019   [/
+10 Books That Will Help You Understand America in 2020   [/INST]###title: 10 Books That Will Help You Understand America in 2020   [INST]
+5 Killer Tips in Graphic Design 2020 🔥 🔥 🔥 🔥 🔥 🔥 🔥
+��������������������������������������������������
+10/10/2020 2:40 AM   [/INST]###title: 10/10/2020 2:40 AM   [INST]
+3 Things Poetry and Prose Have In Common   [/INST]###title: 3 Things Poetry and Prose Have In Common   [INST]generate title from the given article below.   [
+2021: The year we must turn ambition into action   [/INST]###title: 2021: The year we must turn ambition into action   [/INST]###title
+5. COVID, Procrastination and Dreams   [/INST]###title: 5. COVID, Procrastination and Dreams   [INST]generate title from the given article below  ##
+5 Stages of Decline: How to Recognize & Avoid Them! �������������������������������
+5 Ways to Never Let Criticism Hurt You   [/INST]###title: 5 Ways to Never Let Criticism Hurt You   [/INST]###title: 5 W
+100-word Poem 31   [/INST]###title: 100-word Poem 31   [INST]generate title from the given article below  ###article
+2020 Mother’s Day: Today, I Don’t Want To Be a Mother   [/INST]###title: 2020 Mother’s Day: Today, I Don’t Want
+10 Things I’ve Learned About Retirement   [/INST]###title: 10 Things I’ve Learned About Retirement   [INST]generate title from the given article below.
+101 on Machine Learning: Bias & Variance in Machine Learning   [/INST]###title: 101 on Machine Learning: Bias & Variance in Machine Learning   [INST]generate title
+3 Ways to Screen Mirror Christmas Movies to Your TV 2020   [/INST]###title: 3 Ways to Screen Mirror Christmas Movies to Your TV 2020
+5 reasons to choose Lumi for your cryptocurrency wallet   [VID]What is Lumi?   [VID]Lumi is a new cryptocurrency wallet that aims to be the most secure and private
+2019-02-21 How to access Power BI resources from a web app?   [/INST]###title: 2019-02-21 How to access Power BI
+��������������������������������������������������
+2021: A Year of Fresh Snow   [/INST]###title: 2021: A Year of Fresh Snow   [/INST]###title: 2021
+5 steps to a successful data analytics project   [/INST]###title: 5 steps to a successful data analytics project   [INST]generate title from the given article below  ###article
+เริ่มทำงาน wow robot ใน FTX เป็นเรื่องไร?   [/INST]###title: เริ่
+2017: A Look Ahead at Kickstarter’s Biggest Trends   [/INST]###title: 2017: A Look Ahead at Kickstarter’s Biggest
+101 on Continuous Delivery for Technical Leaders   [1] Gitlab — https://gitlab.com/  [2] Canary stage — https://blog.codeclimate.com/blog
+RISER STAR — A Tutorial   ###image: https://i.imgur.com/3kj02o7.jpg   [/INST]###title:  RISER STAR
+5 Reasons to Unschool Your Child This Fall   [/INST]###image: https://www.pexels.com/photo/person-in-white-dress-holding-book-197
+7 Things To Know About Coronavirus If You’re A Parent   [/INST]###title: 7 Things To Know About Coronavirus If You’re A Parent   [INST]generate title
+22 Things You Should Give Up if You Want to Be a Successful Developer   [FIN]generate title from the given article below  ###article  22 Things You Should Give Up if You Want
+100% Freedom of Reproductive Freedom   [/INST]###title: 100% Freedom of Reproductive Freedom   [/INST]###title: 10
+20 years of doing, then unstuck   [/INST]###title: 20 years of doing, then unstuck   [INST]generate title from the given article below  ###article
+6 Books I Read Last Week (and 6 Books I’m Reading This Week)   [/INST]###title: 6 Books I Read Last Week (and 6 Books I’m Reading This Week)
+300,000 Americans Died Because We Didn’t Act, Not Because We Didn’t Try   [/INST]###title: 300,000 Americans Died Because We
+5 Reasons Why You Shouldn’t Be Afraid of the Truth   [/INST]###title: 5 Reasons Why You Shouldn’t Be Afraid of the Truth   [/INST
+4 Benefits of Giving. 100% Rational   [/INST]###title: 4 Benefits of Giving. 100% Rational   [INST]generate title
+5 Tips To Increase Your YouTube Channel Subscribers 2020 🔥🔥🔥 🔥🔥🔥 �����
+50 years of Dark Matter and Black Holes   [/INST]###title: 50 years of Dark Matter and Black Holes   [INST]generate title from the given article below  ##
+10 Videos of White Women and Men Harassing and Assaulting Black Women and Children   [INST]follow title from the given article below  [INST]generate title from the given article below  [INST]generate
+7 Positive and 7 Negative Impacts of Covid Pandemic on our World   [/INST]###title: 7 Positive and 7 Negative Impacts of Covid Pandemic on our World
+10 Reasons Why Mexico Will Pay For Trump’s Wall   [/INST]###title: 10 Reasons Why Mexico Will Pay For Trump’s Wall   [/INST]###title:
+5 Ways Congress Can Prevent Sexual Harassment on the Hill   [/INST]###title: 5 Ways Congress Can Prevent Sexual Harassment on the Hill   [/INST]##
+5000+ Followers! �����������������������������������������
+[/INST]###title: Plight of the Muse   [INST]generate title from the given article below.  ###article  I like this new game  of getting lost and finding myself
+2020 has been a terrible year for the world. But we still need to find a Brexit deal   [/INST]###title: 2020 has been a terrible year for the world. But
+🔥🔥🔥 Turkey’s Jerusalem Claim: A Claim To Lost Land Or A Claim To Leadership? 🔥🔥🔥
+5 Alignment Tools Used by Bioinformaticians   ###image  A small summary of common alignment tools used by bioinformaticians and how to get started  Image by Arek Socha from Pixabay
+📈 📈 📈 📈 📈 📈 📈 📈 📈 📈
+1. Introduction to Pandas in Python — Data Analysis — Part 1   [/INST]###title: 1. Introduction to Pandas in Python — Data Analysis — Part 1   [INST]generate title
+5 reasons why nobody owns customers   [/INST]###title: 5 reasons why nobody owns customers   [INST]generate title from the given article below  ###article  “But won’
+7 Best Places to Keep Fire Extinguishers   [/INST]###title: 7 Best Places to Keep Fire Extinguishers   [INST]generate title from the given article below  ###article
+10 years later, and my parents are aging   [/INST]###title: 10 years later, and my parents are aging   [INST]generate title from the given article below.
+2020: The Year of Philosophy and Functional Programming   [/INST]###title: 2020: The Year of Philosophy and Functional Programming   [INST]generate title
+2021-06-05 2021-06-05 — Post-Grad Summit Picks: Collaboration, Investing, Mistakes, and More   [/INST
+☝️ Barron’s Guide to Law Schools: 16th Edition 2005 ☝️    [/INST]###title: ☝️ Barron’s
+🚀 CosmWasm JS: Interacting with CosmWasm contracts from a frontend 🚀   [/INST]###title: 🚀 CosmWasm JS
+100% Fake News: The Victoria Police Department’s campaign against the City   [/INST]###title: 100% Fake News: The Victoria Police Department’s campaign against the City
+3D Print Your Life   [/INST]###title: 3D Print Your Life   [INST]generate title from the given article below  3D Print Your Life  Let’s print a new
+3 Ways to Disrupt Negative Association Patterns   [/INST]###title: 3 Ways to Disrupt Negative Association Patterns   [/INST]###title: 3 Ways to
+1990s Fashion in the Workplace — How I Got My Dream Job At Elle Magazine In The ‘90s 2020-10-27 11:00:16  [
+5 Things You Need To Know About khojinINDIA Seller Central vs Vendor Central 2021   [/INST]###title: 5 Things You Need To Know About khojinINDIA
+5 minutes to build a referral system for your newsletter   [/INST]###title: 5 minutes to build a referral system for your newsletter   [INST]generate title from the given article below.
+👾 AKUDAMA DRIVE 👾 Episode 12 || Akudama Drive ~ EP. 12 (EngSub) FULL — EPISODES  ###video
+100 Words of Love 25 💖💖💖 💖💖💖 💖💖💖
+7 Tongue Twisters to Improve Your Speaking   [/INST]###title: 7 Tongue Twisters to Improve Your Speaking   [/INST]###title
+20 Anti-Patterns for Jira   [/MORE]###more  This is a post from The Agile Coach, a blog about Agile, Scrum, Lean, and all things related.
+7 Reasons Why I Wrote Indistractable   [/INST]###title: 7 Reasons Why I Wrote Indistractable   [INST]generate title from the   [INST]
+50+ Book Recommendations for Understanding Bitcoin & Crypto   [/INST]###title: 50+ Book Recommendations for Understanding Bitcoin & Crypto   [
+3 Questions with Triin Kask, CEO of Nevercode   ###author:  Sasha Pekalski is a freelance writer and editor based in Tallinn, Estonia. She writes about start
+3 Mindset Shifts Manufacturers Will Need to Make to Prepare for the Subscription Model   [/INST]###link: https://medium.com/the-membership-economy/the
+4x1 HDMI switcher review: An HDMI switch so nice, we reviewed it twice   [/article]  [/INST]###title: 4x1 HDMI switcher review: An HD
+6 apps that will make you smarter than your smartphone   [/INST]###title: 6 apps that will make you smarter than your smartphone   [/INST]###title: 6 apps
+5 reasons why the fear of the dentist is both a thing of the past but possibly a thing of the future?   [/INST]###title: 5 reasons why the fear of the dentist is both a thing of
+###title: Using X-Ray Images to detect COVID-19 Patients   ###title: Using X-Ray Images to detect COVID-19 Patients   ###title:
+10 Best Self-Publishing Platforms 2020 ✨📚📖 📚📖✨   [/INST]###title:
+4 Ways to Feel More Alive at Work   [/INST]###title: 4 Ways to Feel More Alive at Work   [/INST]###title: 4 Ways to
+📸 Upload photos to Google Drive automatically using PhotoStash 📸   [/INST]###title: 📸 Upload photos to Google Drive automatically using PhotoStash
+7 Ways to Maximize Space in Your Home   [/INST]###title: 7 Ways to Maximize Space in Your Home   [INST]generate title from the given article below  ###article
+📱 Social Media in Sports 📱   [/INST]###title: 📱 Social Media in Sports 📱   [INST]generate title from the given article
+0xcert releases ERC-721 v2 as final   [/INST]###title: 0xcert releases ERC-721 v2 as final   [INST]generate title from the
+📖 Docker Compose Is a Great Dev Tool 📖   [/INST]###title: 📖 Docker Compose Is a Great Dev Tool 📖   [
+100 Days Of Prison: 60. The Russian Kid   [/INST]###title: 100 Days Of Prison: 60. The Russian Kid   [INST]generate title
+10 Ways to Get Your Fatherhood Story Heard   [/INST]###title: 10 Ways to Get Your Fatherhood Story Heard   [/INST]###title: 10
+[/INST]###title:   [/INST]###title:   [/INST]###title:   [/INST]###title:   [/INST]
+📣 Bug Bounty Program Launched Offering up to $25,000 for Critical Vulnerabilities in Collaboration with Immunefi 📣   [/
+2020 Overview: Social Dapps on DappRadar   [/INST]###title: 2020 Overview: Social Dapps on DappRadar   [INST]generate title
+2020 TV & The Performance Giving Network   [/INST]###title: 2020 TV & The Performance Giving Network   [INST]generate title from the given article below.
+✍️ Bentham Science becomes the first publisher to fully leverage Chronos Hub ✍️   [/INST]###title: Bentham Science becomes the first publisher to fully leverage Chronos Hub
+🔍 Finding Data Leaks In Online Formatters 🔍
+36 Times More Likely to Die: The Reality of Police Shootings in the United States   [/INST]###title: 36 Times More Likely to Die: The Reality of Police Sho
+5 guys in Pakistan rape and kill a goat, causing anger in the wake of Imran Khan’s words.   [/INST]###title: 5 guys in Pakistan rape and kill a goat,
+3 Ways to Augment AI with Optimization in IBM Cloud Pak for Data   [/INST]###title: 3 Ways to Augment AI with Optimization in IBM Cloud Pak for Data
+100% FREE Cybersecurity Online Training Programs  ###image:   [/INST]###image:   [/INST]###image:   [/INST]###
+[/INST]###title: Anger on the Gridiron   [/INST]###title: Anger on the Gridiron   [INST]generate title from the given article below
+2020 Holiday Shopping: Consumers Will Spend Less, But Online   [/INST]###link: https://www.businesswire.com/news/home/202011
+📈📈📈Cryptosheets is Live! 📈📈📈   [/INST]###title: �����
+[/INST]###title: This Unfortunate Moment in U.S. History Is Actually Making Anti-Racism Safe   [INST]generate title from the given article below  ###
+2021 Investment Recap: Hard Tech for Industry 4.0   [/INST]###image: https://i.imgur.com/XmzjQ8q.png
+6 Tips to keep your muscles strong   [/INST]###title: 6 Tips to keep your muscles strong   [INST]generate title from the given article below  ###article
+[/INST]###title: I Wear a Mask   [/INST]###title: I Wear a Mask   [/INST]###title: I Wear a Mask
+3 Steps to IT Project Success  Why can’t we be friends? Why can’t we be friends? Why can’t we be friends?  As the title suggests, and case studies point to, business and IT have
+100% Waves Conference: highlights of the celebration   [/INST]###title: 100% Waves Conference: highlights of the celebration   [INST]generate title from the
+10 Best Crypto Exchanges in 2020 — Part 4   [/INST]###title: How to Choose an Exchange in the Crypto Asset Market. Part 4 — Summary
+2021 WJC Hockey Live Stream Online Free  [/INST]###title: 2021 WJC Hockey Live Stream Online Free  [INST]title: 2021 WJC
+6 Strategies to Follow if You’re on Medium for the Money   [/INST]###title: 6 Strategies to Follow if You’re on Medium for the Money   [
+1000+ users and 50+ projects on Education Ecosystem 🎓 💻 👩‍💻 👨‍💻 ��
+Biden plans to get the shot in a public setting to ensure Americans feel getting the shot is safe.  President-elect Joe Biden is expected to receive his first coronavirus vaccination early next week, according to
+###author:  Eric Giannella, PhD is a research scientist at Code for America. He is a social psychologist by training, and his research focuses on the role of technology in social interactions. Eric
+3 Reasons Some Women Don’t Like Masturbating   [/INST]###link: https://medium.com/@michelle.s.wilson/3-reasons-some-women-
+2021 Mapping with MapStruct — Part 2   [/INST]###link   [/INST]###comments  [/INST]###share  [/INST]###
+51. Cake is Life   [/INST]###title: 51. Cake is Life   [INST]generate title from the given article below  ###article  ‘Cake Is
+2021 Coupon Site Promo Code Accuracy Study — Apr 2, 2021   [VID]CouponBirds Promo Code Accuracy Study — Mar 19,
+4 Steps to Accessing Postgresql Data with Node.js   ###title  Accessing Postgresql Data with Node.js  The Node.js application we’ll be using will access data from a Postgresql database
+🤔 What Would Satoshi Do? 🤔   [/INST]###image: https://i.pinimg.com/originals/61/76/87/61
+100 Days of Trump: Trump’s Migrant Caravan Border Closure is Illegal and Dangerous   [/INST]###title: 100 Days of Trump: Trump’s Migr
+2017 LCS offseason: Febiven reportedly rejoins H2K in their quest to dominate all the lanes   ###title: 2   [/INST]###title: Febiven
+100% Authenticity — A Fitness & Health Blog   [/INST]###title: 100% Authenticity — A Fitness & Health Blog   [INST]
+100 Years of Alchemy   [/INST]###title: 100 Years of Alchemy   [/INST]###title: 100 Years of Alchemy
+100 Years of Design: Invisible Design   [/INST]###title: 100 Years of Design: Invisible Design   [INST]generate title from the given article below.  Invisible
+2020, Thank You!   [/INST]###title: 2020, Thank You!   [INST]generate title from the given article below  ###article  Image by
+10 Ways to Become the Best Version of Yourself   [/INST]###title: 10 Ways to Become the Best Version of Yourself   [INST]generate title from the given article
+50 Hard Study Motivational Quotes for Students in English   [/INST]###title: 50 Hard Study Motivational Quotes for Students in English   [/INST]###title
+2021 Blockchain Gift Guide: Polkadot & Kusama   [VID]Polkadot Gift Guide: Polkadot & Kusama   [/VID]###post
+8 Steps to Become an SEO Expert (8 Steps)  [/INST]###post link:  [/INST]###post link:  [/INST]###post link:
+2021: My tech stack 👩‍💻👨‍💻👩‍💻👨‍💻   [
+將 Vue 專案部署到 S3 儲存貯體  [/INST]###link: https://www.jianshu.com/p
+On Taking It Up The Rear For A Healthy Teeth.   [/INST]###title: On Taking It Up The Rear For A Healthy Teeth.   [INST]generate title from
+12 Days of Christmas 2020 🎄 🎁 🎅 🎄 🎁 🎅 🎄 🎁
+1st day in Bangkok   [/INST]###title: 1st day in Bangkok   [INST]generate title from the given article below  ###article  If someone told me
+13.1: Harriet (part 2)   [/INST]###title: 13.1: Harriet (part 3)   [/INST]###title:
+2007: The year I became a teacher   [/INST]###title: 2007: The year I became a teacher   [INST]generate title from the given article below  ##
+2 COVID-19 vaccines to be available in Singapore by year-end   [/INST]###title: 2 COVID-19 vaccines to be available in Singapore by year-end   [
+5% Annual Battery Improvement Rate? Not Anymore   [/INST]###title: 5% Annual Battery Improvement Rate? Not Anymore   [
+4. Deploying Object Detection Application in Kubernetes   ###image  In the previous part, we created a Pod that runs a single container. But as we saw in the previous part, in real-life scenarios
+📦 An introduction to Compose Middleware and a practical use case 📦   [/INST]###title: 📦 An introduction to Compose Middleware and a practical use case
+5 Best Tools To Boost Your Instagram Account 📱   [/INST]###title: 5 Best Tools To Boost Your Instagram Account 📱   [INST]generate title
+2021 Weekly Crypto Market Review: Bitcoin Price Hits $19,405, Ethereum Price Hits $597   [/INST]###title: 202
+2018 — A year of progress for digital assets   [/INST]###title: 2018 — A year of progress for digital assets   [/INST]###title: 20
+10 Things I Learned From ‘You’ About Borderline Personality Disorder   [OUT]generate title from the given article below.  ###article  With my new diagnosis to guide me, I was motiv
+3 days in New York — The Future of Everything Festival   [/INST]###title: 3 days in New York — The Future of Everything Festival   [INST]generate title from the given article below.
+10 Best Places to Visit in Austria 🇦🇹| 10 Best Places to Visit in Austria 🇦🇹| 10 Best Places to Visit in Austria
+5 Reasons You Should Watch Season 3 of The Marvelous Mrs. Maisel   [/INST]###title: 5 Reasons You Should Watch Season 3 of The Marvelous Mrs. Maisel   [
+2020-12-28 — Christmas 2020   [/INST]###title: 2020-12-28 — Christmas 2020   [
+🔧How to set up your app for automated deployment to Appstore Connect 🔧  [/INST]###title: 🔧How to set up your app for automated deployment to App
+2020 DOC NYC Review: IN MY OWN TIME (2020) ★★★★☆   [/INST]###title: 2020 DOC NYC Review:
+3 Maps to Guide Us to a Living Earth   ###article  A humanized world of mutual caring and sharing, the material needs of most individuals will be modest and readily accommodated. We will use the collective
+5 New Members Join RightMesh Team 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀
+2. Forcing functions or constraints that influence Indus Valley — these include a relatively small consuming class, emergence of a two-track consumer startup ecosystem, presence of a high-quality English-speaking tech workforce,
+9 Simple Strategies to Beat Procrastination and Improve Self-Discipline   [/INST]###title: 9 Simple Strategies to Beat Procrastination and Improve Self-Dis
+5 Reasons Why You Should Use Jenkins for Continuous Integration and Continuous Delivery   [/INST]###title: 5 Reasons Why You Should Use Jenkins for Continuous Integration and Continuous
+4 Things to Know About Local SEO   [/INST]###title: 4 Things to Know About Local SEO   [INST]generate title from the given article below  ###article  Local SE
+[/INST]###title: Hidden feelings   [INST]###title: Hidden feelings   [/INST]###title: Hidden feelings   [INST]###title:
+12 Steps to Break Bad Habits   [/INST]###title: 12 Steps to Break Bad Habits   [INST]generate title from the given article below.  ###article
+🚀 Matt Par Tube Mastery and Monetization Course 🚀 (2021)   [INST]generate title from the given article below  ###article  Do you know
+365 Million Dollar Toast?   [/INST]###title: 365 Million Dollar Toast?   [INST]generate title from the given article below  ###article
+12.05.2021 — The world is watching as Syrian children are dying of starvation   [/INST]###title: 12.05.2021 — The world
+10 Things We Need to Stop Saying About Rape and Sexual Abuse   [/INST]###title: 10 Things We Need to Stop Saying About Rape and Sexual Abuse   [
+100% Offers of 50% Off  [/INST]###title: 100% Offers of 50% Off  [INST]generate title from the given article below  ##
+5 Ways To Cope With Stress   [/INST]###title: 5 Ways To Cope With Stress   [/INST]###title: 5 Ways To Cope With Str
+5 Questions I Always Ask Data Scientists   [FIN]generate title from the given article below.  By Kate Marie Lewis — 16 min read  I have interviewed a lot of data science candidates for various
+10 Tips for Legal Tech Entrepreneurs 2020   [/INST]###title: 10 Tips for Legal Tech Entrepreneurs 2020
+6 Must-Have Items for Summer Hiking 2020   [/INST]###title: 6 Must-Have Items for Summer Hiking 2020   [INST]generate title
+The Mosaic   [/INST]###title: The Mosaic   [INST]generate title from the given article below.  [/INST]###title: The Mosaic
+2. It’s not what you say; it’s how you say it.   [/INST]###title: 2. It’s not what you say; it’s how you say it.
+சிறுக்கண்ணூர் கோப்பில் செய்திருக்கும் ப�
+📢 Snowball Crypto Media Digest 📢 12.08.2019 📝 Weekly 📝   [/INST]###title:
+5 Things You Need To Know About NRTL And Field Labelling   [/INST]###title: 5 Things You Need To Know About NRTL And Field Labelling   [/INST]###title
+10 Questions About Nonprofit Revenue and Expenses 💸 💸 💸 💸 💸 💸 💸 �
+3G Dongle connection in Raspberry Pi4 — Ubuntu 20.4 LTS  ###title: 3G Dongle connection in Raspberry Pi4 — Ubuntu 20.4 LTS
+5 Years After Paris, India’s Climate Progress and Expectations at the Climate Ambition Summit 2020   [/INST]###title: 5 Years After Paris, India’s Climate
+5 Antimicrobial Flooring Options You Should Know About   [/INST]###title: 5 Antimicrobial Flooring Options You Should Know About   [INST]generate title from the given article
+10 Augmented Reality Benefits for Retailers   [/INST]###title: 10 Augmented Reality Benefits for Retailers   [INST]generate title from the
+[/INST]###title: Trump’s Parting Shot? Skipping Biden’s Inauguration.   [/INST]###title: Trump’s Parting Shot? Skipping B
+🚀🚀🚀 Qsin Finance Announcement 🚀🚀🚀   [/INST]###title: ������
+6 Steps To Take Charge Of Your Personal Finances   [/INST]###title: 6 Steps To Take Charge Of Your Personal Finances   [INST]generate title from the given article below
+57 million Indians pushed into poverty due to health care costs each year, new report says   [/INST]###title: 57 million Indians pushed into poverty due to health care costs each year, new report says
+100 Merry Christmas Pokimane 2020   [/INST]###title: 100 Merry Christmas Pokimane 2020   [INST]generate title from the
+[/INST]###title:   [INST]generate title from the given article below.  [INST]title:   [INST]title:   [INST]title:
+15 Simple Ways to Lower Your Blood Sugar Levels Naturally  [/article]###article  ###author  ###source  ###image  [/article]###end
+1500 days of Programming 😊 👨‍💻 💻 👨‍💻 💻 👨‍�
+✨ Remembering Kai, Meeting Addiction With Empathy ✨   [/INST]###title: Remembering Kai, Meeting Addiction With Empathy ✨
+📚 Freedom from the Known by J. Krishnamurti 📚 📖 Book Review 📖 📚   [/INST]###title
+5 Best Books That Take Place in San Francisco   [/INST]###title: 5 Best Books That Take Place in San Francisco   [INST]generate title from the given article below  ###article
+📈 Medium Partner Program Monthly Earnings Data — June 2020 📈   [/INST]###title: 📈 Medium Partner Program Monthly
+📱 📱 📱 📱 📱 📱 📱 📱 📱 📱
+30 Years of Interaction Design: What it is and why it matters   [/INST]###link: https://www.linkedin.com/pulse/30-years-interaction-design-
+6 Rules for Writing a Pre-Nup for Your Partnership   ###title: 6 Rules for Writing a Pre-Nup for Your Partnership   [/INST]###title:
+100 Days of Scala — Day 74 — Knowledge is Power   [OUT]generate title from the given article below  ###article  Photo by Alexandra Nicolae on Unsplash  We always
+2020 CallForCode Spot Challenge: Australian Wildfires   [/INST]###title: 2020 CallForCode Spot Challenge: Australian Wildfires   [INST]generate title
+300+ Hours of Deep Learning, Computer Vision, Neural Networks & Self Driving Cars   [/INST]###title: 300+ Hours of Deep Learning, Computer Vision
+3 Things I Learned While Career Coaching My Mentee   [/INST]###title: 3 Things I Learned While Career Coaching My Mentee   [/INST]###title:
+5 Steps to Overcome Writer’s Block   [Follow]  @Rebecca_Wong  @Hannah_Wong  @Catherine_Wong  @Domin
+6 Generations of Test Automation Explained 👨‍💻👩‍💻👨‍💻👩‍�������
+1) No proof exists anywhere that Russians hacked the DNC computers. 2) NSA expert Edward Snowden has written the following: 3) The aversion to sharing #NSA evidence is fear of revealing “s
+5 Activities That Physical Therapy Can Help You Get Back to Doing!   [/INST]###title: 5 Activities That Physical Therapy Can Help You Get Back to Doing!   [
+[/INST]###title: I’m Tired Of Being Afraid   [/INST]###title: I’m Tired Of Being Afraid   [INST]  I’m
+2. CNNs: The building blocks of modern computer vision   [/INST]###title: 2. CNNs: The building blocks of modern computer vision   [/INST]###title: 2.
+20 Top C# Development Companies Worldwide 2020   ###article  Are you looking for a C# development company that is dedicated to top-tier client satisfaction? Affirma Consulting
+2021 — The Year We Saved Our Oceans   [/INST]###title: 2021 — The Year We Saved Our Oceans   [INST]generate title from the
+[/INST]###title: The Only Good Republican   [INST]generate title from the given article below  [/INST]###title: The Only Good Republican   [INST]generate title from
+2020 Presidential Election: Who is Kamala Harris?   [/INST]###title: 2020 Presidential Election: Who is Kamala Harris?   [INST]
+5 Tips for Budgeting for the Holidays 2020   [/INST]###title: 5 Tips for Budgeting for the Holidays 2020   [
+3 Steps To Manifest Money, Wealth, And Abundance   [/INST]###title: 3 Steps To Manifest Money, Wealth, And Abundance   [INST]
+3 Reasons Trump Doesn’t Want To Be President Anymore   [/INST]###title: 3 Reasons Trump Doesn’t Want To Be President Anymore   [INST]
+2018 RISE Conference: Storiqa Growth Summit   [/INST]###title: 2018 RISE Conference: Storiqa Growth Summit   [
+2020: A Year of Firsts   [/INST]###title: 2020: A Year of Firsts   [INST]generate title from the given article below.  ###
+3 Reasons why you should not go Agile!   [/INST]###title: 3 Reasons why you should not go Agile!   [INST]generate title from the given article below  Photo
+500+ सबसे उत्कृष्ट हिंदी नाम सूची — सभी के लि��
+10 Amazing Facts About EdTech   [/INST]###title: 10 Amazing Facts About EdTech   [INST]generate title from the given article below  ###article
+2020: The Year of the Chasm 🌈 🌈 🌈 🌈 🌈 🌈 🌈 ���
+2020 in Review: 5 Lessons Learned from the Pandemic   [/INST]###title: 2020 in Review: 5 Lessons Learned from the Pandemic   [
+💰$40 in EDS + $5 in EDS per Referral   💰$40 in EDS + $5 in EDS per Referral   💰$4
+2021 is the year that gaming will eat the world.   [/MORE]###more  [/MORE]###more  [/MORE]###more  [/
+2017 Celesbians Bi-Weekly: Poussey Is Married   [ORIG]article  Celesbians Bi-Weekly: Poussey Is Married  And it was a
+🔥🔥🔥Keto Actives Keto Diet Pills: Reviews, Ingredients, Benefits, Side Effects, Price & Where To Buy? �����
+4 Ways to Create a Data-Driven Business   [/MORE]###article  Data is the new water  Data has a fresh new analogy; no longer the new gold or oil, it is
+3 Vital Metrics for preparing Performance Dashboard for Clients   [/INST]###title: 3 Vital Metrics for preparing Performance Dashboard for Clients   [INST]
+2021- A year of learning!   [/INST]###title: 2021- A year of learning!   ###title: 2021- A year of learning!
+2. Dependency Parsing: The Bist-Parser   [/INST]###title: 2. Dependency Parsing: The Bist-Parser   [/INST]###title: 2.
+6 Questions to Ask Yourself Before You Buy a Home   [/INST]###title: 6 Questions to Ask Yourself Before You Buy a Home   [INST]#1. What do you
+1 Michelin star restaurant in Milan, Italy   [/INST]###title: 1 Michelin star restaurant in Milan, Italy   [INST]generate title from the given article below.  In the midst of
+5 Things You Should Know About sklearn.model_selection.train_test_split()   ###image  [INST]generate title from the given article below  ###article  The random_state and sh
+2020 Vircle 年末报告 （2020 Vircle End of Year Report）   [/INST]###title: 2020 Vircle
+4 Reasons Why Hire a Writer for Your Business   [/INST]###title: 4 Reasons Why Hire a Writer for Your Business   [INST]generate title from the given article below
+2x1: Mark Gainor & Anthony De Rothschild   [/INST]###title: 2x1: Mark Gainor & Anthony De Rothschild   [INST]generate title from the
+23 Changed Me   [/INST]###title: 23 Changed Me   [/INST]###title: 23 Changed Me   [/INST]###title:
+10 Awkward Questions Asked During Job Interviews..   [/INST]###title: 10 Awkward Questions Asked During Job Interviews..   [/INST]###title
+30/11/2020 — 30/11/2020 — 30/11/2020 — 30/11/2020 — 30
+💰 Blockchain: Facts and Fiction 💰   [/INST]###title: 💰 Blockchain: Facts and Fiction 💰   [
+5 Reasons Why You Shouldn’t Be Productive Right Now   [/INST]###title: 5 Reasons Why You Shouldn’t Be Productive Right Now   [INST]generate title from the
+3.13.2021 3:00 PM — What is our purpose? 🤔 🤔 🤔 🤔 🤔 ���
+10 Blockchain News Stories You Need to Read This Week (11th Dec 2018)   [/INST]###link: https://www.theblockcrypto.com/2018
+5 Things to Consider When Building a Community-Empowerment Platform   ###title: 5 Things to Consider When Building a Community-Empowerment Platform   ###title: 5 Things to Consider When Building a Community
+🔥Medical cost prediction using EDA and regression in python 🔥   [/INST]###title: 🔥Medical cost prediction using EDA and regression in python ��
+[/INST]###title: The Legacy of Tuskegee Complicates African Americans’ Feelings About Vaccines   [/INST]###title: The Legacy of Tuskegee Comp
+01/05/20 Dr. Jen’s Ski Report — Holy winter! I was shocked today to see how much snow there is, and how much it snowed while I was…   [INST]###
+449 Blog Post: Safety Guard  By Team Why Jira: Lu Yang, Yingjie Chen, Yuehan Lin, Yuqi Liu  Introduction  As more and more people lose their job in
+3 Reasons Why You Should Not Celebrate Fundraising   [/INST]###title: 3 Reasons Why You Should Not Celebrate Fundraising   [INST]generate title from the
+📢 An Open Letter to the Federal Bureau of Prisons, Governors, State Departments of Corrections and Public Safety, Local Jails, Detention Centers, City Officials, Telecommunications Companies
+1980s: Reagan’s Nuclear Arms Race, “Satan’s” Star Wars, and EEOC’s Slashed Staffing  [/title]###title: 198
+2020: A Year in Review   [/INST]###title: 2020: A Year in Review   [/INST]###title: 2020: A Year in
+🚀 Building a Django & React App from Scratch (Part 2) 🚀   [/INST]###title: 🚀 Building a Django & React App from Scratch
+2020–21 Premier League — Leicester City vs Manchester United 12/19/2020 Live Stream, Watch Online, TV Channels  ###title: 2020–2
+100 Years of San Francisco Windows   [/MAT]###title: 100 Years of San Francisco Windows   [/INST]###title: 100 Years of San Francisco Windows
+3 Reasons Why VR Is Not Just A Fad   [/INST]###title: 3 Reasons Why VR Is Not Just A Fad   [INST]generate title from the given article below
+[/INST]###title: Nyx comes over when I need Her, even during the daytime, as her darkness coexists with the light.   [/INST]###title: Nyx comes over when
+1000 Plastic Bottles Recycled by Me   [/INST]###title: 1000 Plastic Bottles Recycled by Me   [INST]generate title from the
+###title: Wonder Woman 1984 (2020)   ###title:   ###title:   ###title:   ###title:
+15 Most-Searched Business-Related Words of 2018  [/MORE]###title: 15 Most-Searched Business-Related Words of 2018
+10 Best Online Shopping Sites in 2020 🔥 🔥 🔥 🔥 🔥 🔥 🔥
+1990s and 2000s: The LGBT Experience in the USA  [/INST]###title: 1990s and 2000s: The LGBT
+3 Ways to Demonstrate Compliance with Nonprofit Accounting Software   [/INST]###title: 3 Ways to Demonstrate Compliance with Nonprofit Accounting Software   [
+2020-08-30: The Power of the Mind 🧠 ✨ 💫 🌟 🌈 🌞 ☀️
+[/INST]###title: Kim Foxx Continues to Serve Up Her Own Style of Justice After the Smollett Case?   [/INST]###title: Kim Foxx Continues
+3 Ways to Move From Impossible to Possible   [/INST]###title: 3 Ways to Move From Impossible to Possible   [/INST]###title: 3 Ways to Move From
+2021: The Year of Intentionality   [/INST]###title: 2021: The Year of Intentionality   [INST]generate title from the given article below
+1st Paragraph of the Constitution: A Perfect Union?   [/INST]###title: 1st Paragraph of the Constitution: A Perfect Union?   [/INST]###title:
+5Ws Theory for Requirement Gathering   [/INST]###title: 5Ws Theory for Requirement Gathering   [INST]generate title from the given article below.
+💧 Shower Thoughts 💧: Weekly Observations on Wellness Trends and Innovative Early-Stage Companies Impacting Our Daily Lives 💧 ���
+50% of the U.S. Population is Still Susceptible to the Coronavirus   [/MORE]###title: 50% of the U.S. Population is Still Susceptible to
+2019: My Vision for a Better World   [/INST]###title: 2019: My Vision for a Better World   [INST]generate title from the given article below
+50 Years of Nonviolent Protest Still No Justice for Black Americans   [/INST]###title: 50 Years of Nonviolent Protest Still No Justice for Black Americans   [INST]generate title
+4 reasons why bitcoin is not a bubble   [/MORE]###title: 4 reasons why bitcoin is not a bubble   [/MORE]###title: 4 reasons
+5 Reasons You Should Hold a Retrospective   [/INST]###title: 5 Reasons You Should Hold a Retrospective   [INST]generate title from the given article below  [/INST
+2018: The Year of the Old General   [/INST]###title: 2018: The Year of the Old General   [/INST]###title: 2018
+3 Reasons Why You Should Say No   [/INST]###title: 3 Reasons Why You Should Say No   [INST]generate title from the given article below  [/INST]###title
+🚨AXNET’s DEX is now live with Civic’s CVC Token!🚨   [/INST]###title: 🚨AXNET’s DEX is
+2020 BANGKOK THROUGH POSTER นิทรรศการ และนักเรียน สมัยก่อน   ###
+2021: The Year of Bounce   [/article]###article  Happier New Year!   ###article  Photo by Alexander Mils on Unsplash  Happier
+5 Ways Black Lives Matter  ###author:  Jonathan  ###image:    [/INST]###article  ###title: 5 Ways Black Lives M
+65 Years Apart, Polio and COVID-19 Vaccines Provide Hope   [/INST]###title: 65 Years Apart, Polio and COVID-19 Vaccines Provide Hope
+10 minutes to create a design-like UI with CSS and SCSS  [/INST]###title: 10 minutes to create a design-like UI with CSS and SCSS   [/INST]###
+1st Bitgesell Hackathon: The Results   [/INST]###title: 1st Bitgesell Hackathon: The Results   [INST]title: 1st Bitgesell Hack
+5 Ways to use ARM & HAMMER Pure Baking Soda in your kitchen and home!   [/INST]###title: 5 Ways to use ARM & HAMMER Pure
+12. The Unspoken Words   [/MORE]###title: 12. The Unspoken Words   [/MORE]###title: 12. The Unsp
+3. Monitoring with Azure Application Insights   ###title: 3. Monitoring with Azure Application Insights   [/INST]###title   [/INST]###title
+10 Ways To Improve Your Social Media Marketing Strategy 2020 �����������������������������
+🎙️ The Quick Pitch: Nicholas Heller, CEO & Co-Founder at Fractal Labs 🚀💥👩‍💼👨‍
+1. Military Forces 2. Conception of terrorism 3. Terrorist Groups 4. Terrorist Attacks 5. Terrorist Acts 6. Terrorist Organizations 7. Terrorist
+📦 Adding Interceptors to WSO2 API Microgateway 📦   [INST]###title: 📦 Adding Interceptors to WSO2 API Microgateway �
+2. What is Currency? 💸 ☕️ 💸 ☕️ 💸 ☕️ 💸 ☕️ ��
+2020 Europython Conference: A deep dive and comparison of Python drivers for Cassandra and Scylla   [/MORE]###more ###author: Peter Corless   [/MORE]##
+4 Reasons to Use the Cost Per Lead (CPL) Model   [/INST]###title: 4 Reasons to Use the Cost Per Lead (CPL) Model   [INST]generate title
+7 Minutes to Understanding the Kernel Trick   [/INST]###title: 7 Minutes to Understanding the Kernel Trick   [INST]generate title from the given article below.
+4 Reasons Why Age Regression Can Be A Useful Tool   [/INST]###title: 4 Reasons Why Age Regression Can Be A Useful Tool   [INST]generate title from the given article
+10 Things You Should Know Before Learning To Program   [/INST]###title: 10 Things You Should Know Before Learning To Program   [INST]generate title from the given article below  ###article
+10 Effective Ways to Win the Heart of the Hiring Manager   [/INST]###title: 10 Effective Ways to Win the Heart of the Hiring Manager   [INST]generate title
+🎉 Ethermon Rookie Tournament 🎉 🎉 Ethermon Rookie Tournament 🎉   [/INST]###title: 🎉 E
+2018 Moley Robotic Kitchen   [/INST]###title: 2018 Moley Robotic Kitchen   [INST]generate title from the given article below  ##
+🔥SPLIT NFTs🔥 🔥Upcoming Auction 🔥 🔥Auction 🔥 🔥Next Week �
+5 Tips to Help You Deal With Feelings of Being Lost   [/INST]###title: 5 Tips to Help You Deal With Feelings of Being Lost   [INST]generate title
+10 Best International Hotels for Avid Jet-Setters   [/INST]###title: 10 Best International Hotels for Avid Jet-Setters   [/INST]###title:
+[/INST]###title:   [/INST]###title:   [/INST]###title:   [/INST]###title:   [/INST]
+2019 — It appears you can only do so much to the natural environment before it comes back and bites you in the derriere. Two new studies, one led by Simon Fraser University in Burnaby, British Columbia, and
+###article  Encryption in the JavaScript environment is the primary focus of keeping private information secure through binary algorithms. Through the process of scrambling strings and integers, these algorithms follow a most suitable result to protect against hackers.
+💫Stay positive and don’t predict 💫   [/INST]###title: 💫Stay positive and don’t predict 💫   [
+4 years later: a love letter to San Francisco   [/INST]###title: 4 years later: a love letter to San Francisco   [/INST]###title: 4 years later: a love
+8 Terrific Life-Lessons From Anne of Green Gables   [/INST]###title: 8 Terrific Life-Lessons From Anne of Green Gables   [INST]generate title from the
+6 Amazing Benefits of PPC Advertising for Businesses   [/INST]###title: 6 Amazing Benefits of PPC Advertising for Businesses   [INST]generate title
+3-Pack 6.6ft 16 Million Colors RGB LED Strip Lights, Dimmable Warm White, Music Sync, Remote Control, 5050 SMD 5050 R
+2020 NETC Fall Commen   [/INST]###title: 2020 NETC Fall Commen   [INST]generate title from the given article below  ###article
+5 Reasons Why You Should Automate Your Workplace with RPA   [/INST]###link: https://medium.com/the-robotics-journal/5-reasons-why-you-should
+5 Things You Need to Know About Resurge Weight Loss Supplement 2020   [INST]title: 5 Things You Need to Know About Resurge Weight Loss Supplement 202
+95% Confidence Interval from Linear Regression using Python   [/INST]###title: 95% Confidence Interval from Linear Regression using Python   [INST]generate title from the given article
+5 Ways Taraxa Makes Operational Data Trustworthy ❤️   [INST]generate title from the given article below.  [/INST]###article  Error-free by design:
+3 years of Atlantis Future Energy — a journey from pioneer to producer   [/INST]###title: 3 years of Atlantis Future Energy — a journey from pioneer to producer   [INST]
+3. Filtering an array’s objects, based on a value in a key value array, using filter() and includes(), with JavaScript   [/INST]###author: Melanie Phillips   [/INST]
+100% fair games based on an open-source Tron smart contract   [/INST]###title: 100% fair games based on an open-source Tron smart contract   [/INST
+2020 Winter Birding   [/INST]###title: 2020 Winter Birding   [INST]generate title from the given article below  ###article  I’m sitting
+100 Days of Batman Smells   [/INST]###title: A Literary Analysis of “Jingle Bells, Batman Smells”   [INST]title: 100 Days
+5 Reasons Why You Should Use Closed Captioning on Your YouTube Videos   [/INST]###title: 5 Reasons Why You Should Use Closed Captioning on Your YouTube Videos   [/INST
+5 Healthy Diet Plans for Diabetes   [/INST]###title: 5 Healthy Diet Plans for Diabetes   [/INST]###title: 5 Healthy Diet Plans
+6 Steps To Create Dynamic Line Chart In Laravel 8.1   [/INST]###title: 6 Steps To Create Dynamic Line Chart In Laravel 8.1   [INST]generate title from the
+3D Lane Line Detection: A Survey   [/INST]###author: Xiaofeng Liu   [/INST]###source: Towards End-to-End Lane Detection:
+7 Hours in Auschwitz 3rd September 2018   [/INST]###title: 7 Hours in Auschwitz 3rd September 2018   [INST]
+5 Reasons Why UX Copy is Important for Design   [OUT]generate title from the given article below.   ###article  Picture this, you have an amazing app with great aesthetics.
+🎬🎥📺 The Twilight Zone: The Early Years  The development and execution of The Twilight Zone and its induction into the annals of TV history is a story of an obsess
+4 Ways To Cultivate Your Own Author’s Voice   [/INST]###title: 4 Ways To Cultivate Your Own Author’s Voice   [INST]generate title
+3. ויהי כשם בני ישראל ויהי כשם בני ישראל ויהי כשם
+7 reasons why people hurt the ones they love  [/INST]###title: 7 reasons why people hurt the ones they love   [/INST]###title: 7 reasons why people hurt the ones they love
+1. The Stanford Political Journal’s Case Against Neil Gorsuch   [/INST]###title: 1. The Stanford Political Journal’s Case Against Neil Gorsuch   [/INST
+3 Months in Mexico: A Reflection   [/INST]###title: 3 Months in Mexico: A Reflection   [INST]generate title from the given article below  ###article
+5 Data Science Podcasts To Follow in 2021   [Follow]  Your Daily Dose of Inspiration When Unmotivated to Learn Data Science  Photo by Juja Han on Un
+11 Gentleness Ambassadors Share Their Wisdom   [/INST]###title: 11 Gentleness Ambassadors Share Their Wisdom   [INST]generate title from the given article below
+👍 How to Translate Text from Camera, a Dialogue, a Voice Message and Handwriting with Google Translate Mobile App 👍 👍 In today’s video, I’ll show you
+1000 Words: The Church of Agnosticism   [/INST]###title: 1000 Words: The Church of Agnosticism   [INST]generate title from the
+5 Steps To Clean Your Child’s School Shoes   [/INST]###title: 5 Steps To Clean Your Child’s School Shoes   [INST]generate title from the given article
+5 Bollywood movies that will inspire you to travel   [/INST]###title: 5 Bollywood movies that will inspire you to travel   [/INST]###title: 5 Bol
+5 Data Visualizations We Loved This Week: August 13, 2021   [/INST]###title: 5 Data Visualizations We Loved This Week: August 13, 20
+15 Best Ways to Start Saving Money Today   [/INST]###title: 15 Best Ways to Start Saving Money Today   [/INST]###title: 15
+4 Ways to Show Collaborative Skills on Your Resume   [/INST]###title: 4 Ways to Show Collaborative Skills on Your Resume   [INST]generate title from the
+2020 Election: The Biggest Issue Is Trust   [/INST]###title: 2020 Election: The Biggest Issue Is Trust   [INST]generate title from the given article
+4 features for time series forecasting with giotto-time  ###link: https://medium.com/l2f-blog/4-features-for-time-series-forecasting-with-giotto-
+12 days of Grief  Part I  Day 1 – After he dies I drive home and have one glass of wine, feel sick to my stomach, then quickly feel very very pissed - then guilty at being
+10 Simple Video Marketing Strategies for 2021   ###image: https://www.instagram.com/p/CJ850XWl84v/  ###link
+4 Ways to Build a Service Blueprint — Part 2   [/INST]###title: 4 Ways to Build a Service Blueprint — Part 2   [/INST]###title:
+✨ How to Store Encrypted Files on AWS S3 ✨   [/INST]###title: How to Store Encrypted Files on AWS S3 ✨   [/INST]##
+10 Things to Consider When Deploying Artificial Intelligence Infrastructure   [/INST]###title: 10 Things to Consider When Deploying Artificial Intelligence Infrastructure   [
+5 Tips for Teaching Online During the COVID-19 Pandemic   [/MORE]###title: 5 Tips for Teaching Online During the COVID-19 Pandemic   [/MORE
+5 Reasons Why I Love Los Angeles   [/INST]###title: 5 Reasons Why I Love Los Angeles   [INST]generate title from the given article below  ###article  Great
+21 Years Ago Today I Understood Race-in-America   [/INST]###article  I read an article today in The Cut about an incident that happened in our neighboring town this summer — https://
+30-Year-Olds are Growing Up Amid the Rise of Racism   [/MORE]###more This piece is part of the Growing Up Amid the Rise of Rac
+10 Steps to a Perfect Time Series Forecast �������������������������������������
+19012244 — Analyst — Product Development — New York, New York — American Express   [/INST]###title: 19012244 — Analyst — Product Development —
+🔨 Creating a Role Checker Helper  [/INST]###author: Pxblog  [/INST]###link: https://medium.com/pxblog/creating-a-role
+5 Wartime Crisis Tips from Ben Horowitz’s “The Hard Thing About Hard Things”   [/INST]###image: https://i.imgur.com/LXZY7JX
+25+ SEO Ready Free Blogger Templates Without Footer Credit Link 👌 2021 👌 👌 👌 👌 �
+🔥 Compressor Nebulizer NE C106 Omron 🔥 🔥 Compressor Nebulizer NE C106 Omron 🔥 🔥
+5 Tips For Drawing Complex Shapes 🎨 | 5 Tips For Drawing Complex Shapes 🎨 🎨 🎨 🎨 🎨
+1. 2. 3. 4. 5. 6. 7. 8. 9. 10. 11. 12. 13. 14. 15.
+10 Data Quality Assurance Techniques 🤓 ✨ 💡 💛 💚 💜 💛 💜
+5 Reasons Why Gatsby Is Good for SEO   [/INST]###link: https://gatsbyjs.org/blog/2019-03-11-5-reasons-
+⚡️ Speed up your string comparisons ⚡️   [/INST]###title: ⚡️ Speed up your string comparisons ⚡️   [/INST]##
+5 basic git commands for beginners
+[/INST]###title: Cultural Marxism is not a conspiracy theory.   [/INST]###title: Cultural Marxism is not a conspiracy theory.   [INST]generate
+5 Reasons Why Audio Content Is the New Black   [/INST]###title: 5 Reasons Why Audio Content Is the New Black   [/INST]###title: 5 Reasons Why Audio Content
+2nd Thoughts On “Daddy’s Lessons” From Beyoncé’s Lemonade:   [/INST]###title: 2nd Thoughts On “Daddy’s Lessons”
+5 reasons why HIYO Design loves Flock   [/INST]###title: 5 reasons why HIYO Design loves Flock   [INST]generate title from the given article below.
+📣 How to Buy ZNA Tokens 📣   [/INST]###title: 📣 How to Buy ZNA Tokens 📣   [
+5 Things I Loved About Berlin   [/INST]###title: 5 Things I Loved About Berlin   [/INST]###title: 5 Things I Loved About Berlin   [/
+3 Lessons from Star Wars for Corporate VCs 👨🏻‍💼📈👨🏻‍⚖️�������
+5 Reasons Why You Should Invest in the Nigerian Mining Sector Now   [/INST]###title: 5 Reasons Why You Should Invest in the Nigerian Mining Sector Now   [
+7 Common Types Of SEO? 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 ��
+50,000 March in Washington, DC, for Black Lives Matter  [/INST]   [INST]title: The Movement for Racial Justice Has Shown Us What Democracy Looks Like
+20200504: Nails   [/INST]###title: 20200504: Nails   [/INST]###title: 2020
+2017 in Review: How We Built Lens Your Look   [INST]generate title from the given article below  ###article  Eric Kim | Pinterest engineer, Visual Search  In February
+3 Mindfulness Tips to Rein in Anxious Moments   [/INST]###title: 3 Mindfulness Tips to Rein in Anxious Moments   [INST]generate title
+10 Things I Wish Everyone Knew About Online Teaching   [MORE]  [INST]generate caption from the given article below  What It’s Like To Be An Online Teacher During a Pan
+12 Sleepy Dreams: A Playlist   [/INST]###title: 12 Sleepy Dreams: A Playlist   [/INST]###title: 12 Sleep
+40-Something, 3-Way, 2-Household, Polyamorous Pandemic   [/INST]###title: 40-Something, 3-Way, 2-H
+🤖 Stereotypical Biases in Natural Language Question-Answering 🤖   [/INST]###title: 🤖 Stereotypical Biases in Natural Language Question
+3 Steps to Set a Vision for 2021   [/INST]###title: 3 Steps to Set a Vision for 2021   [/INST]###title
+30 Years of Bitcoin — What’s Behind the Investment?   [/INST]###title: 30 Years of Bitcoin — What’s Behind the Investment?
+3D Color (in Cinema 4D)   [/INST]###title: 3D Color (in Cinema 4D)   [INST]generate title from the given article below.  ###
+4 Reasons Why Blockchain Will Be A Technology of The Future   [/INST]###title: 4 Reasons Why Blockchain Will Be A Technology of The Future   [INST]generate title from the given article
+10 Inquiries to Build Your Target Audience   [/INST]###title: 10 Inquiries to Build Your Target Audience   [/INST]###title: 10
+[/INST]###link: https://topbusinesstech.com/scale-up-spotlight-a-conversation-with-the-commercial-director-of-alvant-
+10 Men Who’ve Been Proposed to by Their Girlfriends Seem to Really Love It   [MEL]  [/MEL]###link  [/INST]###title:
+2016 New England Series A Deals 12/20/2016   [/INST]###title: 2016 New England Series A Deals 12/20/
+📢 IBM Watson Studio Cloud and Cognos Analytics Integration 📢   [OUT] IBM Watson Studio Cloud and Cognos Analytics Integration 📕   [/INST
+[/INST]###title: Identifying potential factors that correlate with the trend of COVID-19 cases in Pakistan. Huzaifah Nadeem Mar 22·13 min read  Ever since
+3 steps to add authorization to a Rails application   [/INST]###image: https://res.cloudinary.com/dzs47769/image/upload/v16117102
+2016 — My Car Accident   [/INST]###title   [/INST]###title: 2016 — My Car Accident   [INST]title: 2
+🧠 How to model the spread of COVID-19 in your community 🧠   [/INST]###title: 🧠 How to model the spread of COVID-19 in your
+365 Scholarship: Recommendation Algorithm  [/INST]###author: Andrea Uličná  [/INST]###source: 365 Scholarship  [/INST]
+5 Content Ideas for Holidays   [/INST]###title: 5 Content Ideas for Holidays   [INST]generate title from the given article below  ###article  Before the
+20/01/2021: What is life actually like in the Greek hotspots?   [/INST]###title: AYS Daily Digest 20/01/2021
+7 Types of Mobile Banner Ads and Why They’re Still Important in 2020   [/MORE]###title: 7 Types of Mobile Banner Ads and Why They’re Still Import
+2021 Letter to my Sons   [OUT]generate title from the given article below  [INST]generate title from the given article below  ###article  Dear Xander and Alex,
+2018 Marketing Strategy Update 📈 📈 📈 📈 📈 📈 📈 📈
+3. How to create a bar race ranking GIF animation in R   [/INST]###title: 3. How to create a bar race ranking GIF animation in R   [INST]generate title from the
+💯 PASSENGER “ SCARED TO FLY LYRICS “ Lyrics Over A2z Alternateoflyricsoveraz 💯 💯 ���
+3 Reasons Why I Doubt The Prophet Muhammad was a Paedophile   [/INST]###title: Why I Doubt The Prophet Muhammad was a Paedophile   [INST]
+💬Swap or Swapping the value using function in c programming 💬 💬come code 💬 💬#cprogramming #cprogramming #cprogramming #cprogramming
+11/20/2019 — Lunyralpha Weekly Update #16   [/INST]###title: 11/20/2019 — Lunyralpha
+1% Better Every Day: The Power of Slow and Steady Progress   [/INST]###title: 1% Better Every Day: The Power of Slow and Steady Progress   [INST]generate title
+5 Ways To Master Virtual Meetings   [/INST]###title: 5 Ways To Master Virtual Meetings   [INST]generate title from the given article below.  It feels like this
+[/INST]###title: Designing NOVA: a bridge to better EOS Experience   [/INST]###title: Designing NOVA: a bridge to better EOS Experience
+3D Bin Packing Algorithm Comparison: Shotput vs pyShipping vs Pisinger  [/INST]###image:   [/INST]###image:   [/INST]###
+This Pain   [/INST]###title: This Pain   [INST]generate title from the given article below  ###article  Disgusted with constraint,  Weakness
+3. 추적량 분석 예측 모델 구현  3. 추적량 �
+61878% passive income from DIM TOKENS   ###article  Introduction to the DIM ecosystem  The DIM ecosystem is a combination of HYBSE, Dep
+10. Final Project: Planted Zero on Tik Tok   [/INST]###title: 10. Final Project: Planted Zero on Tik Tok   [INST]generate title from the given article
+2021 Covid-19 Vaccine Distribution   [/INST]###title: 2021 Covid-19 Vaccine Distribution   [INST]generate title from the given article
+[/INST]###title: The Magpie   [INST]generate title from the given article below  ###article  A hollowed heart, a haunted soul,  A mortal cor
+150 Years Later: The Paris Commune and Its Lessons for Revolutionaries   [INST]###title: 150 Years Later: The Paris Commune and Its Lessons for Revolutionaries   [INST
+5 Things I Learned About Writing from My MFA   ###author: Heidi Kraay  [/INST]###author: Heidi Kraay   [/INST]###author: Heidi Kra
+5 Questions with Elana Zeide on the Benefits and Risks of AI in Public Education   [/INST]###title: 5 Questions with Elana Zeide on the Benefits and Risks
+240,000 words? No problem!   [/INST]###article  [/INST]###title: 240,000 words? No problem!   [INST
+【INST】What is color fastness? The difference between color fastness and color resistance  [/INST   [INST]#1. What is color fastness?  Color fastness is the resistance of a fabric to
+5 Benefits of Selling SaaS through Cloud Marketplace   [/INST]###title: 5 Benefits of Selling SaaS through Cloud Marketplace   [/INST]###title
+3 Ways to Get Your Kids to Read More   [/INST]###title: 3 Ways to Get Your Kids to Read More   [INST]generate title from the given article below.
+10 Significance of Correspondence in the workplace   [/INST]###title: 10 Significance of Correspondence in the workplace   [/INST]###title:
+10 Great Works to Understand the Brain  ###link: https://medium.com/@abhinav.kumar.507/10-great-works-to-understand-the-brain
+🔥 Lightning Network Attack 🔥   [/INST]###image: https://res.cloudinary.com/jona/image/upload/v16169513
+10 developer tools that are the future of APIs   [/INST]###title: 10 developer tools that are the future of APIs   [INST]generate title from the given article below  ###article
+2,300 People in SF Shelter in Place Hotels — What’s Next?   ###title: 2,300 People in SF Shelter in Place Hotels — What’s Next?
+3 Ways to Use Tulips for Your Wedding   [/INST]###title: 3 Ways to Use Tulips for Your Wedding   [INST]generate title from the given article below  ##
+101 in 1001: SegWit — A layer 1 solution   [/INST]###title: 101 in 1001: SegWit — A layer 1 solution
+2016: The Year of the Straussian Regime Change   [/INST]###title: 2016: The Year of the Straussian Regime Change   [INST]generate title
+��������������������������������������������������
+5 Tips for writing a good story 📚 📖 📚 📖 📚 📖 📚 📖 �
+5 Ways to Use Employee Share Options Schemes to Build Motivation   [/INST]###title: 5 Ways to Use Employee Share Options Schemes to Build Motivation   [INST]generate title
+5 Reasons Why Water Is My Favourite Element   [/INST]###title: 5 Reasons Why Water Is My Favourite Element   [INST]generate title from the given article below
+5 Jupyter Notebook Extensions You Should Install   [/INST]###title: 5 Jupyter Notebook Extensions You Should Install   [INST]generate title from the given article below  Introduction
+5 Financial Tips for Returning Citizens   [/INST]###title: 5 Financial Tips for Returning Citizens   [INST]generate title from the given article below
+11 Bay Area Weddings That Were Pure Perfection   [/INST]###title: 11 Bay Area Weddings That Were Pure Perfection   [/INST]###title
+100 Days of Meditation — Day 12   [/INST]###title: 100 Days of Meditation — Day 12   [INST]generate title from the given article below
+1000 Influencers. 1000 Days. 1000 Dubai Trips.   [/INST]###title: 1000 Influencers. 10
+10 Must-See Films From the 2020 Fantasia International Film Festival   [/INST]###title: 10 Must-See Films From the 2020 Fantasia International Film Festival
+3 Ways to Boost Demand Generation in 2021   [/INST]###title: 3 Ways to Boost Demand Generation in 2021   [INST]generate title
+🚀 Kim Jong Un Token 🚀 🔥 💎 💰 🔥 🚀 🔥 💎
+⌨️ Understanding the Concept of Virtual Time Using the Time Warp Algorithm ⌨️   [/INST]###title: ⌨️ Understanding the Concept of Virtual Time Using the Time
+30+ Terbaru Nama Aplikasi Digital dan Web 2020 (Laporan 2020)   [/INST]###title: 30+ Terbaru Nama Ap
+99.98% Accuracy: How we automated the process of hotel data disambiguation  ###image:  ![](https://media.giphy.com/media/l3qo16QF
+[/INST]###title: I’m a better person because of the ones who loved me and the one i’v love.   [INST]generate title from the given article below.  I'm
+2020 Running Guide.  Running For Beginners.  This is a guide for beginners to running.  If you are new to running, or are considering getting into running, this guide is for you.
+5 Ways to Improve Your Cybersecurity Culture   [/INST]###title: 5 Ways to Improve Your Cybersecurity Culture   [INST]generate title from the given article below
+5 data visualization techniques using Plotly in Python   [/INST]###title: 5 data visualization techniques using Plotly in Python   [INST]generate title from the given article below.  [/
+ผู้ให้บริการในการให้ความมั่นคงในการทำงาน
+📢 AMA Recap: QLC Chain Q&A Session 📢   [/INST]###title: 📢 AMA Recap: QLC Chain Q&A
+21-Year-Old Rebecca Schaeffer Was Murdered by a Stalker in 1989  [/INST]###link: https://www.instagram.com/p/C
+10 Tips for IBM Data Science Professional Certificate 2021   [/INST]###title: 10 Tips for IBM Data Science Professional Certificate 2021   [INST]
+【IS】XBASE Finance AMA Summary  [INST]  XBASE Finance is a synthetic asset protocol that allows users to synthesize BTC, ETH, XRP, USDT, and other
+2020: The Worst Best Thing That Happened   [/INST]###title: 2020: The Worst Best Thing That Happened   [INST]generate title
+3 Reasons the Baby Bond is a Bad Idea   [/INST]###link: https://www.forbes.com/sites/michaelmoore1/2019/08/22
+5 Ways Pastors Are Responding to Coronavirus   [/INST]###title: 5 Ways Pastors Are Responding to Coronavirus   [/INST]###title
+[/INST]###title: “Not So Much A Library, More A Way of Life”   [/INST]###title: “Not So Much A Library, More A Way of Life”
+5 Easy Steps to a Better Day!   [/INST]###title: 5 Easy Steps to a Better Day!   [INST]generate title from the given article below  ###article
+3 Things I’ve Learned from Working from Home   [/INST]###title: 3 Things I’ve Learned from Working from Home   [/INST]###title: 3 Things I’
+500+ Tips and Tricks for Microsoft Excel 2016/2019 — Part 1 📈 📊 📈 📊 ���
+101: How to Design a PCB   [/INST]###title: 101: How to Design a PCB   [INST]generate title from   [INST]generate title from
+2-in-1 Smart Glasses Turn from Sunglasses Into Reading Glasses With a Swipe.   [/INST]###title: 2-in-1 Smart Glasses Turn
+2020 Christmas — Making it Better   [/INST]###title: 2020 Christmas — Making it Better   [/INST]###title: 2020 Christmas —
+3 Easy Steps to Add Your Article to a Medium Publication   [/INST]###title: How to Add Your Article to a Medium Publication   [/INST]###title: How to
+Vite and Ferrum Network Announce Partnership   [/INST]###title: Vite and Ferrum Network Announce Partnership   [INST]generate title from the given article below
+💎💎💎 WhiteBIT Listing 💎💎💎 💎💎💎 �������
+🔗 How to deploy your web application to Skynet  [/INST]###link  [/INST]###image  [/INST]###source  [/INST]###video
+10 snaps from the Durga Puja in Kolkata 2017   [/INST]###title: 10 snaps from the Durga Puja in Kolkata 20
+3. Refactoring App Routing (Part 2)   [/INST]###title: 3. Refactoring App Routing (Part 2)   [INST]title: 3. Ref
+11.11.2020 ❓What are the local government’s plans on crisis measures and a fiscal stimulus?   [/INST]###title: 11.11.
+1. Python Arithmetic Operators   [/INST]###title: 1. Python Arithmetic Operators   [INST]generate title from the given article below.  ###article  In this series
+萬種事物的藝術，就是人生的樂趣。 藝術不只是藝術，而是人生的樂趣
+100 組數據類型應用於運用與管理的實用方法 （��������
+5. Liquid Network overview  In this article we will explore the design of each system and their trade-offs. Two emerging solutions are routed payment channels, as implemented in the Lightning Network, and federated sidech
+6-Part Netflix Series Immigration Nation: What You Need to Know   [/INST]###title: 6-Part Netflix Series Immigration Nation: What You Need to Know   [
+1. IoT based Door Security Alarm using Blynk 2. Blynk Setup 3. Code 4. Parts List 5. How it Works? 6. How does Magnetic Door S
+3 Types of Cryptocurrencies You Need to Know   [/INST]###title: 3 Types of Cryptocurrencies You Need to Know   [INST]generate title from the given article below
+⭐ Watch Jersey Shore: Family Vacation Season 4 Episode 7 Full Episode,   [/INST]###title: ⭐ Watch Jersey Shore: Family Vacation Season 4
+3 Truths About Digital Advertising Every Business Owner Should Know   [/INST]###title: 3 Truths About Digital Advertising Every Business Owner Should Know   [/INST]##
+3 steps to triple your traffic from Google  [/INST]###title: 3 steps to triple your traffic from Google   [/INST]###title: 3 steps to triple your traffic from Google
+The real meaning of “intuitive” — and more UX this week  A weekly selection of design links, brought to you by your friends at the UX Collective.  What “intuitive” really
+1st LEED Gold certified hotel in Hong Kong   ###title: 1st LEED Gold certified hotel in Hong Kong   ###title: 1st LEED Gold certified hotel in Hong Kong
+10 Questions With… Katie Haycock, Executive Director of The Education Trust   [/INST]###title: 10 Questions With… Katie Haycock, Executive Director of The Education Trust   [
+4. HighCharts in Ionic 4 — Part 3  [/INST]###author: Shivam  [/INST]###link: https://medium.com/@shivam.sharma1
+110’s Program Lead on the Power of Community   [/INST]###title: 110’s Program Lead on the Power of Community   [INST]generate title from the given article
+7 Steps to Setup WireGuard VPN on OPNSense ⚡️ 🔥 ⚡️ 🔥 ⚡️ 🔥 ⚡
+2020-12-01 12:00:00 “Over time, Mistress Velvet said she began “doing a lot of theorizing” about the power dynamics of a black woman holding
+1000x 2018: Music Industry and the Blockchain   [/INST]###title: 1000x 2018: Music Industry and the Blockchain
+📖 Frontier Tech Case Study: Onboarding Suppliers in the Nigerian Agro-Inputs Market 📖   [/INST]###title: 📖 Frontier Te
+[/INST]###title: One that makes them pee their pants   [/INST]###title: One that makes them pee their pants   [/INST]###title:
+10 Ways to Run a Business Properly   [/INST]###title: 10 Ways to Run a Business Properly   [INST]generate title from the given article below.
+1. Introduction  In this tutorial, an end to end project is created in order to do intelligent, realtime and scalable video processing in Azure. In this, a capability is created that can detect graffiti and identify w
+6 Ways to Find Joy in the Present, When the Future Is Uncertain   [/INST]###title: 6 Ways to Find Joy in the Present, When the Future Is Uncertain   [
+2020: The Year of the Racist White Man   [/INST]###article  Should we teach them that Muhammad was a rapist, as well?   [INST]generate title from the
+3 Reasons Why You Don’t Need a VPN (And Why You Might Still Want One)   [/INST]###title: 3 Reasons Why You Don’t Need a VPN (And Why
+6 Disney Savings Hacks That Will Make You Smile 😊   [/INST]###article  Top 6 Savings Tips Directly from Disney Insiders  It turns out the Happ
+3 Ways to Install Extensions in Microsoft Edge   [/INST]###title: 3 Ways to Install Extensions in Microsoft Edge   [INST]generate title from the given article below  ###article
+📝 When Content Dies, All We’ll Have is Our Personal Narratives 📝   [/INST]###title: 📝 When Content Dies, All We’ll Have is
+10 Basic Python List Questions   ###link: https://www.thejavahut.com/2020/06/10-basic-python-list-questions.html   ###
+5 Things I Learned When I Changed My Major 4 Times   [/INST]###title: 5 Things I Learned When I Changed My Major 4 Times   [INST]generate title from the
+30 Seconds Tube Light Moment   [/INST]###title: 30 Seconds Tube Light Moment   [INST]generate title from the given article below  ###article
+20 Tips to look Older as your Age as a Petite Woman   ###link  [/INST]###image  [/INST]###video  [/INST]###card
+31Events is Simpler to Use — One Line of Code   [/INST]###title: 31Events is Simpler to Use — One Line of Code   [INST]generate title from the given article
+49: Optimization, Passion & Scaling Your Business with Nick Sonnenberg   [/INST]###title: 49: Optimization, Passion & Scaling Your Business with Nick S
+2020: The Year of Pleasure   [/INST]###link: https://medium.com/the-paradox/2020-the-year-of-pleasure-652
+7 HR Myths Busted — Top 7 HR Misconceptions Shattered  [/INST]###image:  [/INST]###image:  [/INST]###image
+1. Deploying your frontend to Heroku   [/INST]###title: 1. Deploying your frontend to Heroku   [INST]generate title from the given article below.
+2020년 12월 1일 코로나 바이러스 최신 뉴스 및 뉴스 번역
+4 Principles to Help Your Teams Adopt Design Thinking   [/INST]###title: 4 Principles to Help Your Teams Adopt Design Thinking   [INST]generate title from the given article
+5 Ways to ‘Grow Out’ of ADHD   [/INST]###title: 5 Ways to ‘Grow Out’ of ADHD   [INST]generate title from the given article below.
+2020 Writing Guide #17: How to Boost Your Productivity While Working From Home   [Follow]generate title from the given article below.  ###article  Hey there,  H
+6 Reasons to Hire an External Design Team for Your Product ✨🚀💡👩‍💻👨‍�����������
+16 Pinned Posts and Counting   [/INST]###title: 16 Pinned Posts and Counting   [INST]generate title from the given article below  ###article
+3 Day Predator Indicator & Volume — https://www.tradingview.com/x/fzvTvrIm/   [/INST]###title: 3 Day Predator Indicator & Volume — https
+5 Things I Noticed About Writers On Medium   [/INST]###title: 5 Things I Noticed About Writers On Medium   [INST]generate title from the given article below  5
+2018.12.03. Kript Wallet v.2.0.0   [/INST]###title: 2018.12.03. Kript Wal
+24 hours in Turkey   [/INST]###title: 24 hours in Turkey   [INST]generate title from the given article below  ###article  I checked in straight away in Istan
+🦀Dancing With A Crab🦀   [/INST]###title: 🦀Dancing With A Crab🦀   [INST]generate title from the
+🚀 An Introduction to Recurrent Neural Networks for Beginners 🚀   [/INST]###title: 🚀 An Introduction to Recurrent Neural Networks for Beginners
+80% of chronic epididymitis are caused by bacterial infection, how to treat?   [/INST]###title: 80% of chronic epididymitis are caused by
+3 Objections to Training Your Boss Will Make — and How to Overcome Them   [/INST]###title: 3 Objections to Training Your Boss Will Make — and How to Overcome Them
+3. Explained: Morpheus Labs Vision for a Blockchain Platform as a Service   [/INST]###title: 3. Explained: Morpheus Labs Vision for a Blockchain
+A Clann at Christmas   Families are the circle of life  No clann is beyond strife  Connections can end  But often mend  Driven around the bend  A
+5. Generating a tournament (league)   [/INST]###title: 5. Generating a tournament (league)   [INST]   [/INST]###title:
+2020 is the year I gave up on self-improvement, and it’s the best thing I’ve done all year   [/INST]###link: https://www.insider.com/
+[/INST]###title: Adulthood Bullying: The Unseen Shadow   [INST]article  TRY as she might, Sarah couldn’t understand it. She just couldn’t do
+俑之城 劇場版俑之城 (2021)完整版 — 在线观看【俑之城 劇場版】-�
+10 Steps to iOS Development Part 2: Architecture & MVP   [/INST]###title: 10 Steps to iOS Development Part 2: Architecture & MVP   [/INST]##
+समोसा रेसिपी का सारा जानकारी हमारे साथ लेकर आएगी
+10000000000000000000000000000000000000000000000000
+10 Ways to Research Your Content Strategy ���������������������������������������
+10 Best Books I Read in 2021  [/INST]###link: https://medium.com/the-moral-minute/10-best-books-i-read-in-2
+5 year Financial Plan   [/INST]###title: 5 year Financial Plan   [INST]generate title   ###title: 5 year Financial Plan   [
+2019-06-07 — Common Knowledge   [/INST]###title: 2019-06-07 — Common Knowledge   [INST]generate title from the
+💻 How to create an API in Python 💻   [/INST]###title: 💻 How to create an API in Python 💻   [INST]
+4.1 Speculative Design: The Southwark Climate Emergency 2030   [/INST]###title: 4.1 Speculative Design: The Southwark Climate Emergency
+360 Video of America’s Highways, 2010  ###title: 360 Video of America’s Highways, 2010  [/INST]###title:
+2020: The Year That Wasn’t 😷 🎄 😷 🎄 😷 🎄 😷 ��
+2021 Rap Artist Presidentrj Ready to Take on the Hip-Hop Scene with His New Release   [/INST]###title: 2021 Rap Artist Presidentrj Re
+3. The Before, The Before Before, and Now   [/INST]###title: 3. The Before, The Before Before, and Now   [INST]generate title from the given article below.
+4 Ways To Arm Your Team With Superpowers   [/INST]###link: https://www.linkedin.com/pulse/4-ways-arm-your-team-superpowers-j
+3. Knowledge-Based Agents   [/INST]###title: 3. Knowledge-Based Agents   [INST]generate title from the given article below.  ###article
+🔥 My Home is Burning 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥
+7 Ways to Show Your Love to Your Boss   ###title: 7 Ways to Show Your Love to Your Boss   [/INST]###title: 7 Ways to Show Your Love to
+Google Update: Google Photos now adds up Maps Timeline feature 📷📷📷 📷📷📷 ����������
+2021-03-20: Switchbot: The Un-Dumbing Device   [/INST]###title: 2021-03-20: Switchbot: The Un-
+###title: How to train a PyTorch model using AWS Sagemaker and Snowflake data   ###title: How to train a PyTorch model using AWS Sagemaker and Snowflake
+10 Things I Learned From Marching   [/INST]###title: 10 Things I Learned From Marching   [INST]title: 10 Things I Learned From Marching
+1533 - 1592: Michel de Montaigne   [/INST]###title: 1533 - 1592: Michel de Montaigne   [/INST
+10 things you didn’t know about the new Xbox wireless controller   [/INST]###title: 10 things you didn’t know about the new Xbox wireless controller   [INST]generate title
+2nd March 2021-It can be hard for a new business to gain clients as it includes trust, some serious level of infrastructure and a lot more. Sometimes it can take months for the thing to work out and that k
+10 Years of Babysitting and Why I’m Done   [OUT]generate title from the given article below  ###article  After babysitting for nine years, this is why I’m done.
+2021-01-24: Dialogues With My Self   [/INST]###title: 2021-01-24: Dialogues With My Self   [INST]
+🚀 Blue-Green Deployment 🚀 — How to reduce downtime of your service?   [/INST]###title: 🚀 Blue-Green Deployment ���
+2021: A Year for Algorithmic Accountability   [/INST]###title: 2021: A Year for Algorithmic Accountability   [INST]generate title from the given article below
+100+ Best Pubg Mobile Name Generator 2019 ���������������������������������
+4 Meditation Practices to Tap into Your Creative Potential   [/INST]###title: 4 Meditation Practices to Tap into Your Creative Potential   [INST]generate title from the given article
+1000 天資料分析的沿革 （2015-2020） （一） 2015 年 1000
+100% Flask-GraphQL: the whole story   [/INST]###title: 100% Flask-GraphQL: the whole story   [INST]generate title from the given article
+2017 Small World Photomicrography Competition 🌎 🌎 🌎 🌎 🌎 🌎 🌎 �
+27th day of internship  ###image:  ###image:  ###image:  ###image:  ###image:  ###image:  ###image:
+4-Time All-Star Shortstop Francisco Lindor Acquired From Cleveland   [/INST]###title: 4-Time All-Star Shortstop Francisco Lindor Acquired From Cleveland   [INST]generate title
+12 policy recommendations for EU to improve rule of law in Western Balkans   [/INST]###title: 12 policy recommendations for EU to improve rule of law in Western Balkans   [
+4 Ways to Get the Grief Out 💔   [/INST]###title: 4 Ways to Get the Grief Out 💔   [/INST]###title
+5 Reasons Why Blockchain is the Future of Data Storage   [/INST]#blockchain #data #storage   [/INST]#blockchain #data #storage   [/INST]#blockchain
+A Poem For Imposter Syndrome  (By Vinita Ramtri)  by Gene Fearon   [FULL]  A Poem For Imposter Syndrome  (By Vinita Ramtri)  by
+10 Reasons why you should book a tour to Europe   ###article  1. You get to walk amidst living history  Civilisation in Europe has been around for many years and the continent has the buildings to
+顯露自由但缺乏實踐：台灣投票權發展之憶 （下）
+4 Laws of the Interface Ecosystem   [/INST]###title: 4 Laws of the Interface Ecosystem   [/INST]###title: 4 Laws of the Interface Ecos
+5 Ways to Make Your Partner Feel More Loved and Relaxed in Bed   [/INST]###title: 5 Ways to Make Your Partner Feel More Loved and Relaxed in Bed
+5 Reasons Why Boxing is Great for Mental Health   [/INST]###title: 5 Reasons Why Boxing is Great for Mental Health   [/INST]###title: 5 Re
+60% Bonus Token Sale — Update on Public Token Sale   [/INST]###article  This is an important update for you as a valued MetaCert Protocol token buyer.  We have
+100+ Data Visualization Tools   [/INST]###article.title: 100+ Data Visualization Tools   [/INST]###title: 100+ Data Visualization Tools
+3 Ways to Make Angular Apps Automatically Reload   [/INST]###title: 3 Ways to Make Angular Apps Automatically Reload   [INST]generate title from the given article
+2020: The Year of Crowdsourced Fact-Checking   [/INST]###link: https://medium.com/better-sg/2020-the-year-of-c
+4 Ways To Segment Your Website Audience Using Google Analytics   [/INST]###title: 4 Ways To Segment Your Website Audience Using Google Analytics   [INST]generate title
+5 Reasons Why You Should Redesign Your Search Experience   [/INST]###title: 5 Reasons Why You Should Redesign Your Search Experience   [INST]generate title from the given article
+3 Reasons Why the Death Penalty Should Be Sentenced for Corruption   [/INST]###title: 3 Reasons Why the Death Penalty Should Be Sentenced for Corruption   [/INST]##
+2020-09-02  A near future science fiction short story  Photo by   [INST]###title: 2020-09-02  A near future science
+3 Ways To Escape The Demon Trap On Social Media   [OUT]generate title from the given article below  [INST]generate title from the given article below  [OUT]generate title from the given article
+4 Reasons Why You Should Boil Water, Not Filter It   [/INST]###title: 4 Reasons Why You Should Boil Water, Not Filter It   [INST]generate title from the given article
+[/INST]###title: US vs China: The App Agenda   [INST]generate title from the given article below  [/INST]###title: US vs China: The App Agenda
+8th Amendment: The Irish people have the opportunity to end a law that kills women   [/INST]###title: 8th Amendment: The Irish people have the opportunity to end a law that k
+30-second usability study: moderator cheat sheet   [/INST]###title: 30-second usability study: moderator cheat sheet   [INST]generate title from the given article
+5 UI Design Tactics to Improve Your Skills   [/INST]###title: 5 UI Design Tactics to Improve Your Skills   [INST]generate title from the given article
+20 Years of Parenting in Cohousing   [/INST]###title: 20 Years of Parenting in Cohousing   [INST]generate title from the given article below.
+10 reasons why you should start your own business.   [INST]###article  1. Why do you want to start your business?  As simple as it sounds, this is the main question that you must ask
+[/INST]###title: Corrections   [INST]generate title from the given article below.  ###article  CORRECTION(S)  We egret the error(s
+10 Ways To Finally Commit To Yourself   [/INST]###title: 10 Ways To Finally Commit To Yourself   [INST]generate title from the given article below  ##
+👾 Televisions 👾 📺 📺 📺 📺 📺 📺 📺 ��
+8 Stages of The Perfect Digital Marketing Strategy   [/INST]###title: 8 Stages of The Perfect Digital Marketing Strategy   [INST]generate title from the given article below
+📢 What’s wrong with the promise of free water supply? 📢   [/INST]###title: 📢 What’s wrong with the promise of free water supply?
+5 NLP Tutorials to Learn NLP from Scratch 2020   [/INST]###title: 5 NLP Tutorials to Learn NLP from Scratch 20
+2019   [/INST]###title: After you   [INST]generate title from the given article below  ###article  After you  stole a march on me  dro
+5 Words That Define The World You Live In   [/INST]###title: 5 Words That Define The World You Live In   [INST]image: https://cdn-images-1.medium.
+10 Lessons from Sun Tzu’s The Art of War   [/INST]###title: 10 Lessons from Sun Tzu’s The Art of War   [INST]generate title from the
+30 Days of Power Analysis — What Is Power Analysis? — Power Analyzer with Built-in FFT Analyzer — What Is Electrical Power? — How Do We Calculate Electrical Power? — Understanding Power Measure
+5 Things to Know About Corporate Structure 2021   [/INST]###title: 5 Things to Know About Corporate Structure 2021   [INST]generate title from the
+3 Ways to Write Bad Code More Often   [VID]How to Create a Kubernetes Cluster on Google Cloud Platform (GCP)   [INST]video  [VID]How to Create a Kubernetes
+2015-05-27 Meerkat the killer app for twitter town hall   [/INST]###title: 2015-05-27 Meerkat the killer app
+10 Ways to Increase Inbound Marketing in ROI for SAAS   ###image: https://www.pexels.com/photo/photo-of-a-man-holding-a-
+2020 Smithsonian Future Project Logo Design   [/INST]###title: 2020 Smithsonian Future Project Logo Design   [INST]generate title from the given article below
+[/INST]Classical Time-Series vs Machine Learning Methods  Photo by Parij Borgohain on Unsplash  In an earlier article, I discussed the use of supervised machine learning to predict a poverty
+2021 TCL soundbars will be Roku TV-Ready   [VID]title: TCL's 2021 Soundbars Will Be Roku TV-Ready   [VID]title: T
+7 Reasons Why Hybrid VTOL Aircraft Will Dominate the Urban Air Mobility Market   [/MORE]###more The team at XTI Aircraft Company has pursued a different approach — a fixed-
+3 Things We Need to Leverage AI Beyond COVID-19   ###author: Globis Insights   ###source: https://globisinsights.com/tech-innovation/le
+5 Steps to Building Trust in Business   [/INST]###title: 5 Steps to Building Trust in Business   [INST]generate title from the given article below.  [/INST]###
+50 Years of Evidence Linking Johnson & Johnson’s Baby Powder to Cancer   [/INST]###title: 50 Years of Evidence Linking Johnson & Johnson’s Baby Powder to Cancer
+30 days Digital Marketing Internship Program Offered By Satyam Chaudhary (Digital Marketing Coach and consultant)   [/INST]###title: 30 days Digital Marketing Internship
+5 Simple Steps To Avoid Becoming A Victim Of Over-Prescribing!   [/INST]###title: 5 Simple Steps To Avoid Becoming A Victim Of Over-Prescribing!
+100% Free VPN for Android 🔥 2020 🔥 🔥 🔥 🔥 🔥 🔥
+5 Minute Tutorial: Simple php Templates   [/INST]###title: 5 Minute Tutorial: Simple php Templates   [INST]title: 5 Minute Tutorial: Simple php Tem
+12.00 - 12.00 (The Wash)   [/INST]###title: 12.00 - 12.00 (The Wash)   [
+5 Growth Hacking Strategies to Activate Marketplace   ###title: 5 Growth Hacking Strategies to Activate Marketplace   ###title: 5 Growth
+5 Things Writers Should Know About Rituals and Routines   [/INST]###title: 5 Things Writers Should Know About Rituals and Routines   [INST]generate title from the given article
+7 Secret Chatting Apps That Let You Talk Without Revealing Your Phone Number   [/INST]###title: 7 Secret Chatting Apps That Let You Talk Without Revealing Your Phone Number
+2020: The Year We Didn’t Break the House   [/INST]###title: 2020: The Year We Didn’t Break the House   [/INST]##
+12/1/2020: Utah’s Big Energy Consumers Will Be Getting A Significant Amount Of Power From A Planned Solar Plant In Tooele County   [/INST]##
+12 Days Of Zombie Christmas: NFT Artist Auctioning Unique NFT Holiday Horrors For Charity   [/INST]###title: Bitcoin Express Sped Past $23k
+​​​​​​​UK Prime Minister Scrambles for Last-Minute Brexit Deal After Fiancée Issues Ultimatum   [/INST]###title: ​​​​
+5 Things To Know About Service Design   [/INST]###title: 5 Things To Know About Service Design   [INST]generate title from the given article below  ###article  UX vs Service
+100 Word Stories #26: The Artist   [/INST]###title: 100 Word Stories #26: The Artist   [INST]generate title from the given article
+5 Things I Learned From Working at an Arena   [/INST]###title: 5 Things I Learned From Working at an Arena   [INST]generate title from the given article below.  “He
+10 Things I Learned While Building My First Desktop   [/INST]###title: 10 Things I Learned While Building My First Desktop   [/INST]###title: 10
+10 Ways to Use Divine Intervention to Change the World   [/INST]###title: 10 Ways to Use Divine Intervention to Change the World   [INST]generate title from the
+3 Questions the Workforce is Asking about Reopening   [/INST]###title: 3 Questions the Workforce is Asking about Reopening   [INST]generate title from the given article
+5 Reasons why SQL is the most widely used technology   [/INST]###title: 5 Reasons why SQL is the most widely used technology   [INST]generate title from the given article below.
+9/13/15: The End of Gawker, Silk Road, and the Wikipedia Community   [/INST]###title: 9/13/15: The End of Gawker,
+6 Google Search Tips for Programmers   [/INST]###title: 6 Google Search Tips for Programmers   [INST]title: 6 Google Search Tips for Programmers   [/
+🤖 Why TBC Bank is using both of them? 🤖   [/INST]###title: Why TBC Bank is using both of them? 🤖   [INST
+100 Word Story: The Mind’s Eye   [/MORE]###title: 100 Word Story: The Mind’s Eye   [/MORE]###title:
+4 Years of Blockchain and 3 Lessons Learned   [/INST]###title: 4 Years of Blockchain and 3 Lessons Learned   [INST]generate title from the given article below
+8 Steps to Reclaiming Your Life After Divorce   [/INST]###title: 8 Steps to Reclaiming Your Life After Divorce   [INST]generate title from the given article
+[/INST]###author: Admiral_Cloudberg  [/INST]###link:   [/INST]###published: 2021-03-20
+3 ways to avoid the data science elitists   [/INST]###title: 3 ways to avoid the data science elitists   [/INST]###title: 3 ways to avoid the data
+2020 is the year of the basic white girl   [/INST]###title: 2020 is the year of the basic white girl   [/INST]###title: 20
+2020 English Premier League Live Stream, Soccer 4K HD Video Full Free Online TV Channel  [INST]generate title from the given article below  https://is.gd/wO098I
+2. Capitalism & Christianity   [/INST]###title: 3. Capitalism & Christianity   [/INST]###title: 4. Capitalism & Christianity   [/
+2 Genders. That’s it. Period.   [MORE]  [/MORE]###article  I identify as a unicorn.  I’m sorry to break it to you,
+19 Years Later   [/INST]###title: 19 Years Later   [/INST]###title: 19 Years Later   [INST]generate title from the given article below
+50 Years Later: The Man Who Patton Betrayed   [/INST]###title: 50 Years Later: The Man Who Patton Betrayed   [INST]image: https://images.pex
+🚀 Heroku Proxy with React-Create-App and Nginx 🚀   ###author:  Nikolaos Papadopoulos  [INST]###author:
+3 Civic Commons Photo Essays: Macon, Ga.   [/INST]###title: 3 Civic Commons Photo Essays: Macon, Ga.   [INST]generate title
+2021 Astrology Reading — Discover Untold Secrets About Who You Really Are — Your Past, Present, Future?   [/INST]###title: 2021 Astro
+10 Best Games to Play While Social Distancing   [/INST]###title: 10 Best Games to Play While Social Distancing   [INST]generate title from the given article below  If you are
+1. Interface in Laravel   [/INST]###title: 1. Interface in Laravel   [INST]generate title from the given article below  ###article  Interface Class  We know that an
+[/INST]###title: Creative Programs Help Dairy Farmers Transition to Plant-Based Milks   [INST]image: https://ensia.com/wp-content/uploads/
+[/INST]###title: Pandemic Made the Rich a Lot Richer   [/INST]###title: Pandemic Made the Rich a Lot Richer   [/INST]###title:
+1st Week of the Oxford EMBA Programme 2019-2020   ###title: 1st Week of the Oxford EMBA Programme 2019-2020
+1st YSEALI Sparkability Networking Night 2019   [/INST]###title: 1st YSEALI Sparkability Networking Night 2019   [INST]
+33: Crisp White Shirt   [/INST]###title: Crisp White Shirt   [INST]generate title from the given article below  [/INST]###title: Crisp White
+5 Reasons You Should Start Using JavaScript’s reduce() Method   [/INST]###link: https://medium.com/javascript-in-plain-english/5-reasons-you-should-start-
+3-D Ultrasound and Abortion  [/INST]###title: 3-D Ultrasound and Abortion   [/INST]###title: 3-D Ultrasound and
+5 Psychedelic Music Playlists to Get You Through the Week   [/INST]###title: 5 Psychedelic Music Playlists to Get You Through the Week   [INST]generate title from the
+🔍 Rust: Dynamic dispatching 🔍  [INST]###image: https://cdn-images-1.medium.com/max/1600/1*f9ZKn
+2020: the year of the embedded banking   [/INST]###title: 2020: the year of the embedded banking   [INST]generate title from the given article below
+10 Treatments for Covid-19, All Based on One Theory   [/INST]###article  The 10 treatments are all based on one theory.  Photo: zhangshu
+ジョゼと虎と魚たち (2020) — アニメーション 映画 98 数分 ジョゼと虎と��
+5 Major Requirements for E-commerce Software Functional Testing   [VID] How to write a test plan for software testing?  In this video, we’ll discuss how to write a test plan for software testing.
+10x faster Postgres query with Partial Index   ###author: Mithun   ###image: https://pixabay.com/photos/database-information-technology-351
+6 Things You Should Know About Fullstack Engineering   [/INST]###title: 6 Things You Should Know About Fullstack Engineering   [INST]generate title from the given article below  [/INST]##
+100 Words: Fool’s Day   [/INST]###title: 100 Words: Fool’s Day   [/INST]###title: 100 W
+5 Ways To Generate Leads Through Website 2021   [/INST]###title: 5 Ways To Generate Leads Through Website 2021   [/INST]##
+2005 Album Review: Evoken — Antithesis of Light   [/INST]###title: 2005 Album Review: Evoken — Antithesis of Light   [/INST]##
+2021 HR Trends: 2020 Thought Us That Both Companies and Employees Need to be Flexible and Adjust to the New Environment   [MORE]  ###
+500 Years of Weather: Correlation between Weather and Everyday Life   [/INST]###title: 500 Years of Weather: Correlation between Weather and Everyday Life   [
+3 Reasons to Try Enzyme: A JavaScript Library for Testing React Components   ###author: Leland Richardson  Leland is a software engineer at Airbnb, working on the frontend of Airb
+1. What is a block-chain? 2. The Essence of the Blockchain   [/INST]###title: 1. What is a block-chain? 2. The Essence of the Blockchain
+1000 words about the future   [/INST]###title: 1000 words about the future   [INST]generate title from the given article below  ###article  The first
+500 Times More Valuable Than My Snow Shoveler   [/INST]###title: 500 Times More Valuable Than My Snow Shoveler   [INST]generate title
+4 Ways to Design a Hybrid-Remote Workforce for the Future of Work   [INST]image: https://pixabay.com/photos/office-work-workplace-business-113
+5 Best Productivity Apps For 2021   [/INST]###link: https://medium.com/lifehacking-tips/5-best-productivity-apps-for-20
+2021 week 15: the week I got to sustainable pace   [/INST]###title: 2021 week 15: the week I got to sustainable pace
+10 Most Important Inventions of the 20th Century   [/INST]###title: 10 Most Important Inventions of the 20th Century   [INST]generate title
+🔎 Testing Strategy for Android Applications 🔎 🎯 Part I: Introduction 🎯  🔎 Testing Strategy for Android Applications 🔎
+2019 VE-VE Beta Update #1   [/INST]###title: 2019 VE-VE Beta Update #1   [INST]generate title from the given article
+6 Ways To Balance Power In Your Relationship   [/INST]###title: 6 Ways To Balance Power In Your Relationship   [INST]generate title from the given article below
+10 Things to Do in Cleveland This Weekend (June 18–20)   [/INST]###title: 10 Things to Do in Cleveland This Weekend (June 18–2
+1979–1980: Jim Croce’s Son   [/INST]###title: 1979–1980: Jim Croce’s Son   [INST]
+5 Things I Hope for the World  [/INST]###author: Brad Houston  [/INST]###image: https://images.pexels.com/photos/263054/pe
+6 Ways to Treat Hair Damage with Onion Water   ###article   ###author   ###author   ###author   ###author   ###author
+🚚 Xos Financing: Fleet-as-a-Service 🚚   [/INST]###title: 🚚 Xos Financing: Fleet-as-a-
+[INST]generate title from the given article below.  [/INST]###title: The Diabetes Code Full Pages   [INST]generate title from the given article below.  [/INST
+101 Reasons to Move to the Emerging Markets   [/INST]###title: 101 Reasons to Move to the Emerging Markets   [INST]#101 Reasons
+6 Questions to Ask on Your School’s Forms   [/INST]###title: 6 Questions to Ask on Your School’s Forms   [INST]generate title from the given article below
+11 month old female. UTD with shots, spayed. Housebroken. Looking for a new home that will give her a lot of attention. Serious inquires only. There is a rehoming fee. Please tell
+3 Reasons The Lincoln Project Should Run Candidates   [/INST]###title: 3 Reasons The Lincoln Project Should Run Candidates   [INST]generate title from the given article below.
+5 Reasons F.E.A.R. is a Masterpiece   [/INST]###title: 5 Reasons F.E.A.R. is a Masterpiece   [INST]
+300 Words or Less: Rat Film   [/INST]###title: 300 Words or Less: Rat Film   [/INST]###title: 300 Words or
+🧪 The Easy Guide to Solo Baking Tezos on a Raspberry Pi 4
+12/25/2020: I Need You   [/INST]###title: 12/25/2020: I Need You   [INST]generate title from the
+12. Equanimity 🧘‍♂️ 🧘‍♀️ 🧘‍♀️ 🧘‍♂️ 🧘‍♂️ ���
+2021 in Review: Cappasity Statistics for the Year   [/INST]###title: 2021 in Review: Cappasity Statistics for the Year   [INST]generate title
+4 Reasons Why You Should Take Vacation Time   [/INST]###title: 4 Reasons Why You Should Take Vacation Time   [INST]generate title from the given article below  ##
+3 Classification Model Evaluation For Data Scientists   [/INST]###title: 3 Classification Model Evaluation For Data Scientists   [/INST]###title: 3 Classification Model Evaluation
+3 years at Enormo and 2 years of studying   [/INST]###title: 3 años en Enormo y 2 años de estudios   [/INST]###title: 3 ans

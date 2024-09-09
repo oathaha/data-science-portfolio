@@ -1,5 +1,7 @@
 
 ## for bert score
+from bert_score import score
+
 import evaluate
 
 from nltk.translate.bleu_score import corpus_bleu
@@ -66,6 +68,41 @@ test_df = pd.read_csv('../dataset/cleaned/test.csv')
 
 ref_title = test_df['title'].tolist()
 
+
+print('evaluating result from', model_name)
+
+#%%
+
+## post-process results
+
+def post_process_func(string):
+
+    string = string.strip()
+
+    if model_name in ['t5', 'long-t5']:
+        if string.startswith('<s'):
+            string = string[2:]
+        if '<s' in string:
+            string = string.split('<s')[0]
+    
+    elif model_name == 'llama-2-7b':
+        if string.startswith('[/INST]'):
+            string = string[7:]
+        if '[/INST]' in string:
+            string = string.split('[/INST]')[0]
+
+    elif 'few-shot' in model_name:
+        if '[END-OF-TITLE]' in string:
+            end_of_title_pos = string.find('[END-OF-TITLE]')
+            string = string[:end_of_title_pos]
+
+    return string.strip()
+
+
+if model_name != 'bart':
+    generated_title = [post_process_func(s) for s in generated_title]
+
+
 #%%
 
 tok_generated_title = [word_tokenize(s) for s in generated_title]
@@ -117,15 +154,20 @@ eval_result_list.append({
     'value': rouge_l
 })
 
-print(results)
+print('ROUGE-L:', rouge_l)
 
 ## compute bertscore
-bertscore = evaluate.load("bertscore")
-results = bertscore.compute(predictions=generated_title, references=ref_title, lang="en")
+# bertscore = evaluate.load("bertscore")
+# results = bertscore.compute(predictions=generated_title, references=ref_title, lang="en")
+P, R, F1 = score(generated_title, ref_title, lang='en', verbose=True)
 
-prec = round(np.mean(results['precision']), 4)*100
-rec = round(np.mean(results['recall']), 4)*100
-f1 = round(np.mean(results['f1']), 4)*100
+prec = round(P.mean().item(), 4)*100
+rec = round(R.mean().item(), 4)*100
+f1 = round(F1.mean().item(), 4)*100
+
+# prec = round(np.mean(results['precision']), 4)*100
+# rec = round(np.mean(results['recall']), 4)*100
+# f1 = round(np.mean(results['f1']), 4)*100
 
 eval_result_list.append({
     'model': model_name,

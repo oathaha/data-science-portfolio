@@ -12,6 +12,9 @@ gt = pd.read_csv('../dataset/cleaned/test.csv')
 with open('../dataset/cleaned/class2idx.pkl', 'rb') as f:
     class2idx = pickle.load(f)
 
+idx_list = list(class2idx.values())
+idx_str_list = [str(s) for s in idx_list]
+
 # %%
 
 parser = argparse.ArgumentParser()
@@ -42,12 +45,21 @@ if model_name == 'llama2-7b':
     ## some lines contain uppercase letters, so make them lowercase so that they match keys in dictionary
     predictions = [s.lower() for s in predictions]
 
-    print(predictions[:50])
-
     predictions = [class2idx.get(s, -1) for s in predictions]
 
-    labels = list(class2idx.values()) + [-1]
-    # print(labels)
+    labels = idx_list + [-1]
+
+    print(predictions[:50])
+
+elif 'shot' in model_name:
+    
+    predictions = [s.strip() if len(s.split()) > 0 else '[BLANK]' for s in predictions]
+
+    predictions = [s.split()[0].replace(',','').replace('.','').strip() for s in predictions]
+    
+    predictions = [int(s)-1 if s in idx_str_list else -1 for s in predictions]
+
+    labels = idx_list + [-1]
 
     print(predictions[:50])
 

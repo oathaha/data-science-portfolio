@@ -8,6 +8,8 @@ from datasets import load_dataset
 
 from torch.utils.data import DataLoader
 
+import pandas as pd
+
 from tqdm import tqdm
 
 parser = argparse.ArgumentParser()
@@ -39,7 +41,7 @@ if prompting_technique not in ['zero-shot', 'few-shot']:
 
 max_input_lens = {
     'zero-shot': 3950,
-    'few-shot': 980
+    'few-shot': 950
 }
 
 max_input_len = max_input_lens[prompting_technique]
@@ -48,9 +50,6 @@ if prompting_technique == 'zero-shot':
     test_df = pd.read_csv('../dataset/cleaned/test.csv')
 else:
     test_df = pd.read_csv('../dataset/cleaned/test_for_prompting.csv')
-
-############## load dataset ##############
-
 
 
 ############## load tokenizer ##############
@@ -61,19 +60,16 @@ tokenizer.padding_side = "right" # Fix weird overflow issue with fp16 training
 
 ############## the below code is for generating predictions ##############
 
-prompt_template_for_example = '''[INST]Below is the article
+prompt_header = 'Generate title for the given article\n\n'
 
-{}
+# prompt_template_for_example = '''Article: {}
+# Title: {}\n\n'''
 
-Generate title for this article[/INST]
+prompt_template_for_example = '{} => {} {}\n\n'
 
-Title: {}\n\n'''
+prompt_template_for_real_test_sample = '''Generate title for the given article
 
-prompt_template_for_real_test_sample = '''[INST]Below is the article
-
-{}
-
-Generate title for this article[/INST]
+Article: {}
 
 Title: '''
 
@@ -93,20 +89,22 @@ def create_prompt(input_row):
         prompt = prompt_template_for_real_test_sample.format(input_text)
 
     else:
-        input_text = truncate_input(input_row['test_input'])
+        input_text = truncate_input(input_row['test_input']).replace('\n', ' ').strip()
+
         prompt = ''
 
         for i in range(0,3):
             input_sample = input_row['sample_input_{}'.format(i+1)]
             label_sample = input_row['sample_title_{}'.format(i+1)]
 
-            input_sample = truncate_input(input_sample)
+            input_sample = truncate_input(input_sample).replace('\n', ' ').strip()
 
-            sample_prompt = prompt_template_for_example.format(input_sample, label_sample)
+            sample_prompt = prompt_template_for_example.format(input_sample, label_sample, '[END-OF-TITLE]')
 
             prompt = prompt + sample_prompt
 
-        prompt = prompt + prompt_template_for_real_test_sample.format(input_text)
+        # prompt = prompt + prompt_template_for_real_test_sample.format(input_text)
+        prompt = prompt_header + prompt + prompt_template_for_example.format(input_text,'','').replace('\n','')
 
     return prompt
 
@@ -134,7 +132,7 @@ for idx, row in tqdm(test_df.iterrows()):
 
     input_prompt = create_prompt(row)
 
-    output = pipe(input_prompt, max_new_tokens=3, return_full_text = False)
+    output = pipe(input_prompt, max_new_tokens=50, return_full_text = False)
 
     output_text = output[0]['generated_text']
     output_text = output_text.replace('\n',' ').strip()

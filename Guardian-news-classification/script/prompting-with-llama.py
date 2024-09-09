@@ -79,7 +79,27 @@ categories_dict = {
     "science": 13
 }
 
-prompt_template_for_example = '''[INST]Below is the news content
+# prompt_header = '''Given the possible news categories below
+
+# 1. Sport
+# 2. Film
+# 3. Music
+# 4. Culture
+# 5. Food
+# 6. World
+# 7. Business
+# 8. Environment
+# 9. Money
+# 10. Fashion
+# 11. Technology
+# 12. Games
+# 13. Science\n\n'''
+
+# prompt_template_for_example = '{} => {}. {} \n\n'
+
+
+
+prompt_template_for_example = '''Below is the news content
 
 {}
 
@@ -98,10 +118,10 @@ The below choices show possible news categories:
 12. Games
 13. Science
 
-Question: From the news and possible news categories above, what is this news type? You have to give answer as number only.[/INST]
-Answer: {}. {} \n\n'''
+Question: From the news and possible news categories above, what is this news type? You have to give answer as number only.
+Answer: {} {} \n\n'''
 
-prompt_template_for_real_test_sample = '''[INST]Below is the news content
+prompt_template_for_real_test_sample = '''Below is the news content
 
 {}
 
@@ -120,7 +140,8 @@ The below choices show possible news categories:
 12. Games
 13. Science
 
-Question: From the news and possible news categories above, what is this news type? You have to give answer as number only.[/INST]
+Question: From the news and possible news categories above, what is this news type? You have to give answer as number only.
+
 Answer: '''
 
 def truncate_input(input_text):
@@ -134,29 +155,30 @@ def truncate_input(input_text):
 ## input_row: row from a dataframe
 def create_prompt(input_row):
 
-    
-
     if prompting_technique == 'zero-shot':
         input_text = truncate_input(input_row['text'])
         prompt = prompt_template_for_real_test_sample.format(input_text)
 
     else:
-        input_text = truncate_input(input_row['test_input'])
+        input_text = truncate_input(input_row['test_input']).replace('\n', ' ').strip()
+
         prompt = ''
 
         for i in range(0,3):
             input_sample = input_row['sample_input_{}'.format(i+1)]
             label_sample = input_row['sample_label_str_{}'.format(i+1)]
 
-            input_sample = truncate_input(input_sample)
+            input_sample = truncate_input(input_sample).replace('\n', '').strip()
 
             choice_num = categories_dict[label_sample]
 
-            sample_prompt = prompt_template_for_example.format(input_sample, choice_num, label_sample)
+            sample_prompt = prompt_template_for_example.format(input_sample, str(choice_num)+'.', label_sample)
 
             prompt = prompt + sample_prompt
 
-        prompt = prompt + prompt_template_for_real_test_sample.format(input_text)
+        # prompt = prompt + prompt_template_for_real_test_sample.format(input_text)
+
+        prompt = prompt + prompt_template_for_example.format(input_text, '','').strip()
 
     return prompt
 
@@ -184,7 +206,7 @@ for idx, row in tqdm(test_df.iterrows()):
 
     input_prompt = create_prompt(row)
 
-    output = pipe(input_prompt, max_new_tokens=6, return_full_text = False)
+    output = pipe(input_prompt, max_new_tokens=3, return_full_text = False)
 
     output_text = output[0]['generated_text']
     output_text = output_text.replace('\n',' ').strip()

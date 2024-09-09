@@ -43,8 +43,7 @@ col_names = {
     'review_priority_prediction': ['Low-Priority', 'High-Priority']
 }
 
-def eval_result(model_name, imb_data_handling_method):
-
+def load_model(model_name, imb_data_handling_method):
     model_dir = '../model/{}/{}/{}/'.format(task_name, imb_data_handling_method, model_name)
 
     print('loading model from', model_dir)
@@ -52,14 +51,14 @@ def eval_result(model_name, imb_data_handling_method):
     with open(model_dir + 'model.pkl', 'rb') as f:
         model = pickle.load(f)
 
-    pred = model.predict(x)
-    prob = model.predict_proba(x)
+    return model
 
+
+## prob is for positive class only
+def evaluate(model_name, imb_data_handling_method, pred, prob):
     result = classification_report(y, pred, output_dict=True)
 
     result_rows = []
-
-    # print(result)
 
     for k,v in result.items():
         data_row = {
@@ -78,7 +77,7 @@ def eval_result(model_name, imb_data_handling_method):
     result_all_class_df = pd.DataFrame(result_rows)
 
     ## store result of all classes (roc_auc is for positive label only)
-    roc_auc = roc_auc_score(y, prob[:, 1])
+    roc_auc = roc_auc_score(y, prob)
     mcc = matthews_corrcoef(y, pred)
 
     result_dict = {
@@ -88,12 +87,62 @@ def eval_result(model_name, imb_data_handling_method):
         'MCC': mcc
     }
 
+    # prob_df = pd.DataFrame(prob, columns = col_names[task_name])
+    # prob_df['model_name'] = model_name
+    # prob_df['label'] = y
 
-    prob_df = pd.DataFrame(prob, columns = col_names[task_name])
-    prob_df['model_name'] = model_name
-    prob_df['label'] = y
+    return result_all_class_df, result_dict
 
-    return result_all_class_df, result_dict, prob_df
+# def eval_result(model_name, imb_data_handling_method):
+
+#     model_dir = '../model/{}/{}/{}/'.format(task_name, imb_data_handling_method, model_name)
+
+#     print('loading model from', model_dir)
+
+#     with open(model_dir + 'model.pkl', 'rb') as f:
+#         model = pickle.load(f)
+
+    
+
+    # result = classification_report(y, pred, output_dict=True)
+
+    # result_rows = []
+
+    # # print(result)
+
+    # for k,v in result.items():
+    #     data_row = {
+    #         'model': model_name,
+    #         'data-imbalanced-handling': imb_data_handling_method
+    #     }
+
+    #     if k in ['0.0','1.0', 'macro avg']:
+    #         data_row['class'] = k
+    #         for met, val in v.items():
+    #             if met != 'support':
+    #                 data_row[met] = round(val,2)
+    #         result_rows.append(data_row)
+
+    # ## store result of each class
+    # result_all_class_df = pd.DataFrame(result_rows)
+
+    # ## store result of all classes (roc_auc is for positive label only)
+    # roc_auc = roc_auc_score(y, prob[:, 1])
+    # mcc = matthews_corrcoef(y, pred)
+
+    # result_dict = {
+    #     'model': model_name,
+    #     'data-imbalanced-handling': imb_data_handling_method,
+    #     'AUC': roc_auc,
+    #     'MCC': mcc
+    # }
+
+
+    # prob_df = pd.DataFrame(prob, columns = col_names[task_name])
+    # prob_df['model_name'] = model_name
+    # prob_df['label'] = y
+
+    # return result_all_class_df, result_dict, prob_df
 
 # %%
 base_result_dir = '../result'
@@ -123,13 +172,36 @@ all_result_all_classes_rows = []
 prob_val = {s:[] for s in data_imb_handling_methods}
 
 
-for model_name in model_names:
-    for method in data_imb_handling_methods:
-        result_all_class_df, result_dict, prob_df = eval_result(model_name, method)
+
+
+for method in data_imb_handling_methods:
+    pred_all_models_df = pd.DataFrame()
+    prob_all_models_df = pd.DataFrame()
+    
+    ## get results from each model
+    for model_name in model_names:
+        model = load_model(model_name, method)
+
+        pred = model.predict(x)
+        prob = model.predict_proba(x)[:,1]
+
+        pred_all_models_df[model_name] = pred
+        prob_all_models_df[model_name] = prob
+
+        result_all_class_df, result_dict = evaluate(model_name, method, pred, prob)
 
         alL_result_each_class_df.append(result_all_class_df)
         all_result_all_classes_rows.append(result_dict)
-        prob_val[method].append(prob_df)
+        
+    ## for ensemble voting
+    final_prediction = pred_all_models_df.mode(axis='columns')
+    final_prob = prob_all_models_df.mean(axis='columns')
+
+    result_all_class_df, result_dict = evaluate('Ensemble Voting', method, final_prediction, final_prob)
+
+    alL_result_each_class_df.append(result_all_class_df)
+    all_result_all_classes_rows.append(result_dict)
+        
 
 # %%
 
@@ -139,9 +211,9 @@ result_all_classes = pd.DataFrame(all_result_all_classes_rows)
 result_each_class.to_csv(os.path.join(result_dir, '{}_result_each_class.csv'.format(task_name)), index=False)
 result_all_classes.to_csv(os.path.join(result_dir, '{}_result_all_classes.csv'.format(task_name)), index=False)
 
-for data_imb_handling_method, df_list in prob_val.items():
-    final_df = pd.concat(df_list)
-    final_df.to_csv(os.path.join(prob_dir, '{}_prob.csv'.format( data_imb_handling_method)), index=False)
+# for data_imb_handling_method, df_list in prob_val.items():
+#     final_df = pd.concat(df_list)
+#     final_df.to_csv(os.path.join(prob_dir, '{}_prob.csv'.format( data_imb_handling_method)), index=False)
 
 #%%
 
