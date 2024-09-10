@@ -11,23 +11,48 @@ import pandas as pd
 
 import pickle, os
 
-import sys
+import argparse
 
 
 # %%
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--task', type = str, required=True)
+parser.add_argument('--use_selected_features', action='store_true')
+
+args = parser.parse_args()
+
+
+task = args.task
+use_selected_features = args.use_selected_features
+
+if task == 'loan-app-pred':
+    data_subdir = 'loan_approval_prediction'
+    model_subdir = 'loan_approval_prediction'
+    target_col = 'is_approved'
+
+elif task == 'priority-pred':
+    data_subdir = 'review_priority_prediction'
+    model_subdir = 'review_priority_prediction'
+    target_col = 'is_high_priority'
+
+if use_selected_features:
+    model_subdir_lv2 = 'use_selected_features'
+    test_df_dir = '../dataset/cleaned/{}/test_processed_selected_features.csv'.format(data_subdir)
+else:
+    model_subdir_lv2 = 'use_all_features'
+    test_df_dir = '../dataset/cleaned/{}/test_processed_data.csv'.format(data_subdir)
+
+
 ## Read test set
 
-target_cols = {
-    'loan_approval_prediction': 'is_approved',
-    'review_priority_prediction': 'is_high_priority'
-}
 
 # task_name = 'loan_approval_prediction'
-task_name = sys.argv[1]
 target_col = target_cols[task_name]
 
-df = pd.read_csv('../dataset/cleaned/{}/test_processed_data.csv'.format(task_name))
+print('read test data from', test_df_dir)
+
+df = pd.read_csv(test_df_dir)
 
 y = df[target_col]
 x = df.drop([target_col], axis=1)
@@ -44,7 +69,7 @@ col_names = {
 }
 
 def load_model(model_name, imb_data_handling_method):
-    model_dir = '../model/{}/{}/{}/'.format(task_name, imb_data_handling_method, model_name)
+    model_dir = '../model/{}/{}/{}/'.format(model_subdir, model_subdir_lv2, imb_data_handling_method, model_name)
 
     print('loading model from', model_dir)
 
@@ -146,8 +171,8 @@ def evaluate(model_name, imb_data_handling_method, pred, prob):
 
 # %%
 base_result_dir = '../result'
-result_dir = os.path.join(base_result_dir, 'eval_metrics')
-prob_dir = os.path.join(base_result_dir, 'prob_values', task_name)
+result_dir = os.path.join(base_result_dir, model_subdir_lv2, 'eval_metrics')
+prob_dir = os.path.join(base_result_dir, model_subdir_lv2, 'prob_values', task_name)
 
 os.makedirs(result_dir, exist_ok=True)
 os.makedirs(prob_dir, exist_ok=True)

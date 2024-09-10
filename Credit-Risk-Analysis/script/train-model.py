@@ -29,11 +29,13 @@ from imblearn.under_sampling import TomekLinks
 parser = argparse.ArgumentParser()
 parser.add_argument('--task', type = str, required=True)
 parser.add_argument('--handle_imb_data', type=str, default='', required=False)
+parser.add_argument('--use_selected_features', action='store_true')
 
 args = parser.parse_args()
 
 task = args.task
 handle_imb_data = args.handle_imb_data
+use_selected_features = args.use_selected_features
 
 
 # %%
@@ -54,8 +56,16 @@ else:
     print('task name must be "loan-app-pred" or "priority-pred"')
     exit(0)
 
+if use_selected_features:
+    model_subdir_lv2 = 'use_selected_features'
+    train_df_dir = '../dataset/cleaned/{}/train_processed_selected_features.csv'.format(data_subdir)
+else:
+    model_subdir_lv2 = 'use_all_features'
+    train_df_dir = '../dataset/cleaned/{}/train_processed_data.csv'.format(data_subdir)
 
-df = pd.read_csv('../dataset/cleaned/{}/train_processed_data.csv'.format(data_subdir))
+print('load training data from', train_df_dir)
+
+df = pd.read_csv(train_df_dir)
 
 print('load data finished')
 print('-'*30)
@@ -216,13 +226,11 @@ search_params = {
 ## initialize classification models
 
 
-model_dir = '../model/{}/{}'.format(model_subdir, imb_handling_method)
+model_dir = '../model/{}/{}/{}'.format(model_subdir, model_subdir_lv2, imb_handling_method)
 
 print('create directory {} to store models'.format(model_dir))
 
 os.makedirs(model_dir, exist_ok=True)
-
-# exit(0)
 
 decision_tree = DecisionTreeClassifier(random_state=random_state, class_weight=class_weight)
 knn = KNeighborsClassifier()
