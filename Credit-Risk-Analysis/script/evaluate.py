@@ -9,9 +9,7 @@ from sklearn.metrics import classification_report, roc_auc_score, matthews_corrc
 
 import pandas as pd
 
-import pickle, os
-
-import argparse
+import pickle, os, argparse
 
 
 # %%

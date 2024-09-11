@@ -7,7 +7,7 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 
-from scipy.stats import mannwhitneyu
+from scipy.stats import pointbiserialr
 
 
 import os, argparse
@@ -38,6 +38,8 @@ label_str = labels_str[task_name]
 
 train_df = pd.read_csv(os.path.join(base_dir,task_name, 'train_original_data.csv'))
 test_df = pd.read_csv(os.path.join(base_dir,task_name, 'test_original_data.csv'))
+
+original_train_df = train_df.copy()
 
 #%%
 
@@ -79,16 +81,18 @@ top_5_cat_feature_cols = feature_selector.get_feature_names_out().tolist()
 test_results = []
 
 for c in num_cols:
-    group_1 = train_df[train_df[label_str]][c]
-    group_2 = train_df[~train_df[label_str]][c]
+    # group_1 = train_df[train_df[label_str]][c]
+    # group_2 = train_df[~train_df[label_str]][c]
 
-    test_result = mannwhitneyu(group_1, group_2)
+    test_result = pointbiserialr(labels, train_df[c])
 
     stat_value = test_result.statistic
     p_value = test_result.pvalue
 
+    print(c, stat_value, p_value)
+
     if p_value <= 0.05:
-        test_results.append(stat_value)
+        test_results.append(abs(stat_value))
 
     # break
 
@@ -105,7 +109,7 @@ top_5_num_feature_cols = test_result_df['feature'].tolist()[:5]
 
 all_selected_cols = top_5_cat_feature_cols + top_5_num_feature_cols + [label_str]
 
-train_df = train_df[all_selected_cols]
+train_df = original_train_df[all_selected_cols]
 test_df = test_df[all_selected_cols]
 
 

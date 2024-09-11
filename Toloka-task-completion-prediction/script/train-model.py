@@ -1,7 +1,7 @@
 #%%
 ## Import library
 
-import os, pickle, json
+import os, pickle, json, argparse
 
 import pandas as pd
 import numpy as np
@@ -10,11 +10,24 @@ from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet
 from sklearn.ensemble import  AdaBoostRegressor, BaggingRegressor
 
+#%%
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--use_selected_feature', action = 'store_true')
+
+args = parser.parse_args()
+
+use_selected_feature = args.use_selected_feature
 
 # %%
 ## Prepare dataset
 
-df = pd.read_csv('../dataset/cleaned/train_processed_df.csv')
+if use_selected_feature:
+    df = pd.read_csv('../dataset/cleaned/train_processed_selected_features.csv')
+    model_subdir = 'use_selected_features'
+else:
+    df = pd.read_csv('../dataset/cleaned/train_processed_df.csv')
+    model_subdir = 'use_all_features'
 
 print('load data finished')
 print('-'*30)
@@ -80,7 +93,7 @@ search_params = {
 
 ## initialize regression model
 
-model_dir = '../model/'
+model_dir = '../model/{}'.format(model_subdir)
 os.makedirs(model_dir, exist_ok=True)
 
 linear = LinearRegression(n_jobs=32)
