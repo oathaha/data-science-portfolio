@@ -11,9 +11,10 @@ To replicate the experimental results, please follow the steps below
 2. Go to `./script/` directory
 3. Run `clean-data.ipynb` to clean the raw dataset.
 4. Run `prepare-data.py` to prepare data for model training.
-5. If you want to explore the cleaned dataset, you can run code in `explore-data.Rmd`. Note that it takes some time to render visualization due to a large dataset.
-6. Run `train-model.py` to train models.
-7. Run `evaluate.ipynb` to get evaluation results.
+5. Run `select_important_features.py` to select top-10 features for training models.
+6. If you want to explore the cleaned dataset, you can run code in `explore-data.Rmd`. Note that it takes some time to render visualization due to a large dataset.
+7. Run `train-model.py` to train models. For this script, the argument `--use_selected_feature` indicates that models are trained by using selected features in 5.
+8. Run `evaluate.ipynb` to get evaluation results.
 
 ## Experimental Setup
 
@@ -21,10 +22,10 @@ In the experiment, I use grid search to search for the best hyper-parameters for
 
 |Model| Hyper-Parameter Search Space | Note
 |--|--| -- |
-| Lasso | Alpha = [1, 5, 10] <br> Max_iter = [100, 500, 1000] | -- |
+| Lasso/Ridge | Alpha = [1, 5, 10] <br> Max_iter = [100, 500, 1000] | -- |
 | ElasticNet | Alpha = [1, 5, 10] <br> Max_iter = [100, 500, 1000] <br> l1_ratio = [0.3, 0.5, 0.7, 1.0] | -- |
-| AdaBoost + Lasso  <br> AdaBoost + ElasticNet <br> AdaBoost + Linear Regression | n_estimator = [10, 50, 100] <br> learning_rate = [0.1, 0.5, 1.0, 5.0] <br> loss_func = ['linear', 'square'] | use the best hyper-parameter of Lasso and ElasticNet to initialize base model |
-| Bagging + Lasso  <br> Bagging + ElasticNet <br> Bagging + Linear Regression | n_estimator = [10, 50, 100] | use the best hyper-parameter of Lasso and ElasticNet to initialize base model  |
+| AdaBoost + Lasso/Ridge  <br> AdaBoost + ElasticNet <br> AdaBoost + Linear Regression | n_estimator = [10, 50, 100] <br> learning_rate = [0.1, 0.5, 1.0, 5.0] <br> loss_func = ['linear', 'square'] | use the best hyper-parameter of Lasso/Ridge and ElasticNet to initialize base model |
+| Bagging + Lasso/Ridge  <br> Bagging + ElasticNet <br> Bagging + Linear Regression | n_estimator = [10, 50, 100] | use the best hyper-parameter of Lasso/Ridge and ElasticNet to initialize base model  |
 |  |  |  |
 
 

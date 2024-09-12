@@ -4,7 +4,7 @@
 
 This directory contains script to run experiment for predicting status/review priority of loan application. 
 * For the status of loan application, I built machine learning models to predict whether a loan application should be accepted or refused. 
-* For the review priority of loan application I built machine learning models to predict whether a loan application has high priority or low priority.
+* For the review priority of loan application, I built machine learning models to predict whether a loan application has high priority or low priority.
 
 More details can be found in this [link](www.tmp.com).
 
@@ -16,8 +16,10 @@ To replicate the experimental results, please follow the steps below
 3. Run `clean-data.ipynb` to clean the raw dataset.
 4. Run `prepare-data.py` to prepare data for model training.
 5. If you want to explore the cleaned dataset, you can run code in `visualize-data-loan-grant-prediction.ipynb` and `visualize-data-review-priority-prediction.ipynb`. 
-6. Run `train-model.py` to train models. For this script, there are 2 arguments
+6. Run `select_important_features.py` to select top-10 features for training models.
+7. Run `train-model.py` to train models. For this script, there are 3 arguments
 		`--task`: the task to train models (`loan-app-pred` or `priority-pred`)
+		`--use_selected_feature`: this flag indicates that models are trained by using selected features in 6.
 		`--handle_imb_data`: how to handle imbalanced dataset.
 				
 	| `--handle_imb_data` | description |
@@ -29,9 +31,9 @@ To replicate the experimental results, please follow the steps below
 
 
 
-
-7. Run `evaluate.py` to get evaluation results.
-8. Run `show-evaluation-results.ipynb` to see evaluation results.
+8. Run `get_result_from_baselines.py` to get the results from baselines (i.e., major class prediction, uniform prediction, class distribution prediction).
+9. Run `evaluate.py` to get evaluation results.
+10. Run `show-evaluation-results.ipynb` to see evaluation results.
 
 ## Experimental Setup
 
