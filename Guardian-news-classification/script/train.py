@@ -32,23 +32,12 @@ data_dir = '../dataset/cleaned/'
 model_name_arg = args.model_name
 model_name = model_names.get(model_name_arg, '')
 
-handle_imb_data = args.handle_imb_data
-
-if handle_imb_data:
-    print('handle imbalance data during training')
-    suffix = 'handle-imbalance-data'
-else:
-    print('does not handle imbalance data during training')
-    suffix = 'train-with-original-data'
-
-output_model_dir = '../fine-tuned-model/{}-{}'.format(model_name_arg, suffix)
+output_model_dir = '../fine-tuned-model/{}-{}'.format(model_name_arg)
 
 if model_name == '':
     print('wrong model name.')
     print('the model names must be in the list:', list(model_names.keys()))
     exit(0)
-
-
 
 ############## load dataset ##############
 
@@ -73,8 +62,7 @@ eval_batch_size = 8
 learning_rate = 1e-5
 
 ## real one
-# eval_every_step = round(0.1*len(dataset['train'])/train_batch_size)
-eval_every_step = 1090 ## total steps are 10902 as seen from screen.
+eval_every_step = 1090 ## evaluate every 10% of the total steps (10902 as seen on screen).
 
 if model_name_arg == 'llama2-7b':
     fp16 = True
@@ -165,7 +153,6 @@ def train_LLM():
         model=model,
         train_dataset=dataset["train"],
         eval_dataset=dataset["valid"],
-        # peft_config=peft_config,
         dataset_text_field="text",
         max_seq_length=1024,
         tokenizer=tokenizer,
@@ -179,8 +166,6 @@ def train_LLM():
 
 
 def train_enc_model():
-
-    # global tokenizer
 
     if tokenizer.pad_token is None:
         tokenizer.add_special_tokens({'pad_token': '[PAD]'})

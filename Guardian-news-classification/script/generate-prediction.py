@@ -30,7 +30,7 @@ model_name_arg = args.model_name
 model_name = model_names.get(model_name_arg, '')
 ckpt_num = args.ckpt_num
 
-output_model_dir = '../fine-tuned-model/{}-train-with-original-data'.format(model_name_arg)
+output_model_dir = '../fine-tuned-model/{}'.format(model_name_arg)
 real_model_path = os.path.join(output_model_dir, 'checkpoint-{}'.format(ckpt_num))
 
 result_dir = '../generated_result/'
@@ -73,6 +73,7 @@ bnb_config = BitsAndBytesConfig(
 
 def preprocess_input_txt(input_text):
         
+    ## truncate input text 
     input_text = tokenizer.decode(
                 tokenizer.encode(
                     input_text,truncation=True, max_length = 900),
@@ -108,10 +109,6 @@ if model_name_arg == 'llama2-7b':
         output_text = output[0]['generated_text']
         output_text = output_text.replace('\n',' ').strip()
 
-        print('input text:', input_text[:100],'...', input_text[-100:])
-        print('output text:', output_text)
-        print('-'*30)
-
         with open(result_file_path, 'a') as f:
             f.write(output_text+'\n')
 
@@ -141,8 +138,6 @@ else:
                 ).logits
 
         predicted_class_id = torch.argmax(logits, dim=1).tolist()
-
-        print(predicted_class_id)
 
         predicted_class_id = list(predicted_class_id)
         predicted_class_id = [str(pred) for pred in predicted_class_id]

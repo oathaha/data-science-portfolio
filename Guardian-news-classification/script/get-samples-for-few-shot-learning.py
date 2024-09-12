@@ -10,7 +10,6 @@ from tqdm import tqdm
 from multiprocessing import Pool
 
 
-## use nrows just for testing
 train_df = pd.read_csv('../dataset/cleaned/train.csv')
 
 test_df = pd.read_csv('../dataset/cleaned/test.csv')
@@ -74,47 +73,6 @@ for idx, row in test_df.iterrows():
 
 pool = Pool(processes=8)
 new_test_data_rows = pool.starmap(get_example_for_test_sample, test_data_rows)
-
-
-    # test_input_tok_list = word_tokenize(row['text'])
-
-    # scores = bm25.get_scores(test_input_tok_list)
-
-    # score_df = pd.DataFrame()
-    # score_df['row_num'] = row_nums
-    # score_df['score'] = scores
-
-    # score_df = score_df.sort_values(by='score',ascending=False)
-    # score_df = score_df.head(3)
-
-    # top_3_row_nums = score_df['row_num'].tolist()
-
-    # subset_train_df = train_df[train_df['row_num'].isin(top_3_row_nums)]
-
-    # selected_train_input = subset_train_df['text'].tolist()
-    # seleted_train_output = subset_train_df['label_str'].tolist()
-
-    # # train_df_with_score = train_df.copy()
-    # # train_df_with_score['score'] = scores
-
-    # # train_df_with_score = train_df_with_score.sort_values(by='score',ascending=False)
-
-    # # train_df_with_score = train_df_with_score.head(10)
-
-    # # selected_train_input = train_df_with_score['text'].tolist()[:10]
-    # # seleted_train_output = train_df_with_score['label_str'].tolist()[:10]
-
-    # data_row = {
-    #     'test_input': row['text'],
-    #     'test_label': row['label_str']
-    # }
-
-    # for k in range(0,len(selected_train_input)):
-    #     data_row['sample_input_{}'.format(k+1)] = selected_train_input[k]
-    #     data_row['sample_label_str_{}'.format(k+1)] = seleted_train_output[k]
-
-    # new_test_data_rows.append(data_row)
-
 
 new_test_df = pd.DataFrame(new_test_data_rows)
 

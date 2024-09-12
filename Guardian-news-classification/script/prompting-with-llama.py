@@ -79,25 +79,6 @@ categories_dict = {
     "science": 13
 }
 
-# prompt_header = '''Given the possible news categories below
-
-# 1. Sport
-# 2. Film
-# 3. Music
-# 4. Culture
-# 5. Food
-# 6. World
-# 7. Business
-# 8. Environment
-# 9. Money
-# 10. Fashion
-# 11. Technology
-# 12. Games
-# 13. Science\n\n'''
-
-# prompt_template_for_example = '{} => {}. {} \n\n'
-
-
 
 prompt_template_for_example = '''Below is the news content
 
@@ -152,6 +133,7 @@ def truncate_input(input_text):
 
     return input_text
 
+
 ## input_row: row from a dataframe
 def create_prompt(input_row):
 
@@ -176,14 +158,12 @@ def create_prompt(input_row):
 
             prompt = prompt + sample_prompt
 
-        # prompt = prompt + prompt_template_for_real_test_sample.format(input_text)
-
         prompt = prompt + prompt_template_for_example.format(input_text, '','').strip()
 
     return prompt
 
 
-print('loading LLM')
+print('loading LLaMa-2 model')
 
 bnb_config = BitsAndBytesConfig(
     load_in_8bit=True
@@ -197,8 +177,11 @@ model = AutoModelForCausalLM.from_pretrained(
     quantization_config=bnb_config
 )
 
+print('loading model done')
+
 pipe = pipeline(task = "text-generation", model = model, tokenizer = tokenizer)
 
+print('LLaMa-2 is running')
 
 data_rows = []
 
@@ -223,21 +206,3 @@ for idx, row in tqdm(test_df.iterrows()):
 
     df = pd.DataFrame(data_rows)
     df.to_csv(csv_output_file_path, index=False)
-
-# for d in tqdm(dataloader):
-
-#     input_text = d['text'][0]
-
-#     input_text = preprocess_input_txt(input_text)
-    
-#     output = pipe(input_text, max_new_tokens=5, return_full_text = False)
-
-#     output_text = output[0]['generated_text']
-#     output_text = output_text.replace('\n',' ').strip()
-
-#     print('input text:', input_text[:100],'...', input_text[-100:])
-#     print('output text:', output_text)
-#     print('-'*30)
-
-#     with open(result_file_path, 'a') as f:
-#         f.write(output_text+'\n')

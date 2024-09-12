@@ -51,12 +51,14 @@ if model_name == 'llama2-7b':
 
     print(predictions[:50])
 
+## for zero-shot and few-shot llama-2
 elif 'shot' in model_name:
     
     predictions = [s.strip() if len(s.split()) > 0 else '[BLANK]' for s in predictions]
 
     predictions = [s.split()[0].replace(',','').replace('.','').strip() for s in predictions]
     
+    ## choices in prompts start at 1, but class index starts at 0
     predictions = [int(s)-1 if s in idx_str_list else -1 for s in predictions]
 
     labels = idx_list + [-1]
@@ -67,7 +69,6 @@ else:
     predictions = [int(s.strip()) for s in predictions]
 
     labels = None
-
 
 print(classification_report(
     true_labels_int, 

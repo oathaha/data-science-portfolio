@@ -6,8 +6,6 @@ import matplotlib.pyplot as plt
 
 import pickle
 
-import pickle
-
 from nltk.tokenize import word_tokenize
 
 from multiprocessing import Pool
@@ -22,6 +20,8 @@ df.head()
 
 # %%
 
+## show number of news for each category
+
 class_count = df.groupby('label').size().reset_index()
 class_count.columns = ['label', 'count']
 class_count = class_count.sort_values(by = 'count', ascending=False)
@@ -35,6 +35,8 @@ plot
 
 #%%
 
+## show number of words in news article for each category
+
 def get_word_count(text):
     return len(word_tokenize(text))
 
@@ -47,21 +49,17 @@ word_count = pool.starmap(get_word_count, articles)
 
 df['word_count'] = word_count
 
-#%%
-
 plt.figure(figsize=(5,4.5))
 plot = sns.boxplot(data = df, y='label', x='word_count', hue='label')
 
 plot.set_xticklabels(plot.get_xticklabels(), rotation=30)
 
-
 plot
 
 #%%
 
+## drop unused column
 df = df.drop('word_count', axis=1)
-
-#%%
 
 ## convert class name to label
 
