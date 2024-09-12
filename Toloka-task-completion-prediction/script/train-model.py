@@ -1,6 +1,4 @@
 #%%
-## Import library
-
 import os, pickle, json, argparse
 
 import pandas as pd
@@ -31,9 +29,6 @@ else:
 
 print('load data finished')
 print('-'*30)
-
-### just for testing
-# df = pd.read_csv('../dataset/cleaned/sample_train_df.csv')
 
 df = df.reset_index()
 
@@ -145,7 +140,7 @@ def log_artifacts(model_obj, log_grid_search_result = True, is_ensemble = False)
 def print_training_info(model_name, params):
     print('performing hyper-parameter optimization on', model_name)
     print('hyper-parameter search space:')
-    # print(params)
+
     for k,v in params.items():
         print('  {}:\t'.format(k), v)
 
@@ -177,22 +172,20 @@ def grid_search_reg_model(model, params):
 
 ## fit simple regression model here
 
-# print('training a regression model')
-# print('-'*30)
+print('training a regression model')
+print('-'*30)
 
-# linear.fit(x.loc[train_idx], y.loc[train_idx])
-# log_artifacts(linear, log_grid_search_result=False)
+linear.fit(x.loc[train_idx], y.loc[train_idx])
+log_artifacts(linear, log_grid_search_result=False)
 
-# print('finished training')
-# print('-'*30)
+print('finished training')
+print('-'*30)
 
-# %%
+# grid search for single regression models
 
-## grid search for single regression models
-
-# grid_search_reg_model(lasso, search_params['lasso'])
-# grid_search_reg_model(elasticNet, search_params['elasticNet'])
-# grid_search_reg_model(ridge, search_params['ridge'])
+grid_search_reg_model(lasso, search_params['lasso'])
+grid_search_reg_model(elasticNet, search_params['elasticNet'])
+grid_search_reg_model(ridge, search_params['ridge'])
 
 # %%
 
@@ -229,8 +222,7 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
         )
     elif base_model_name == 'Ridge':
         base_model = Ridge(
-            alpha = best_params['alpha'], max_iter=best_params['max_iter'], 
-            # solver=best_params['solver']
+            alpha = best_params['alpha'], max_iter=best_params['max_iter']
         )
     elif base_model_name == 'ElasticNet':
         base_model = ElasticNet(
@@ -268,13 +260,13 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
     
 #%%
 
-# grid_search_ensemble_model('Lasso', 'adaboost', params=search_params['adaboost'])
-# grid_search_ensemble_model('ElasticNet', 'adaboost', params=search_params['adaboost'])
+grid_search_ensemble_model('Lasso', 'adaboost', params=search_params['adaboost'])
+grid_search_ensemble_model('ElasticNet', 'adaboost', params=search_params['adaboost'])
 grid_search_ensemble_model('Ridge', 'adaboost', params=search_params['adaboost'])
-# grid_search_ensemble_model('Linear', 'adaboost', params=search_params['adaboost'])
+grid_search_ensemble_model('Linear', 'adaboost', params=search_params['adaboost'])
 
-# grid_search_ensemble_model('Lasso', 'bagging', search_params['bagging'])
-# grid_search_ensemble_model('ElasticNet', 'bagging', search_params['bagging'])
+grid_search_ensemble_model('Lasso', 'bagging', search_params['bagging'])
+grid_search_ensemble_model('ElasticNet', 'bagging', search_params['bagging'])
 grid_search_ensemble_model('Ridge', 'bagging', search_params['bagging'])
-# grid_search_ensemble_model('Linear', 'bagging', search_params['bagging'])
+grid_search_ensemble_model('Linear', 'bagging', search_params['bagging'])
 # %%

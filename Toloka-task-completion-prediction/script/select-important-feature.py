@@ -85,8 +85,6 @@ print('selected feature:')
 print(top_5_cat_cols + top_5_num_cols)
 print()
 
-## for pre-processing
-
 
 # %%
 
@@ -117,7 +115,6 @@ col_names = list(col_transformer.get_feature_names_out())
 
 col_names = [s.replace('cat__','').replace('num__','').replace('remainder__','') for s in col_names]
 
-# print(col_names)
     
 train_data = col_transformer.transform(train_df)
 test_data = col_transformer.transform(test_df)
