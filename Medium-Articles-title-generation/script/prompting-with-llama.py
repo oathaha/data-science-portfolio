@@ -62,9 +62,6 @@ tokenizer.padding_side = "right" # Fix weird overflow issue with fp16 training
 
 prompt_header = 'Generate title for the given article\n\n'
 
-# prompt_template_for_example = '''Article: {}
-# Title: {}\n\n'''
-
 prompt_template_for_example = '{} => {} {}\n\n'
 
 prompt_template_for_real_test_sample = '''Generate title for the given article
@@ -103,7 +100,6 @@ def create_prompt(input_row):
 
             prompt = prompt + sample_prompt
 
-        # prompt = prompt + prompt_template_for_real_test_sample.format(input_text)
         prompt = prompt_header + prompt + prompt_template_for_example.format(input_text,'','').replace('\n','')
 
     return prompt
@@ -149,21 +145,3 @@ for idx, row in tqdm(test_df.iterrows()):
 
     df = pd.DataFrame(data_rows)
     df.to_csv(csv_output_file_path, index=False)
-
-# for d in tqdm(dataloader):
-
-#     input_text = d['text'][0]
-
-#     input_text = preprocess_input_txt(input_text)
-    
-#     output = pipe(input_text, max_new_tokens=5, return_full_text = False)
-
-#     output_text = output[0]['generated_text']
-#     output_text = output_text.replace('\n',' ').strip()
-
-#     print('input text:', input_text[:100],'...', input_text[-100:])
-#     print('output text:', output_text)
-#     print('-'*30)
-
-#     with open(result_file_path, 'a') as f:
-#         f.write(output_text+'\n')

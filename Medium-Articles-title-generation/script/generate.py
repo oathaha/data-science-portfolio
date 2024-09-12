@@ -144,13 +144,9 @@ if model_name_arg == 'llama2-7b':
         output_text = output[0]['generated_text']
         output_text = output_text.replace('\n',' ').strip()
 
-        print('input text:', input_text[:100],'...', input_text[-100:])
-        print('output text:', output_text)
-        print('-'*30)
-
         with open(result_file_path, 'a') as f:
             f.write(output_text+'\n')
-
+            
 
 else:
 
@@ -159,8 +155,6 @@ else:
         batch = preprocess_batch(batch)
 
         input_encodings = tokenizer.batch_encode_plus(batch['text'], pad_to_max_length=True, max_length=512)
-        # input_ids = input_encodings['input_ids'], 
-        # attention_mask = input_encodings['attention_mask']
 
         outs = model.generate(
             input_ids=torch.tensor(input_encodings['input_ids'],dtype=torch.long).cuda(), 
@@ -170,9 +164,6 @@ else:
 
         outs = [tokenizer.decode(ids, skip_special_tokens=True) for ids in outs]
 
-        # generated_title_list.extend(outs)
 
         with open(result_file_path, 'a') as f:
             f.write('\n'.join(outs)+'\n')
-
-        # break

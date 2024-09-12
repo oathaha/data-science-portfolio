@@ -65,10 +65,11 @@ def get_title_word_count_range(wc):
 
 #%%
 
+## show histogram of number of words in articles
+
 df['articles_word_count_range'] = df['articles_word_count'].apply(lambda x: get_article_word_count_range(x))
 df['titles_word_count_range'] = df['titles_word_count'].apply(lambda x: get_title_word_count_range(x))
 
-#%%
 plt.figure(figsize=(5,4))
 
 plot = sns.histplot(data = df, x = 'articles_word_count', element="step")
@@ -77,12 +78,15 @@ plot.set(xlabel = 'Frequency', ylabel = 'Article word count')
 plot
 
 #%%
+## show histogram of number of words in titles
+
 plt.figure(figsize=(5,4))
 
 plot = sns.histplot(data = df, x = 'titles_word_count', element="step")
 plot.set(xlabel = 'Frequency', ylabel = 'Title word count')
 
 #%%
+## show number of words in articles by group
 
 count_df = df.groupby('articles_word_count_range').size().reset_index()
 count_df.columns = ['articles_word_count_range', 'count']
@@ -102,6 +106,7 @@ plot
 
 
 #%%
+## show number of words in titles by group
 
 count_df = df.groupby('titles_word_count_range').size().reset_index()
 count_df.columns = ['titles_word_count_range', 'count']
@@ -118,11 +123,9 @@ for container in plot.containers:
 
 plot
 
-
-
-
 #%%
 
+## drop unused columns
 df = df.drop(['articles_word_count, titles_word_count'], axis=1)
 
 

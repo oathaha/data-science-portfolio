@@ -43,10 +43,6 @@ if model_name == '':
 
 dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.csv'), 'valid': os.path.join(data_dir,'valid.csv')})
 
-## just for testing
-# dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.csv'), 'valid': os.path.join(data_dir,'valid_for_testing.csv')})
-
-
 print(dataset)
 
 
@@ -54,7 +50,6 @@ print(dataset)
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
-
 
 
 ############## load model for training ##############
@@ -68,9 +63,7 @@ train_batch_size = 8
 eval_batch_size = 8
 learning_rate = 1e-5
 
-## real one
-# eval_every_step = round(0.1*len(dataset['train'])/train_batch_size)
-eval_every_step = 3050 ## total steps are 30516 as seen from screen.
+eval_every_step = 3050 ## evaluate model every 10% of the total steps (30516 as seen on the screen).
 
 
 if model_name_arg == 'llama2-7b':
@@ -84,7 +77,7 @@ training_args = TrainingArguments(
     do_eval=True,
     output_dir=output_model_dir,
     evaluation_strategy = "steps",
-    eval_steps = eval_every_step, ## evaluate every 10% of training dataset (in term of batch)
+    eval_steps = eval_every_step,
     logging_strategy = 'steps',
     logging_first_step = True,
     learning_rate=learning_rate,
@@ -161,7 +154,6 @@ def train_LLM():
         model=model,
         train_dataset=dataset["train"],
         eval_dataset=dataset["valid"],
-        # peft_config=peft_config,
         dataset_text_field="text",
         max_seq_length=1024,
         tokenizer=tokenizer,
@@ -191,12 +183,6 @@ def train_enc_dec_model():
 
         model_inputs["labels"] = labels["input_ids"]
 
-        # inputs = example_batch['text']
-        # targets = example_batch['title']
-        # model_inputs = tokenizer(
-        #     inputs, text_target=targets, max_length=512, truncation=True, pad_to_max_length=True
-        # )
-
         return model_inputs
 
     tokenizer.padding_side = "right" # Fix weird overflow issue with fp16 training
@@ -223,9 +209,6 @@ def train_enc_dec_model():
             torch_dtype=torch.float16,
             quantization_config=bnb_config
         )
-
-        # print(model)
-        # exit()
 
         model = prepare_model_for_kbit_training(model)
         model = get_peft_model(model, peft_config)
