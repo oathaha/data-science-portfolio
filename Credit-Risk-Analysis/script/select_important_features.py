@@ -13,6 +13,7 @@ from scipy.stats import pointbiserialr
 import os, argparse
 #%%
 
+## task_name: loan_approval_prediction or review_priority_prediction
 parser = argparse.ArgumentParser()
 parser.add_argument('--task_name', type=str, required=True)
 
@@ -56,18 +57,17 @@ labels = train_df[label_str]
 
 #%%
 
-# label_encoders = {}
-
+## encode categorical variables presented in string to numerical values (e.g., 1,2,3) for later steps
 
 for c in cat_cols:
 
     label_encoder = LabelEncoder()
     label_encoder.fit(train_df[c])
-    # label_encoders[c] = label_encoder
     train_df[c] = label_encoder.transform(train_df[c])
 
 # %%
 
+## use chi-square statistics to obtain top-5 features 
 feature_selector = SelectKBest(chi2, k=5)
 feature_selector.fit(train_df[cat_cols], labels)
 
@@ -76,25 +76,21 @@ top_5_cat_feature_cols = feature_selector.get_feature_names_out().tolist()
 
 # %%
 
-## for mann witney U test
+## calculate Point Biserial to measure the correlation between numerical variables and predicted classes
 
 test_results = []
 
 for c in num_cols:
-    # group_1 = train_df[train_df[label_str]][c]
-    # group_2 = train_df[~train_df[label_str]][c]
 
     test_result = pointbiserialr(labels, train_df[c])
 
     stat_value = test_result.statistic
     p_value = test_result.pvalue
 
-    print(c, stat_value, p_value)
-
+    ### if p-value <= 0.05, it means that there is a correlation between a numerical variable and predicted classes
     if p_value <= 0.05:
         test_results.append(abs(stat_value))
 
-    # break
 
 # %%
 
@@ -119,11 +115,14 @@ print()
 
 ## for pre-processing
 
+### only pre-process the columns that begin with 'AMT'
 top_5_num_feature_cols = [s for s in top_5_num_feature_cols if s.startswith('AMT')]
 
+### this feature is already in numerical format, so no need to do one-hot encoding
 if 'NFLAG_INSURED_ON_APPROVAL' in top_5_cat_feature_cols:
     top_5_cat_feature_cols.remove('NFLAG_INSURED_ON_APPROVAL')
 
+### this feature is already in numerical format, so no need to do one-hot encoding
 if 'SELLERPLACE_AREA' in top_5_cat_feature_cols:
     top_5_cat_feature_cols.remove('SELLERPLACE_AREA')
 
@@ -160,7 +159,6 @@ col_names = list(col_transformer.get_feature_names_out())
 
 col_names = [s.replace('cat__','').replace('num__','').replace('remainder__','') for s in col_names]
 
-# print(col_names)
     
 train_data = col_transformer.transform(train_df).toarray()
 test_data = col_transformer.transform(test_df).toarray()
@@ -172,5 +170,3 @@ test_df = pd.DataFrame(data=test_data, columns=col_names)
 
 train_df.to_csv(os.path.join(base_dir, task_name, 'train_processed_selected_features.csv'), index=False)
 test_df.to_csv(os.path.join(base_dir, task_name, 'test_processed_selected_features.csv'), index=False)
-
-# %%

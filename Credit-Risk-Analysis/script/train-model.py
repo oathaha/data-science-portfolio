@@ -1,6 +1,4 @@
 #%%
-## Import library
-
 import os, pickle, json, argparse
 
 import pandas as pd
@@ -18,8 +16,6 @@ from sklearn.ensemble import  AdaBoostClassifier, BaggingClassifier, RandomFores
 ## from https://xgboost.readthedocs.io/en/stable/get_started.html
 from xgboost import XGBClassifier
 
-
-## has import error, will fix later...
 from imblearn.over_sampling import SMOTE
 from imblearn.under_sampling import TomekLinks
 
@@ -70,9 +66,6 @@ df = pd.read_csv(train_df_dir)
 print('load data finished')
 print('-'*30)
 
-### just for testing
-# df = pd.read_csv('../dataset/cleaned/sample_train_df.csv')
-
 df = df.reset_index()
 
 indices = np.arange(len(df))
@@ -82,7 +75,7 @@ random_state = 0
 
 #%%
 
-## handle imbalanced data here
+## handle imbalanced data
 
 def split_x_and_y(df, target_col):
     y = df[target_col]
@@ -223,14 +216,14 @@ search_params = {
 
 #%%
 
-## initialize classification models
-
-
 model_dir = '../model/{}/{}/{}'.format(model_subdir, model_subdir_lv2, imb_handling_method)
 
 print('create directory {} to store models'.format(model_dir))
 
 os.makedirs(model_dir, exist_ok=True)
+
+
+## initialize classification models
 
 decision_tree = DecisionTreeClassifier(random_state=random_state, class_weight=class_weight)
 knn = KNeighborsClassifier()
@@ -238,7 +231,6 @@ lr = LogisticRegression(random_state=random_state, class_weight=class_weight)
 gbt = HistGradientBoostingClassifier(random_state=random_state, class_weight=class_weight)
 xgb = XGBClassifier(random_state=random_state)
 rf = RandomForestClassifier(random_state=random_state, class_weight=class_weight)
-# svm = SVC(kernel='linear',random_state=random_state, class_weight=class_weight)
 
 def log_artifacts(model_obj, log_grid_search_result = True, is_ensemble = False):
 
@@ -283,7 +275,6 @@ def log_artifacts(model_obj, log_grid_search_result = True, is_ensemble = False)
 def print_training_info(model_name, params):
     print('performing hyper-parameter optimization on', model_name)
     print('hyper-parameter search space:')
-    # print(params)
     for k,v in params.items():
         print('  {}:\t'.format(k), v)
 
@@ -324,8 +315,6 @@ grid_search_cls_model(lr, search_params['Logistic-regression'])
 grid_search_cls_model(rf, search_params['random-forest'])
 grid_search_cls_model(gbt, search_params['gradient-boosting'])
 grid_search_cls_model(xgb, search_params['xgboost'])
-# grid_search_cls_model(svm, search_params['SVM'])
-
 
 
 # %%
@@ -401,7 +390,4 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
 grid_search_ensemble_model('DecisionTreeClassifier', 'adaboost', params=search_params['adaboost'])
 grid_search_ensemble_model('LogisticRegression', 'adaboost', params=search_params['adaboost'])
 
-
 grid_search_ensemble_model('LogisticRegression', 'bagging', search_params['bagging'])
-
-# %%
