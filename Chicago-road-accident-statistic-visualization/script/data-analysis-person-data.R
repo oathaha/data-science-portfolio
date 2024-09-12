@@ -97,7 +97,7 @@ save.fig = function(fig.name, scale=1){
 
 
 
-## age range vs gender
+## Number of people that involved in accidents by age and gender
 
 new.df = df %>% 
   filter(!Sex %in% c('UNKNOWN', 'Other') & Age.range != 'UNKNOWN') %>%
@@ -116,7 +116,7 @@ save.fig('num_people_by_age_and_gender')
 
 
 
-## PEDPEDAL_ACTION vs PEDPEDAL_LOCATION
+## Pedpedal location and action
 
 new.df = df %>%
   filter(
@@ -124,7 +124,6 @@ new.df = df %>%
       !PEDPEDAL_LOCATION %in% c('UNKNOWN', "UNKNOWN/NA")
   ) %>%
   select(PEDPEDAL_ACTION_TYPE, PEDPEDAL_LOCATION)
-  # count(PEDPEDAL_ACTION_TYPE, PEDPEDAL_LOCATION)
 
 new.df %>% ggplot() + 
   geom_mosaic(aes(x=product(PEDPEDAL_ACTION_TYPE,PEDPEDAL_LOCATION), fill=PEDPEDAL_ACTION_TYPE), offset = 0.06) + 
@@ -133,33 +132,20 @@ new.df %>% ggplot() +
     axis.text.x = element_text(
       angle = 90, 
       vjust=0.5,
-      # size = 20
     ),
-    # axis.text.y = element_text(size = 20),
-    # plot.title = element_text(size = 40)
   ) + 
   labs(
     title = 'Pedpedal location and action',
     x = 'Pedpedal Location',
     y = 'Pedpedal Action'
-    # fill = 'Driver Action'
   )
 
-# new.df %>% ggplot(aes(x=PEDPEDAL_LOCATION, y=PEDPEDAL_ACTION_TYPE, fill=n)) + 
-#   geom_tile() + 
-#   theme(axis.text.x = element_text(angle=15, vjust = 0.5)) + 
-#   labs(
-#     title = 'Number of pedestraints that involved in accidents by action and location',
-#     x = 'Pedpedal Location',
-#     y = 'Pedpedal Action',
-#     fill = ''
-#   )
 
 save.fig('num_pedpedal_by_action_and_location', scale = 1)
 
 
 
-## INJURY_CLASSIFICATION vs AIRBAG_DEPLOYED
+## Number of people that involved in accidents by injury type and airbag deployment
 
 new.df = df %>%
   filter(INJURY_CLASSIFICATION != 'UNKNOWN' & 
@@ -176,20 +162,18 @@ new.df %>% ggplot(aes(x=INJURY_CLASSIFICATION, y=n, fill = AIRBAG_DEPLOYED)) +
     x = 'Injury Type',
     y = 'Number of people (log base 10)',
     fill = 'Airbag Deployment'
-  ) 
-  # theme(legend.position = 'bottom')
+  )
 
 save.fig('num_people_by_injury_and_airbag')
 
 
 
-## INJURY_CLASSIFICATION vs SAFETY_EQUIPMENT
+## Number of people that involved in accidents by injury type and safety equipment
 
 new.df = df %>%
   filter(INJURY_CLASSIFICATION != 'UNKNOWN' & 
            SAFETY_EQUIPMENT != 'UNKNOWN') %>%
   count(INJURY_CLASSIFICATION, SAFETY_EQUIPMENT)
-  # mutate(n = log10(n))
 
 new.df %>% ggplot(aes(x=n, y=SAFETY_EQUIPMENT, fill = INJURY_CLASSIFICATION)) + 
   geom_bar(stat = 'identity', position = 'fill') +
@@ -201,19 +185,17 @@ new.df %>% ggplot(aes(x=n, y=SAFETY_EQUIPMENT, fill = INJURY_CLASSIFICATION)) +
     fill = 'Injury Type'
   ) + 
   scale_y_discrete(labels = label_wrap_gen(10))
-  # theme(legend.position = 'bottom')
 
 save.fig('num_people_by_injury_and_safety_equipment', scale=1.5)
 
 
 
-## INJURY_CLASSIFICATION vs ejection
+## Number of people that involved in accidents by injury type and ejection status
 
 new.df = df %>%
   filter(INJURY_CLASSIFICATION != 'UNKNOWN' & 
            !EJECTION %in% c('UNKNOWN', 'NONE')) %>%
   count(INJURY_CLASSIFICATION, EJECTION)
-  # mutate(n = log10(n))
 
 new.df %>% ggplot(aes(x=INJURY_CLASSIFICATION, y=n, fill = EJECTION)) + 
   geom_bar(stat = 'identity', position = 'dodge') +
@@ -231,14 +213,13 @@ save.fig('num_people_by_injury_and_ejection')
 
 
 
-## INJURY_CLASSIFICATION vs driver vision
+## Number of driver that involved in accidents by injury type and vision
 
 new.df = df %>%
   filter(INJURY_CLASSIFICATION != 'UNKNOWN' & 
            DRIVER_VISION != 'UNKNOWN' & 
            PERSON_TYPE == 'DRIVER') %>%
   count(INJURY_CLASSIFICATION, DRIVER_VISION)
-  # mutate(n = log10(n))
 
 new.df %>% ggplot(aes(x=n, y=DRIVER_VISION, fill = INJURY_CLASSIFICATION)) + 
   geom_bar(stat = 'identity', position = 'fill') +
@@ -250,7 +231,5 @@ new.df %>% ggplot(aes(x=n, y=DRIVER_VISION, fill = INJURY_CLASSIFICATION)) +
     fill = 'Injury Type'
   ) + 
   scale_y_discrete(labels = label_wrap_gen(10))
-  # theme(legend.position = 'bottom')
 
 save.fig('num_driver_by_injury_and_vision')
-
