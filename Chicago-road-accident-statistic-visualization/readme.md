@@ -6,11 +6,6 @@
  
 This directory contains script to run R script for visaulizing the road accident in Chicago in 2023. More details can be found in this [link](www.tmp.com).
 
-## Environment Setup
-Please follow the steps below to setup the environment required for running script
-1. Install [Spark](https://spark.apache.org/).
-2. Install Python and the following libraries: `pandas` and `pyspark`
-3. Install R and the following libraries: `tidyverse`, `ggmosaic`, and `ggsankey`
 
 ## How to create visualization
 Please follow the steps below to run script to create visualization:
