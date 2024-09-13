@@ -49,7 +49,6 @@ In the experiment, I use grid search to search for the best hyper-parameters for
 | Extreme Gradient Boosting | n_estimator = [50, 100, 300] <br> learning_rate_ada = [0.1, 0.5, 1.0, 5.0] | -- |
 | AdaBoost + Decision Tree  <br> AdaBoost + Logistic Regression| n_estimator = [10, 50, 100] <br> learning_rate = [0.1, 0.5, 1.0, 5.0] <br> | use the best hyper-parameter of Decision Tree and Logistic Regression to initialize base model |
 | Bagging + Logistic Regression | n_estimator = [10, 50, 100] | use the best hyper-parameter of Logistic Regression to initialize base model  |
-|  |  |  |
 
 ## Result
 

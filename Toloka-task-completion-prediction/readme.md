@@ -26,7 +26,6 @@ In the experiment, I use grid search to search for the best hyper-parameters for
 | ElasticNet | Alpha = [1, 5, 10] <br> Max_iter = [100, 500, 1000] <br> l1_ratio = [0.3, 0.5, 0.7, 1.0] | -- |
 | AdaBoost + Lasso/Ridge  <br> AdaBoost + ElasticNet <br> AdaBoost + Linear Regression | n_estimator = [10, 50, 100] <br> learning_rate = [0.1, 0.5, 1.0, 5.0] <br> loss_func = ['linear', 'square'] | use the best hyper-parameter of Lasso/Ridge and ElasticNet to initialize base model |
 | Bagging + Lasso/Ridge  <br> Bagging + ElasticNet <br> Bagging + Linear Regression | n_estimator = [10, 50, 100] | use the best hyper-parameter of Lasso/Ridge and ElasticNet to initialize base model  |
-|  |  |  |
 
 
 ## Result
