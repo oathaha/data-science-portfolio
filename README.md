@@ -2,7 +2,7 @@
 
 This repository contains the implementations for my data science portfolio which can be found in this [link](https://sites.google.com/view/chanathip-pornprasit/). This portfolio contains the following sub-directories
 
- - Purchase Order Visualization
+ - Chicago Road Accident Visualization
  - Assignment Completion Time Prediction
  - Loan Application Status/Priority Prediction
  - News Classification
@@ -10,6 +10,9 @@ This repository contains the implementations for my data science portfolio which
 
 ## Dataset
 The dataset can be found in this [link](https://drive.google.com/drive/folders/1w_3rMmeEpQlBlHTCqupwSBHxwFoYXsEK?usp=drive_link)
+
+## Fine-tuned Models
+The fine-tuned models can be found in this [link] (...)
 
 ## Environment Setup
 
