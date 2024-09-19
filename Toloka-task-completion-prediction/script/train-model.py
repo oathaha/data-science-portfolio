@@ -155,7 +155,7 @@ def grid_search_reg_model(model, params):
         model,
         param_grid=params,
         scoring='neg_root_mean_squared_error',
-        n_jobs=1,
+        n_jobs=4,
         cv=[(train_idx, test_idx)],
         verbose = True
     )
@@ -172,25 +172,25 @@ def grid_search_reg_model(model, params):
 
 ## fit simple regression model here
 
-print('training a regression model')
-print('-'*30)
+# print('training a regression model')
+# print('-'*30)
 
-linear.fit(x.loc[train_idx], y.loc[train_idx])
-log_artifacts(linear, log_grid_search_result=False)
+# linear.fit(x.loc[train_idx], y.loc[train_idx])
+# log_artifacts(linear, log_grid_search_result=False)
 
-print('finished training')
-print('-'*30)
+# print('finished training')
+# print('-'*30)
 
-# grid search for single regression models
+## grid search for single regression models
 
-grid_search_reg_model(lasso, search_params['lasso'])
-grid_search_reg_model(elasticNet, search_params['elasticNet'])
-grid_search_reg_model(ridge, search_params['ridge'])
+# grid_search_reg_model(lasso, search_params['lasso'])
+# grid_search_reg_model(elasticNet, search_params['elasticNet'])
+# grid_search_reg_model(ridge, search_params['ridge'])
 
 # %%
 
 def get_best_params_from_base_model(base_model_name):
-    model_dir = '../model/{}'.format(base_model_name)
+    model_dir = '../model/{}/{}'.format(model_subdir, base_model_name)
 
     with open(os.path.join(model_dir, 'best_params.json')) as f:
         best_params = json.load(f)
@@ -230,7 +230,7 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
             l1_ratio=best_params['l1_ratio']
         )
     elif base_model_name == 'Linear':
-        base_model = LinearRegression(n_jobs=1)
+        base_model = LinearRegression(n_jobs=4)
 
     if ensemble_model_name == 'adaboost':
         model = AdaBoostRegressor(estimator=base_model, random_state=random_state)
@@ -246,7 +246,7 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
         model,
         param_grid=params,
         scoring='neg_root_mean_squared_error',
-        n_jobs=1,
+        n_jobs=4,
         cv=[(train_idx, test_idx)],
         verbose=1
     )
@@ -260,10 +260,12 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
     
 #%%
 
+grid_search_ensemble_model('Linear', 'adaboost', params=search_params['adaboost'])
+
 grid_search_ensemble_model('Lasso', 'adaboost', params=search_params['adaboost'])
 grid_search_ensemble_model('ElasticNet', 'adaboost', params=search_params['adaboost'])
 grid_search_ensemble_model('Ridge', 'adaboost', params=search_params['adaboost'])
-grid_search_ensemble_model('Linear', 'adaboost', params=search_params['adaboost'])
+
 
 grid_search_ensemble_model('Lasso', 'bagging', search_params['bagging'])
 grid_search_ensemble_model('ElasticNet', 'bagging', search_params['bagging'])
