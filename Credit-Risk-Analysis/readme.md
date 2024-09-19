@@ -6,12 +6,12 @@ This directory contains script to run experiment for predicting status/review pr
 * For the status of loan application, I built machine learning models to predict whether a loan application should be accepted or refused. 
 * For the review priority of loan application, I built machine learning models to predict whether a loan application has high priority or low priority.
 
-More details can be found in this [link](www.tmp.com).
+More details can be found in this [link](https://sites.google.com/view/chanathip-pornprasit/data-science-portfolio/loan-application-statuspriority-prediction).
 
 ## How to Replicate the Experimental Results
 
 To replicate the experimental results, please follow the steps below
-1. Get the raw dataset from this [link](https://drive.google.com/drive/folders/1w_3rMmeEpQlBlHTCqupwSBHxwFoYXsEK?usp=drive_link) and put it to `dataset/raw/`.
+1. Get the raw dataset from this [link](https://zenodo.org/records/13787952) and put it to `dataset/raw/`.
 2. Go to `./script/` directory
 3. Run `clean-data.ipynb` to clean the raw dataset.
 4. Run `prepare-data.py` to prepare data for model training.
@@ -52,4 +52,14 @@ In the experiment, I use grid search to search for the best hyper-parameters for
 
 ## Result
 
-later...
+### Result of application priority prediction
+
+- For the low-priority class, the majority of models that are trained with imbalanced data and data rebalanced by Tomek achieve higher precision and F1 when compared to the models that are trained by using SMOTE and class-weight to handle data imbalanced problem. In contrast, the majority of models that are trained by using SMOTE and class-weight to handle data imbalanced problem achieve higher recall when compared to the models that are trained with imbalanced data and data rebalanced by Tomek.
+- For the high-priority class, all models achieve similar performance regardless of data imbalanced handling techniques, and achieve higher performance compared to the results of the low-priority class.
+- The overall performance (macro-average) shows that majority of models that are trained with imbalanced data and data rebalanced by Tomek achieve higher precision and F1, while majority of models that are trained by using SMOTE and class-weight to handle data imbalanced problem achieve higher recall.
+
+
+### Result of approval status prediction
+- For the refused class, the majority of models that are trained with imbalanced data and data rebalanced by Tomek achieve higher precision and F1 when compared to the models that are trained by using SMOTE and class-weight to handle data-imbalanced problems. In contrast, the majority of models that are trained by using SMOTE and class-weight to handle data imbalanced problem achieve higher recall when compared to the models that are trained with imbalanced data and data rebalanced by Tomek.
+- For the approved class, the majority of models that are trained by using SMOTE and class-weight to handle data imbalanced problem achieve higher precision than the models that are trained with imbalanced data and data rebalanced by Tomek. In contrast, the majority of models that are trained with imbalanced data and data rebalanced by Tomek achieve higher recall when compared to the models that are trained by using SMOTE and class-weight to handle data imbalanced problem. On the other hand, the majority of models that are trained with imbalanced data, and data rebalanced by Tomek and SMOTE achieve higher F1 than the models that are trained by using class-weight to handle data imbalanced problem.
+- The overall performance (macro-average) shows that majority of models that are trained with imbalanced data and data rebalanced by Tomek achieve higher precision, while the majority of models that are trained by using SMOTE and class-weight to handle data-imbalanced problems achieve higher recall. On the other hand, the majority of models achieve similar performance regardless of data-imbalanced handling techniques.
