@@ -16,7 +16,6 @@ import pickle, os, argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--task', type = str, required=True)
-parser.add_argument('--use_selected_features', action='store_true')
 
 args = parser.parse_args()
 
@@ -34,17 +33,11 @@ elif task == 'priority-pred':
     model_subdir = 'review_priority_prediction'
     target_col = 'is_high_priority'
 
-if use_selected_features:
-    model_subdir_lv2 = 'use_selected_features'
-    test_df_dir = '../dataset/cleaned/{}/test_processed_selected_features.csv'.format(data_subdir)
-else:
-    model_subdir_lv2 = 'use_all_features'
-    test_df_dir = '../dataset/cleaned/{}/test_processed_data.csv'.format(data_subdir)
+
+test_df_dir = '../dataset/cleaned/{}/test_processed_selected_features.csv'.format(data_subdir)
 
 
 ## Read test set
-
-target_col = target_cols[task_name]
 
 print('read test data from', test_df_dir)
 
@@ -65,7 +58,7 @@ col_names = {
 }
 
 def load_model(model_name, imb_data_handling_method):
-    model_dir = '../model/{}/{}/{}/'.format(model_subdir, model_subdir_lv2, imb_data_handling_method, model_name)
+    model_dir = '../model/{}/{}/{}/'.format(model_subdir, imb_data_handling_method, model_name)
 
     print('loading model from', model_dir)
 
@@ -113,8 +106,8 @@ def evaluate(model_name, imb_data_handling_method, pred, prob):
 
 # %%
 base_result_dir = '../result'
-result_dir = os.path.join(base_result_dir, model_subdir_lv2, 'eval_metrics')
-prob_dir = os.path.join(base_result_dir, model_subdir_lv2, 'prob_values', task_name)
+result_dir = os.path.join(base_result_dir, 'eval_metrics')
+prob_dir = os.path.join(base_result_dir, 'prob_values', data_subdir)
 
 os.makedirs(result_dir, exist_ok=True)
 os.makedirs(prob_dir, exist_ok=True)
@@ -172,6 +165,6 @@ for method in data_imb_handling_methods:
 result_each_class = pd.concat(alL_result_each_class_df)
 result_all_classes = pd.DataFrame(all_result_all_classes_rows)
 
-result_each_class.to_csv(os.path.join(result_dir, '{}_result_each_class.csv'.format(task_name)), index=False)
-result_all_classes.to_csv(os.path.join(result_dir, '{}_result_all_classes.csv'.format(task_name)), index=False)
+result_each_class.to_csv(os.path.join(result_dir, '{}_result_each_class.csv'.format(data_subdir)), index=False)
+result_all_classes.to_csv(os.path.join(result_dir, '{}_result_all_classes.csv'.format(data_subdir)), index=False)
 
