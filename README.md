@@ -1,6 +1,6 @@
 # data-science-portfolio
 
-This repository contains the implementations for my data science portfolio which can be found in this [link](https://sites.google.com/view/chanathip-pornprasit/). This portfolio contains the following projects:
+This repository contains the implementations for my data science portfolio which can be found in this [link](https://sites.google.com/view/chanathip-pornprasit/data-science-portfolio). This portfolio contains the following projects:
 
  - [Chicago Road Accident Visualization](https://github.com/oathaha/data-science-portfolio/tree/main/Chicago-road-accident-statistic-visualization)
  - [Assignment Completion Time Prediction]( https://github.com/oathaha/data-science-portfolio/tree/main/Toloka-task-completion-prediction)
