@@ -192,7 +192,7 @@ new.df %>% ggplot(aes(x=Age.range, y=WORK_ZONE_TYPE, fill = n)) +
   geom_tile() +
   facet_wrap(vars(Sex), nrow=2) + 
   labs(
-    title = str_wrap('Number of people involved in accident by age and type of work zone',width=40),
+    title = str_wrap('Number of people involved in accident by age and type of work zone',width=50),
     x = 'Age',
     y = 'Work Zone Type',
     fill = 'Number of People'
