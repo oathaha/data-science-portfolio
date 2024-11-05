@@ -1,7 +1,5 @@
 #%%
-## Import library
-
-import os, pickle, json
+import os, pickle, json, argparse
 
 import pandas as pd
 import numpy as np
@@ -10,17 +8,27 @@ from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet
 from sklearn.ensemble import  AdaBoostRegressor, BaggingRegressor
 
+#%%
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--use_selected_feature', action = 'store_true')
+
+args = parser.parse_args()
+
+use_selected_feature = args.use_selected_feature
 
 # %%
 ## Prepare dataset
 
-df = pd.read_csv('../dataset/cleaned/train_processed_df.csv')
+if use_selected_feature:
+    df = pd.read_csv('../dataset/cleaned/train_processed_selected_features.csv')
+    model_subdir = 'use_selected_features'
+else:
+    df = pd.read_csv('../dataset/cleaned/train_processed_df.csv')
+    model_subdir = 'use_all_features'
 
 print('load data finished')
 print('-'*30)
-
-### just for testing
-# df = pd.read_csv('../dataset/cleaned/sample_train_df.csv')
 
 df = df.reset_index()
 
@@ -54,8 +62,7 @@ loss_func = ['linear', 'square']
 search_params = {
     'ridge': {
         'alpha': alpha,
-        'max_iter': max_iter,
-        'solver': solver
+        'max_iter': max_iter
     },
     'lasso': {
         'alpha': alpha,
@@ -81,7 +88,7 @@ search_params = {
 
 ## initialize regression model
 
-model_dir = '../model/'
+model_dir = '../model/{}'.format(model_subdir)
 os.makedirs(model_dir, exist_ok=True)
 
 linear = LinearRegression(n_jobs=32)
@@ -133,7 +140,7 @@ def log_artifacts(model_obj, log_grid_search_result = True, is_ensemble = False)
 def print_training_info(model_name, params):
     print('performing hyper-parameter optimization on', model_name)
     print('hyper-parameter search space:')
-    # print(params)
+
     for k,v in params.items():
         print('  {}:\t'.format(k), v)
 
@@ -148,7 +155,7 @@ def grid_search_reg_model(model, params):
         model,
         param_grid=params,
         scoring='neg_root_mean_squared_error',
-        n_jobs=1,
+        n_jobs=4,
         cv=[(train_idx, test_idx)],
         verbose = True
     )
@@ -174,18 +181,16 @@ def grid_search_reg_model(model, params):
 # print('finished training')
 # print('-'*30)
 
-# %%
-
 ## grid search for single regression models
 
 # grid_search_reg_model(lasso, search_params['lasso'])
 # grid_search_reg_model(elasticNet, search_params['elasticNet'])
-grid_search_reg_model(ridge, search_params['ridge'])
+# grid_search_reg_model(ridge, search_params['ridge'])
 
 # %%
 
 def get_best_params_from_base_model(base_model_name):
-    model_dir = '../model/{}'.format(base_model_name)
+    model_dir = '../model/{}/{}'.format(model_subdir, base_model_name)
 
     with open(os.path.join(model_dir, 'best_params.json')) as f:
         best_params = json.load(f)
@@ -217,7 +222,7 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
         )
     elif base_model_name == 'Ridge':
         base_model = Ridge(
-            alpha = best_params['alpha'], max_iter=best_params['max_iter'], solver=best_params['solver']
+            alpha = best_params['alpha'], max_iter=best_params['max_iter']
         )
     elif base_model_name == 'ElasticNet':
         base_model = ElasticNet(
@@ -225,7 +230,7 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
             l1_ratio=best_params['l1_ratio']
         )
     elif base_model_name == 'Linear':
-        base_model = LinearRegression(n_jobs=1)
+        base_model = LinearRegression(n_jobs=4)
 
     if ensemble_model_name == 'adaboost':
         model = AdaBoostRegressor(estimator=base_model, random_state=random_state)
@@ -241,7 +246,7 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
         model,
         param_grid=params,
         scoring='neg_root_mean_squared_error',
-        n_jobs=1,
+        n_jobs=4,
         cv=[(train_idx, test_idx)],
         verbose=1
     )
@@ -255,13 +260,15 @@ def grid_search_ensemble_model(base_model_name, ensemble_model_name, params=None
     
 #%%
 
-# grid_search_ensemble_model('Lasso', 'adaboost', params=search_params['adaboost'])
-# grid_search_ensemble_model('ElasticNet', 'adaboost', params=search_params['adaboost'])
-grid_search_ensemble_model('Ridge', 'adaboost', params=search_params['adaboost'])
-# grid_search_ensemble_model('Linear', 'adaboost', params=search_params['adaboost'])
+grid_search_ensemble_model('Linear', 'adaboost', params=search_params['adaboost'])
 
-# grid_search_ensemble_model('Lasso', 'bagging', search_params['bagging'])
-# grid_search_ensemble_model('ElasticNet', 'bagging', search_params['bagging'])
+grid_search_ensemble_model('Lasso', 'adaboost', params=search_params['adaboost'])
+grid_search_ensemble_model('ElasticNet', 'adaboost', params=search_params['adaboost'])
+grid_search_ensemble_model('Ridge', 'adaboost', params=search_params['adaboost'])
+
+
+grid_search_ensemble_model('Lasso', 'bagging', search_params['bagging'])
+grid_search_ensemble_model('ElasticNet', 'bagging', search_params['bagging'])
 grid_search_ensemble_model('Ridge', 'bagging', search_params['bagging'])
-# grid_search_ensemble_model('Linear', 'bagging', search_params['bagging'])
+grid_search_ensemble_model('Linear', 'bagging', search_params['bagging'])
 # %%

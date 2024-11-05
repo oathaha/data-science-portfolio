@@ -24,7 +24,8 @@ args = parser.parse_args()
 model_names = {
     'llama2-7b': 'meta-llama/Llama-2-7b-hf',
     't5': 'google-t5/t5-3b',
-    'bart': 'facebook/bart-large'
+    'bart': 'facebook/bart-large',
+    'long-t5': 'google/long-t5-tglobal-xl'
 }
 
 data_dir = '../dataset/cleaned/'
@@ -42,10 +43,6 @@ if model_name == '':
 
 dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.csv'), 'valid': os.path.join(data_dir,'valid.csv')})
 
-## just for testing
-# dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.csv'), 'valid': os.path.join(data_dir,'valid_for_testing.csv')})
-
-
 print(dataset)
 
 
@@ -53,7 +50,6 @@ print(dataset)
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
-
 
 
 ############## load model for training ##############
@@ -67,9 +63,7 @@ train_batch_size = 8
 eval_batch_size = 8
 learning_rate = 1e-5
 
-## real one
-# eval_every_step = round(0.1*len(dataset['train'])/train_batch_size)
-eval_every_step = 3050 ## total steps are 30516 as seen from screen.
+eval_every_step = 3050 ## evaluate model every 10% of the total steps (30516 as seen on the screen).
 
 
 if model_name_arg == 'llama2-7b':
@@ -83,7 +77,7 @@ training_args = TrainingArguments(
     do_eval=True,
     output_dir=output_model_dir,
     evaluation_strategy = "steps",
-    eval_steps = eval_every_step, ## evaluate every 10% of training dataset (in term of batch)
+    eval_steps = eval_every_step,
     logging_strategy = 'steps',
     logging_first_step = True,
     learning_rate=learning_rate,
@@ -118,11 +112,11 @@ def train_LLM():
 
         inputs = tokenizer.decode(
                     tokenizer.encode(
-                        inputs,truncation=True, max_length = 3950),
+                        inputs,truncation=True, max_length = 800),
                     skip_special_tokens=True)
         targets = tokenizer.decode(
                     tokenizer.encode(
-                        targets,truncation=True, max_length = 50),
+                        targets,truncation=True, max_length = 128),
                     skip_special_tokens=True)
         
         examples['text'] = '<s>[INST]generate title from the given article below\n\n###article\n\n {} \n\n[/INST]###title: {} </s>'.format(inputs, targets)
@@ -160,7 +154,6 @@ def train_LLM():
         model=model,
         train_dataset=dataset["train"],
         eval_dataset=dataset["valid"],
-        # peft_config=peft_config,
         dataset_text_field="text",
         max_seq_length=1024,
         tokenizer=tokenizer,
@@ -170,26 +163,25 @@ def train_LLM():
     )
 
 
-    trainer.train(resume_from_checkpoint=True)
+    trainer.train()
 
 
 def train_enc_dec_model():
 
     global dataset
 
+    if 't5' in model_name_arg:
+        max_input_len = 512
+    else:
+        max_input_len = 800
+
     # tokenize the examples
     def convert_to_features(example_batch):
-        model_inputs = tokenizer(example_batch['text'], max_length=512, truncation=True, pad_to_max_length = True)
+        model_inputs = tokenizer(example_batch['text'], max_length=max_input_len, truncation=True, pad_to_max_length = True)
 
         labels = tokenizer(text_target=example_batch['title'], max_length=128, truncation=True, pad_to_max_length = True)
 
         model_inputs["labels"] = labels["input_ids"]
-
-        # inputs = example_batch['text']
-        # targets = example_batch['title']
-        # model_inputs = tokenizer(
-        #     inputs, text_target=targets, max_length=512, truncation=True, pad_to_max_length=True
-        # )
 
         return model_inputs
 
@@ -204,10 +196,11 @@ def train_enc_dec_model():
         lora_alpha=32, 
         lora_dropout=0.1,
         bias="none",
-        use_dora=True
+        use_dora=True,
+        target_modules=["q","k","v","o"],
     )
 
-    if model_name_arg == 't5':
+    if model_name_arg == 'long-t5':
 
         model = AutoModelForSeq2SeqLM.from_pretrained(
             model_name,
@@ -217,16 +210,19 @@ def train_enc_dec_model():
             quantization_config=bnb_config
         )
 
+        model = prepare_model_for_kbit_training(model)
+        model = get_peft_model(model, peft_config)
+
+        print('enable inputs require grad')
+        model.base_model.model.encoder.enable_input_require_grads()
+        model.base_model.model.decoder.enable_input_require_grads()
+
     else:
         model = AutoModelForSeq2SeqLM.from_pretrained(
         model_name,
         low_cpu_mem_usage=True,
         return_dict=True
     )
-
-    # model = prepare_model_for_kbit_training(model)
-
-    # model = get_peft_model(model, peft_config)
 
     trainer = Trainer(
         model=model,

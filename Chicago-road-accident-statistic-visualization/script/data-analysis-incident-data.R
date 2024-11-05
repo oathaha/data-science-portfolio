@@ -48,12 +48,11 @@ save.fig = function(fig.name, scale=1){
 
 
 
-## num accidents by weather and month
+## Number of accident in each month by weather condition
 
 new.df = df %>% 
   filter(WEATHER_CONDITION != 'UNKNOWN') %>%
   count(Month, WEATHER_CONDITION)
-  # mutate(n = log10(n))
 
 new.df %>% ggplot(aes(x=Month, y=WEATHER_CONDITION, fill=n)) + 
   geom_tile() + 
@@ -64,13 +63,12 @@ new.df %>% ggplot(aes(x=Month, y=WEATHER_CONDITION, fill=n)) +
     fill = 'Number of \nAccident'
   ) + 
   scale_y_discrete(labels = label_wrap_gen(15)) 
-  # theme(legend.position = 'bottom')
 
 save.fig('num_accidents_each_month_by_weather', 1.3)
 
 
 
-## num accidents by day of week and month
+## Number of accidents in each month by day of week
 
 new.df = df %>%
   group_by(Month, day_of_week) %>%
@@ -91,7 +89,7 @@ save.fig('num_accidents_by_day_of_week')
 
 
 
-## top-10 contribution cause
+## Top-10 causes of accidents
 
 new.df = df %>%
   count(PRIM_CONTRIBUTORY_CAUSE) %>%
@@ -115,7 +113,7 @@ save.fig('top_10_accidents_causes', 1.3)
 
 
 
-## top-10 first crash type
+## Top-10 crash type in accident
 
 new.df = df %>%
   count(FIRST_CRASH_TYPE) %>%
@@ -139,7 +137,7 @@ save.fig('top_10_crash_type', 1.3)
 
 
 
-## number of different injury types in each month
+## Number of people at crash site in each month by injury type
 
 new.df = df %>%
   select(INJURIES_FATAL, INJURIES_INCAPACITATING, INJURIES_NON_INCAPACITATING, INJURIES_REPORTED_NOT_EVIDENT, Month) %>%
@@ -168,7 +166,7 @@ save.fig('num_injured_people_each_month_by_injury_type', 1.5)
 
 
 
-## number of accidents in each month by surroundings in crash site
+## Total accident in each month by surrounding situation
 
 new.df = df %>%
   select(INTERSECTION_RELATED_I, NOT_RIGHT_OF_WAY_I, HIT_AND_RUN_I, DOORING_I, WORK_ZONE_I, Month) %>%
@@ -186,17 +184,16 @@ new.df %>% ggplot(aes(x=Month, y = n, color = Surrounding_Condition, group = Sur
     color = 'Surrounding Situation'
   ) +
   theme(axis.text.x = element_text(angle=30))
-  # guides(color = guide_legend(nrow=3))
 
 save.fig('num_accidents_each_month_by_situation')
 
 
 
-## number of accidents by crash type and roadway surface condition
+## Number of accident by crash type and roadway surface condition
 
 new.df = df %>%
   filter(ROADWAY_SURFACE_COND != 'UNKNOWN') %>%
-  # count(FIRST_CRASH_TYPE, ROADWAY_SURFACE_COND) %>%
+
   mutate(
     ROADWAY_SURFACE_COND = factor(ROADWAY_SURFACE_COND, levels=c('DRY', 'ICE', 'WET', 'SAND, MUD, DIRT', 'SNOW OR SLUSH', 'OTHER'))
   ) %>%
@@ -209,32 +206,20 @@ new.df %>% ggplot() +
     axis.text.x = element_text(
       angle = 90, 
       vjust=0.5,
-      # size = 20
     ),
-    # axis.text.y = element_text(size = 20),
-    # plot.title = element_text(size = 40)
   ) + 
   labs(
     title = 'Number of accident by crash type and roadway surface condition',
     x = 'Roadway Surface Condition',
     y = 'Crash Type'
-    # fill = 'Driver Action'
   )
 
-# new.df %>% ggplot(aes(x=n, y = reorder(FIRST_CRASH_TYPE, n), fill=ROADWAY_SURFACE_COND)) + 
-#   geom_bar(stat = 'identity', position = 'fill') + 
-#   labs(
-#     title = 'Number of accident by crash type and roadway surface condition',
-#     x = 'Ratio',
-#     y = 'Crash Type',
-#     fill = 'Roadway Surface Condition'
-#   )
 
 save.fig('num_accident_by_crash_type_and_roadway_surface', scale=1.5)  
 
 
 
-## number of different road defect in each month
+## Number of accident by crash type and roadway surface condition
 
 new.df = df %>%
   select(INJURIES_FATAL, INJURIES_INCAPACITATING, INJURIES_NON_INCAPACITATING, INJURIES_REPORTED_NOT_EVIDENT, ROAD_DEFECT) %>%
@@ -259,4 +244,3 @@ new.df %>% ggplot(aes(x=value, y = reorder(ROAD_DEFECT, value), fill=Injury_Type
   )
 
 save.fig('num_injured_people_by_road_defect',1.3)
-

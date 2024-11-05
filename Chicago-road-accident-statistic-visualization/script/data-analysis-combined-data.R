@@ -115,7 +115,7 @@ save.fig = function(fig.name, scale=1){
 
 
 
-## number of people involved in accident in each month by gender
+## Number of people involved in accident in each month by gender
 
 new.df = df %>%
   filter(Sex != 'UNKNOWN') %>%
@@ -134,7 +134,7 @@ save.fig('num_people_each_month_by_gender')
 
 
 
-## number of people involved in accident in each month by age range
+## Number of people involved in accident in each month by age
 
 new.df = df %>%
   filter(Age.range != 'UNKNOWN') %>%
@@ -153,7 +153,7 @@ save.fig('num_people_each_month_by_age')
 
 
 
-## num people by speed limit and injury type
+## Number of people involved in accident by speed limit and injury type
 
 new.df = df %>%
   filter(
@@ -180,7 +180,7 @@ save.fig('num_people_in_accident_by_speed_limit_and_injury_type')
 
 
 
-## num people by work zone type, age, sex
+## Number of people involved in accident by age and type of work zone
 
 new.df = df %>%
   filter(
@@ -203,7 +203,7 @@ save.fig('num_people_in_accident_by_age_and_workzone_type')
 
 
 
-## num people by lightning condition and pedpedal visibility
+## Number of poeple involved in accident by lightning condition and visibility
 
 new.df = df %>%
   filter(LIGHTING_CONDITION != 'UNKNOWN' & PEDPEDAL_VISIBILITY != 'UNKNOWN') %>%
@@ -223,7 +223,7 @@ save.fig('num_people_in_accident_by_light_cond_and_pedpedal_vis')
 
 
 
-## relationship between driver's action and crash type
+## Number of accident by crash type and driver action
 
 new.df = df %>%
   filter(
@@ -252,7 +252,6 @@ new.df = df %>%
     )
   ) %>%
   select(FIRST_CRASH_TYPE, DRIVER_ACTION)
-  # count(FIRST_CRASH_TYPE, DRIVER_ACTION)
 
 new.df %>% ggplot() + 
   geom_mosaic(aes(x=product(DRIVER_ACTION,FIRST_CRASH_TYPE), fill=DRIVER_ACTION), offset = 0.03) + 
@@ -261,23 +260,15 @@ new.df %>% ggplot() +
     axis.text.x = element_text(
       angle = 90, 
       vjust=0.5,
-      # size = 20
     ),
-    # axis.text.y = element_text(size = 20),
-    # plot.title = element_text(size = 40)
   ) + 
   labs(
     title = 'Number of accident by crash type and driver action',
     x = 'Crash Type',
     y = 'Driver Action'
-    # fill = 'Driver Action'
   )
 
 save.fig('crash_type_vs_driver_action',scale = 1.5)
-
-# new.df %>% ggplot(aes(x=FIRST_CRASH_TYPE, y=DRIVER_ACTION, fill = n)) + 
-#   geom_tile() +
-#   theme(axis.text.x = element_text(angle = 30, vjust=0.5))
 
 
 
@@ -325,7 +316,7 @@ save.fig('top_accident_cause_by_physical_condition', scale=2.5)
 
 
 
-## FIRST_CRASH_TYPE vs BAC_RESULT.VALUE vs gender
+## Relationship between crash type and blood alcohol concentration of driver
 
 new.df = df %>%
   filter(

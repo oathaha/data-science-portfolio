@@ -32,30 +32,16 @@ data_dir = '../dataset/cleaned/'
 model_name_arg = args.model_name
 model_name = model_names.get(model_name_arg, '')
 
-handle_imb_data = args.handle_imb_data
-
-if handle_imb_data:
-    print('handle imbalance data during training')
-    suffix = 'handle-imbalance-data'
-else:
-    print('does not handle imbalance data during training')
-    suffix = 'train-with-original-data'
-
-output_model_dir = '../fine-tuned-model/{}-{}'.format(model_name_arg, suffix)
+output_model_dir = '../fine-tuned-model/{}-{}'.format(model_name_arg)
 
 if model_name == '':
     print('wrong model name.')
     print('the model names must be in the list:', list(model_names.keys()))
     exit(0)
 
-
-
 ############## load dataset ##############
 
 dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.csv'), 'valid': os.path.join(data_dir,'valid.csv')})
-
-## just for testing
-# dataset = load_dataset('csv', data_files={'train': os.path.join(data_dir,'train.csv'), 'valid': os.path.join(data_dir,'valid_for_testing.csv')})
 
 idx2label = pickle.load(open('../dataset/cleaned/idx2class.pkl', 'rb'))
 label2idx = pickle.load(open('../dataset/cleaned/class2idx.pkl', 'rb'))
@@ -69,21 +55,14 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
 
 
-
 ############## load model for training ##############
-
-bnb_config = BitsAndBytesConfig(
-    load_in_8bit=True
-)
-
 
 train_batch_size = 8
 eval_batch_size = 8
-learning_rate = 2e-5
+learning_rate = 1e-5
 
 ## real one
-# eval_every_step = round(0.1*len(dataset['train'])/train_batch_size)
-eval_every_step = 1090 ## total steps are 10902 as seen from screen.
+eval_every_step = 1090 ## evaluate every 10% of the total steps (10902 as seen on screen).
 
 if model_name_arg == 'llama2-7b':
     fp16 = True
@@ -115,7 +94,6 @@ training_args = TrainingArguments(
 
 
 
-
 #%%
 
 def train_LLM():
@@ -131,7 +109,7 @@ def train_LLM():
 
         inputs = tokenizer.decode(
                     tokenizer.encode(
-                        inputs,truncation=True, max_length = 4000),
+                        inputs,truncation=True, max_length = 900),
                     skip_special_tokens=True)
         
         examples['text'] = '<s>[INST]predict news category of the given news article below\n\n###news article\n\n {} \n\n[/INST]###news category: {} </s>'.format(inputs, targets)
@@ -153,6 +131,11 @@ def train_LLM():
         use_dora=True
     )
 
+
+    bnb_config = BitsAndBytesConfig(
+        load_in_8bit=True
+    )
+
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         low_cpu_mem_usage=True,
@@ -162,16 +145,16 @@ def train_LLM():
     )
 
     model = prepare_model_for_kbit_training(model)
-
     model = get_peft_model(model, peft_config)
+
+    model.print_trainable_parameters()
 
     trainer = SFTTrainer(
         model=model,
         train_dataset=dataset["train"],
         eval_dataset=dataset["valid"],
-        # peft_config=peft_config,
         dataset_text_field="text",
-        max_seq_length=4000,
+        max_seq_length=1024,
         tokenizer=tokenizer,
         args=training_args,
         packing=False,
@@ -184,18 +167,10 @@ def train_LLM():
 
 def train_enc_model():
 
-    # global tokenizer
-
-    # tokenizer.pad_token = tokenizer.eos_token
     if tokenizer.pad_token is None:
         tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 
     global dataset
-
-    # def add_eos_to_examples(example):
-    #     example['Article'] = '<s> {} </s>'.format(example['text'])
-    #     example['title'] = '<s> {} </s>'.format(example['title'])
-    #     return example
 
     # tokenize the examples
     def convert_to_features(example_batch):
@@ -208,32 +183,14 @@ def train_enc_model():
 
         return encodings
 
-    # dataset = dataset.map(add_eos_to_examples)
     dataset = dataset.map(convert_to_features, batched=True)
 
     model = AutoModelForSequenceClassification.from_pretrained(
         model_name,
-        low_cpu_mem_usage=True,
-        return_dict=True,
-        torch_dtype=torch.float16,
-        quantization_config=bnb_config, 
         num_labels=13,
         id2label=idx2label,
-        label2id=label2idx,
+        label2id=label2idx
     )
-
-    peft_config = LoraConfig(
-        task_type="SEQ_CLS", 
-        inference_mode=False, 
-        r=16, 
-        lora_alpha=32, 
-        lora_dropout=0.1,
-        bias="none",
-        use_dora=True
-    )
-
-    model = prepare_model_for_kbit_training(model)
-    model = get_peft_model(model, peft_config)
 
     trainer = Trainer(
         model=model,
@@ -244,7 +201,7 @@ def train_enc_model():
         callbacks = [EarlyStoppingCallback(early_stopping_patience=3, early_stopping_threshold = 0.01)]
     )
 
-    trainer.train()
+    trainer.train(resume_from_checkpoint=True)
 
 
 #%%

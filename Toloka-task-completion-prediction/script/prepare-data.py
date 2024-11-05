@@ -67,7 +67,7 @@ test_df.to_csv(os.path.join(data_dir, 'test_original_df.csv'),index=False)
 df.to_csv(os.path.join(data_dir, 'cleaned_data_no_outlier_label.csv'),index=False)
 #%%
 
-## convert categorical features into numerical features
+## pre-process features
 
 cat_cols = ['device_category', 'os_family', 'project_instruction_language', 'assignment_type']
 
@@ -99,7 +99,6 @@ col_transformer.fit(train_df)
 #%%
 
 train_data = col_transformer.transform(train_df)
-
 test_data = col_transformer.transform(test_df)
 
 #%%
@@ -122,5 +121,3 @@ test_df['completion-time-in-minutes'] = y_test
 
 train_df.to_csv(os.path.join(data_dir, 'train_processed_df.csv'),index=False)
 test_df.to_csv(os.path.join(data_dir, 'test_processed_df.csv'),index=False)
-
-# %%

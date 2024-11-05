@@ -1,0 +1,7 @@
+model,metric,value
+llama2-7b,BLEU-4,99.32
+llama2-7b,METEOR,98.63
+llama2-7b,ROUGE-L,24.22
+llama2-7b,BERTScore-Precision,81.16
+llama2-7b,BERTScore-Recall,85.39
+llama2-7b,BERTScore-F1,83.13000000000001

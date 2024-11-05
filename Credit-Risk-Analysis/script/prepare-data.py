@@ -111,15 +111,9 @@ def transform_data(train_df, test_df):
 
     col_names = [s.replace('cat__','').replace('num__','').replace('remainder__','') for s in col_names]
 
-    # print(col_names)
-        
     train_data = col_transformer.transform(train_df).toarray()
     test_data = col_transformer.transform(test_df).toarray()
     
-    ## shape: n_row x n_cols
-    # print(type(train_data), train_data.shape)
-    # print(test_data.shape)
-
     train_df = pd.DataFrame(data=train_data, columns=col_names)
     test_df = pd.DataFrame(data=test_data, columns=col_names)
 
@@ -127,6 +121,7 @@ def transform_data(train_df, test_df):
 
 #%%
 
+## prepare data for loan approval prediction
 df_app_ref = df[df['NAME_CONTRACT_STATUS'].isin(['Approved', 'Refused'])]
 
 train_end = round(len(df_app_ref)*0.85)
@@ -135,6 +130,7 @@ df_app_ref['is_approved'] = df_app_ref['NAME_CONTRACT_STATUS'] == 'Approved'
 
 df_app_ref = df_app_ref.drop('NAME_CONTRACT_STATUS', axis=1)
 
+### split data into training and test sets
 train_df = df_app_ref.iloc[0:train_end]
 test_df = df_app_ref.iloc[train_end:]
 
@@ -142,6 +138,8 @@ df_app_ref.to_csv(os.path.join(save_dir_app_ref,'processed_data.csv'), index=Fal
 train_df.to_csv(os.path.join(save_dir_app_ref,'train_original_data.csv'), index=False)
 test_df.to_csv(os.path.join(save_dir_app_ref,'test_original_data.csv'), index=False)
 
+
+### pre-process training and testing sets
 train_df, test_df = transform_data(train_df, test_df)
 
 train_df.to_csv(os.path.join(save_dir_app_ref,'train_processed_data.csv'), index=False)
@@ -149,14 +147,14 @@ test_df.to_csv(os.path.join(save_dir_app_ref,'test_processed_data.csv'), index=F
 
 # %%
 
-# df_app_ref = df[df['NAME_CONTRACT_STATUS'].isin(['Approved', 'Refused'])]
-
+## prepare data for review priority prediction
 df['is_high_priority'] = df['NAME_CONTRACT_STATUS'].isin(['Approved', 'Refused'])
 
 df = df.drop('NAME_CONTRACT_STATUS', axis=1)
 
 #%%
 
+### split data into training and test sets
 train_end = round(len(df)*0.85)
 
 train_df = df.iloc[0:train_end]
@@ -166,8 +164,10 @@ df.to_csv(os.path.join(save_dir_review_priority,'processed_data.csv'), index=Fal
 train_df.to_csv(os.path.join(save_dir_review_priority,'train_original_data.csv'), index=False)
 test_df.to_csv(os.path.join(save_dir_review_priority,'test_original_data.csv'), index=False)
 
+
+### pre-process training and testing sets
+
 train_df, test_df = transform_data(train_df, test_df)
 
 train_df.to_csv(os.path.join(save_dir_review_priority,'train_processed_data.csv'), index=False)
 test_df.to_csv(os.path.join(save_dir_review_priority,'test_processed_data.csv'), index=False)
-# %%

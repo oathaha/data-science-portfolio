@@ -1,0 +1,7 @@
+model,metric,value
+bart,BLEU-4,99.32
+bart,METEOR,98.63
+bart,ROUGE-L,40.02
+bart,BERTScore-Precision,89.27000000000001
+bart,BERTScore-Recall,89.14999999999999
+bart,BERTScore-F1,89.18

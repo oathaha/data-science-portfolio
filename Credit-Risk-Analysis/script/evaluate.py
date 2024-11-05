@@ -9,23 +9,39 @@ from sklearn.metrics import classification_report, roc_auc_score, matthews_corrc
 
 import pandas as pd
 
-import pickle, os
-
+import pickle, os, argparse
 
 
 # %%
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--task', type = str, required=True)
+
+args = parser.parse_args()
+
+
+task = args.task
+use_selected_features = args.use_selected_features
+
+if task == 'loan-app-pred':
+    data_subdir = 'loan_approval_prediction'
+    model_subdir = 'loan_approval_prediction'
+    target_col = 'is_approved'
+
+elif task == 'priority-pred':
+    data_subdir = 'review_priority_prediction'
+    model_subdir = 'review_priority_prediction'
+    target_col = 'is_high_priority'
+
+
+test_df_dir = '../dataset/cleaned/{}/test_processed_selected_features.csv'.format(data_subdir)
+
+
 ## Read test set
 
-target_cols = {
-    'loan_approval_prediction': 'is_approved',
-    'review_priority_prediction': 'is_high_priority'
-}
+print('read test data from', test_df_dir)
 
-task_name = 'review_priority_prediction'
-target_col = target_cols[task_name]
-
-df = pd.read_csv('../dataset/cleaned/{}/test_processed_data.csv'.format(task_name))
+df = pd.read_csv(test_df_dir)
 
 y = df[target_col]
 x = df.drop([target_col], axis=1)
@@ -41,23 +57,22 @@ col_names = {
     'review_priority_prediction': ['Low-Priority', 'High-Priority']
 }
 
-def eval_result(model_name, imb_data_handling_method):
-
-    model_dir = '../model/{}/{}/{}/'.format(task_name, imb_data_handling_method, model_name)
+def load_model(model_name, imb_data_handling_method):
+    model_dir = '../model/{}/{}/{}/'.format(model_subdir, imb_data_handling_method, model_name)
 
     print('loading model from', model_dir)
 
     with open(model_dir + 'model.pkl', 'rb') as f:
         model = pickle.load(f)
 
-    pred = model.predict(x)
-    prob = model.predict_proba(x)
+    return model
 
+
+## prob is for positive class only
+def evaluate(model_name, imb_data_handling_method, pred, prob):
     result = classification_report(y, pred, output_dict=True)
 
     result_rows = []
-
-    # print(result)
 
     for k,v in result.items():
         data_row = {
@@ -76,7 +91,7 @@ def eval_result(model_name, imb_data_handling_method):
     result_all_class_df = pd.DataFrame(result_rows)
 
     ## store result of all classes (roc_auc is for positive label only)
-    roc_auc = roc_auc_score(y, prob[:, 1])
+    roc_auc = roc_auc_score(y, prob)
     mcc = matthews_corrcoef(y, pred)
 
     result_dict = {
@@ -86,48 +101,70 @@ def eval_result(model_name, imb_data_handling_method):
         'MCC': mcc
     }
 
+    return result_all_class_df, result_dict
 
-    prob_df = pd.DataFrame(prob, columns = col_names[task_name])
-    prob_df['model_name'] = model_name
-
-    return result_all_class_df, result_dict, prob_df
 
 # %%
 base_result_dir = '../result'
 result_dir = os.path.join(base_result_dir, 'eval_metrics')
-prob_dir = os.path.join(base_result_dir, 'prob_values', task_name)
+prob_dir = os.path.join(base_result_dir, 'prob_values', data_subdir)
 
 os.makedirs(result_dir, exist_ok=True)
 os.makedirs(prob_dir, exist_ok=True)
 
-## just for testing (change to real value later...)
-model_names = ['DecisionTreeClassifier', 'LogisticRegression']
-data_imb_handling_methods = ['imb-data', 'Tomek']
+
+model_names = [
+    "AdaBoostClassifier_DecisionTreeClassifier", 
+    "KNeighborsClassifier", 
+    "AdaBoostClassifier_LogisticRegression", 
+    "LogisticRegression", 
+    "BaggingClassifier_LogisticRegression", 
+    "RandomForestClassifier", 
+    "DecisionTreeClassifier", 
+    "XGBClassifier", 
+    "HistGradientBoostingClassifier"
+]
+data_imb_handling_methods = ['imb-data', 'Tomek', 'class-weight', 'SMOTE']
 
 alL_result_each_class_df = []
 all_result_all_classes_rows = []
 prob_val = {s:[] for s in data_imb_handling_methods}
 
 
-for model_name in model_names:
-    for method in data_imb_handling_methods:
-        result_all_class_df, result_dict, prob_df = eval_result(model_name, method)
+for method in data_imb_handling_methods:
+    pred_all_models_df = pd.DataFrame()
+    prob_all_models_df = pd.DataFrame()
+    
+    ## get results from each model
+    for model_name in model_names:
+        model = load_model(model_name, method)
+
+        pred = model.predict(x)
+        prob = model.predict_proba(x)[:,1]
+
+        pred_all_models_df[model_name] = pred
+        prob_all_models_df[model_name] = prob
+
+        result_all_class_df, result_dict = evaluate(model_name, method, pred, prob)
 
         alL_result_each_class_df.append(result_all_class_df)
         all_result_all_classes_rows.append(result_dict)
-        prob_val[method].append(prob_df)
+        
+    ## for ensemble voting
+    final_prediction = pred_all_models_df.mode(axis='columns')
+    final_prob = prob_all_models_df.mean(axis='columns')
+
+    result_all_class_df, result_dict = evaluate('Ensemble Voting', method, final_prediction, final_prob)
+
+    alL_result_each_class_df.append(result_all_class_df)
+    all_result_all_classes_rows.append(result_dict)
+        
 
 # %%
 
 result_each_class = pd.concat(alL_result_each_class_df)
 result_all_classes = pd.DataFrame(all_result_all_classes_rows)
 
-result_each_class.to_csv(os.path.join(result_dir, '{}_result_each_class.csv'.format(task_name)), index=False)
-result_all_classes.to_csv(os.path.join(result_dir, '{}_result_all_classes.csv'.format(task_name)), index=False)
-
-for data_imb_handling_method, df_list in prob_val.items():
-    final_df = pd.concat(df_list)
-    final_df.to_csv(os.path.join(prob_dir, '{}_prob.csv'.format( data_imb_handling_method)), index=False)
-
-#%%
+result_each_class.to_csv(os.path.join(result_dir, '{}_result_each_class.csv'.format(data_subdir)), index=False)
+result_all_classes.to_csv(os.path.join(result_dir, '{}_result_all_classes.csv'.format(data_subdir)), index=False)
 

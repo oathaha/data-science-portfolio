@@ -20,7 +20,6 @@ df = df.drop_duplicates()
 # %%
 
 ## check nan value
-
 print(df.isna().sum(axis=0))
 
 # %%
@@ -49,10 +48,5 @@ print(df.isna().sum())
 
 # %%
 
-## save dataframe
-
+## save cleaned dataset
 df.to_csv(os.path.join(save_dir, 'cleaned_data.csv'), index=False)
-
-# %%
-
-# %%

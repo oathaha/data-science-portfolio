@@ -6,5 +6,7 @@ Medium-Articles-title-generation/script/mlruns/*
 */result
 */model_*
 */model-*
+*/script/mlruns
 */script/.RData
 */script/.Rhistory
+Guardian-news-classification/fine-tuned-model.zip

@@ -103,8 +103,6 @@ The graph shows that regardless project instruction language; `assignment_gs_cor
 
 <br/>
 
-
-
 ```{r fig.width=10, fig.height=8}
 
 prepare.df.by.category = function(cat){

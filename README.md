@@ -1,15 +1,15 @@
 # data-science-portfolio
 
-This repository contains the implementations for my data science portfolio which can be found in this [link](https://sites.google.com/view/chanathip-pornprasit/). This portfolio contains the following sub-directories
+This repository contains the implementations for my data science portfolio which can be found in this [link](https://sites.google.com/view/chanathip-pornprasit/data-science-portfolio). This portfolio contains the following projects:
 
- - Purchase Order Visualization
- - Assignment Completion Time Prediction
- - Loan Application Status/Priority Prediction
- - News Classification
- - Medium Article Title Generation
+ - [Chicago Road Accident Visualization](https://github.com/oathaha/data-science-portfolio/tree/main/Chicago-road-accident-statistic-visualization)
+ - [Assignment Completion Time Prediction]( https://github.com/oathaha/data-science-portfolio/tree/main/Toloka-task-completion-prediction)
+ - [Loan Application Status/Priority Prediction](https://github.com/oathaha/data-science-portfolio/tree/main/Credit-Risk-Analysis)
+ - [News Classification](https://github.com/oathaha/data-science-portfolio/tree/main/Guardian-news-classification)
+ - [Medium Article Title Generation](https://github.com/oathaha/data-science-portfolio/tree/main/Medium-Articles-title-generation)
 
-## Dataset
-The dataset can be found in this [link](https://drive.google.com/drive/folders/1w_3rMmeEpQlBlHTCqupwSBHxwFoYXsEK?usp=drive_link)
+## Dataset and Fine-tuned Models
+The dataset and fine-tuned models can be found in this [link](https://zenodo.org/records/13787952)
 
 ## Environment Setup
 
@@ -19,4 +19,6 @@ You can setup python environment by running the following command in the command
 
 To run PySpark, you have to install Spark from this website: https://spark.apache.org/downloads.html first.
 
-To run R script, you need to install Rstudio and the following packages: `tidyverse`
+To run R script, you need to install Rstudio and the following packages: `tidyverse`, `ggsankey` and `ggmosaic`
+
+
