@@ -10,3 +10,5 @@ Medium-Articles-title-generation/script/mlruns/*
 */script/.RData
 */script/.Rhistory
 Guardian-news-classification/fine-tuned-model.zip
+.env
+RAG-with-LLamaIndex/script/.streamlit/secrets.toml

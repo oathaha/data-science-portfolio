@@ -1,5 +1,3 @@
-#%%
-
 import streamlit as st
 
 from llama_index.core import  VectorStoreIndex, get_response_synthesizer
@@ -14,112 +12,102 @@ from llama_index.llms.openai import OpenAI
 
 import qdrant_client
 from llama_index.vector_stores.qdrant import QdrantVectorStore
-import os, time
 
-#%%
+# Show title and description.
+st.title("💬 Australian visa assistance")
+st.header("Ask me anything about Australian visa.")
 
-## setup LLM
+openai_api_key = st.secrets["OPENAI_API_KEY"]
 
-embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-mpnet-base-v2")
+with st.spinner("Setting up LLM and embedding model"):
+    embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-mpnet-base-v2")
+    llm = OpenAI(model="gpt-4o-mini", api_key=openai_api_key)
 
-# llm = OpenAI(model="gpt-4o-mini", api_key=os.environ['OPENAI_API_KEY'])
-llm = OpenAI(model="gpt-4o-mini", api_key=st.secrets["QDRANT_API_KEY"])
+with st.spinner("Connecting to vector store"):
+    client = qdrant_client.QdrantClient(
+        url = st.secrets["QDRANT_URL"],
+        api_key = st.secrets["QDRANT_API_KEY"]
+    )
 
-#%%
+    vector_store = QdrantVectorStore(
+        client=client, 
+        collection_name="visa-info",
+        enable_hybrid=True
+    )
 
-## setup vector store
-
-client = qdrant_client.QdrantClient(
-    # url=os.environ['QDRANT_URL'], 
-    # api_key=os.environ['QDRANT_API_KEY'],
-    url = st.secrets["QDRANT_URL"],
-    api_key = st.secrets["QDRANT_API_KEY"]
-)
-
-vector_store = QdrantVectorStore(
-    client=client, 
-    collection_name="visa-info",
-    enable_hybrid=True
-)
-
-index = VectorStoreIndex.from_vector_store(
-    vector_store=vector_store,
-    embed_model=embed_model,
-)
-
-# %%
+    index = VectorStoreIndex.from_vector_store(
+        vector_store=vector_store,
+        embed_model=embed_model,
+    )
 
 ## prepare pipeline component
 
-input_comp = InputComponent()
+with st.spinner("Building RAG pipeline"):
 
-response_synthesizer = get_response_synthesizer(response_mode="compact")
+    input_comp = InputComponent()
 
-similarity_postprocessor = SimilarityPostprocessor(similarity_cutoff=0.7)
+    response_synthesizer = get_response_synthesizer(response_mode="compact")
 
-metadata_replacement_postprocessor = MetadataReplacementPostProcessor(
-    target_metadata_key="window_context",
-)
+    similarity_postprocessor = SimilarityPostprocessor(similarity_cutoff=0.7)
 
-post_processors = [similarity_postprocessor, metadata_replacement_postprocessor]
+    metadata_replacement_postprocessor = MetadataReplacementPostProcessor(
+        target_metadata_key="window_context",
+    )
 
-
-retriever = VectorIndexRetriever(
-    index = index,
-    similarity_top_k = 10,
-    vector_store_query_mode = 'hybrid',
-    alpha = 0.7, 
-    hybrid_top_k = 10
-)
-
-query_engine = RetrieverQueryEngine(
-    retriever = retriever,
-    node_postprocessors = post_processors,
-    response_synthesizer = response_synthesizer
-)
+    post_processors = [similarity_postprocessor, metadata_replacement_postprocessor]
 
 
-#%%
+    retriever = VectorIndexRetriever(
+        index = index,
+        similarity_top_k = 10,
+        vector_store_query_mode = 'hybrid',
+        alpha = 0.8, 
+        hybrid_top_k = 10
+    )
 
-## define custom prompt
-
-custom_prompt = """You are an assistant for question-answering tasks related to visa application in Australia.
-
-Use the following pieces of retrieved context to answer the user's query:
-
----------------------\n
-{context_str}\n
----------------------\n
-
-Query: {query_str}
-"""
-
-custom_prompt_template = PromptTemplate(custom_prompt)
-
-query_engine.update_prompts({"response_synthesizer:text_qa_template": custom_prompt_template})
+    query_engine = RetrieverQueryEngine(
+        retriever = retriever,
+        node_postprocessors = post_processors,
+        response_synthesizer = response_synthesizer
+    )
 
 
-#%%
+    ## define custom prompt
 
-## create pipeline
+    custom_prompt = """You are an assistant for question-answering tasks related to visa application in Australia.
 
-pipeline = QueryPipeline(
-    chain = [input_comp, query_engine, llm],
-    verbose=False
-)
+    Use the following pieces of retrieved context to answer the user's query:
+
+    ---------------------\n
+    {context_str}\n
+    ---------------------\n
+
+    Query: {query_str}
+    """
+
+    custom_prompt_template = PromptTemplate(custom_prompt)
+
+    query_engine.update_prompts({"response_synthesizer:text_qa_template": custom_prompt_template})
 
 
-## use streamlit for front-end
 
-st.header("Chat with the Australian visa assistance")
+    ## create pipeline
+
+    pipeline = QueryPipeline(
+        chain = [input_comp, query_engine, llm],
+        verbose=False
+    )
+
+st.success('Chatbot is ready. You can ask questions now.')
 
 if "messages" not in st.session_state.keys(): # Initialize the chat message history
     st.session_state.messages = [
-        {"role": "assistant", "content": "I am an Australian visa assistance. You can ask me about visa in Australia."}
+        {"role": "assistant", "content": "Hi. I am an Australian visa assistance. You can ask me about visa in Australia."}
     ]
 
+prompt = st.chat_input("Please enter your question here.")
 
-if prompt := st.chat_input("Please enter your question here."): # Prompt for user input and save to chat history
+if prompt: # Prompt for user input and save to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
 
 for message in st.session_state.messages: # Display the prior chat messages
@@ -131,9 +119,9 @@ for message in st.session_state.messages: # Display the prior chat messages
 if st.session_state.messages[-1]["role"] != "assistant":
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            ## get response from pipeline
 
-            response = pipeline.run(input="give me some detail about training visa")
+            ## get response from pipeline
+            response = pipeline.run(input=prompt)
 
             response_str = str(response)
 
