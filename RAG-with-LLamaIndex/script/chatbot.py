@@ -19,11 +19,13 @@ st.header("Ask me anything about Australian visa.")
 
 openai_api_key = st.secrets["OPENAI_API_KEY"]
 
-with st.spinner("Setting up LLM and embedding model"):
+
+@st.cache_resource
+def prepare_pipeline():
+
     embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-mpnet-base-v2")
     llm = OpenAI(model="gpt-4o-mini", api_key=openai_api_key)
 
-with st.spinner("Connecting to vector store"):
     client = qdrant_client.QdrantClient(
         url = st.secrets["QDRANT_URL"],
         api_key = st.secrets["QDRANT_API_KEY"]
@@ -40,9 +42,7 @@ with st.spinner("Connecting to vector store"):
         embed_model=embed_model,
     )
 
-## prepare pipeline component
-
-with st.spinner("Building RAG pipeline"):
+    ## prepare pipeline component
 
     input_comp = InputComponent()
 
@@ -98,16 +98,24 @@ with st.spinner("Building RAG pipeline"):
         verbose=False
     )
 
-st.success('Chatbot is ready. You can ask questions now.')
+    st.success('Chatbot is ready. You can ask questions now.')
 
-if "messages" not in st.session_state.keys(): # Initialize the chat message history
+    return pipeline
+
+pipeline = prepare_pipeline()
+
+
+# Initialize the chat message history
+if "messages" not in st.session_state.keys(): 
     st.session_state.messages = [
         {"role": "assistant", "content": "Hi. I am an Australian visa assistance. You can ask me about visa in Australia."}
     ]
 
+# Prompt for user input and save to chat history
+
 prompt = st.chat_input("Please enter your question here.")
 
-if prompt: # Prompt for user input and save to chat history
+if prompt: 
     st.session_state.messages.append({"role": "user", "content": prompt})
 
 for message in st.session_state.messages: # Display the prior chat messages
@@ -131,17 +139,3 @@ if st.session_state.messages[-1]["role"] != "assistant":
             st.write(response_str)
             message = {"role": "assistant", "content": response_str}
             st.session_state.messages.append(message) # Add response to message history
-
-#%%
-
-# ## get response from pipeline
-
-# response = pipeline.run(input="give me some detail about training visa")
-
-# response_str = str(response)
-
-# if 'assistant: ' in response_str:
-#     response_str = response_str.replace('assistant: ', '')
-
-
-# %%
