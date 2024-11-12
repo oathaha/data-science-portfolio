@@ -3,11 +3,14 @@
 
 <!-- [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/hwG7gCTKayw/0.jpg)](https://youtu.be/hwG7gCTKayw) -->
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/hwG7gCTKayw?si=0dDIo6fbeg1axyNn" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Overview
 
 This directory contains script to run chatbot for answering questions relating Australian visa. The chatbot is developed with streamlit. More details can be found in this [link](google-site).
+
+The demo of this project can be seen in the below video (you need to click at the image to watch the video).
+
+[![](https://img.youtube.com/vi/hwG7gCTKayw/0.jpg)](https://youtu.be/hwG7gCTKayw)
 
 ## Capability of the chatbot
 
