@@ -1,9 +1,6 @@
 # RAG with LlamaIndex
 
 
-<!-- [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/hwG7gCTKayw/0.jpg)](https://youtu.be/hwG7gCTKayw) -->
-
-
 ## Overview
 
 This directory contains script to run chatbot for answering questions relating Australian visa. The chatbot is developed with streamlit. More details can be found in this [link](google-site).
